@@ -10,7 +10,7 @@ import statistics
 import sys
 from pathlib import Path
 
-from analyze_timing import SPEED_OK, analyze
+from analyze_timing import SPEED_MARGIN, SPEED_OK, analyze
 from asr_local import CACHE_DIR, load_model, transcribe
 from cer import pronunciation_report
 from score import score_metrics
@@ -181,21 +181,39 @@ def evaluate_pair(mp3: Path, js: Path, model, force: bool) -> dict:
         "gate_fail_reasons": metrics["gate_fail_reasons"],
         "issues": metrics["issues"],
         "bucket_a": bool(pron["is_error"] or metrics["gate_fail_reasons"]),
+        "_metrics": metrics,
     }
     row["bucket"] = bucket_of(row)
-    reasons = []
-    if pron["is_error"]:
-        reasons.append(f"发音 CER {pron['cer_pct']}%")
-        if pron["missing_keywords"]:
-            reasons.append("缺 " + "、".join(pron["missing_keywords"]))
-    if metrics["gate_fail_reasons"]:
-        reasons.extend(metrics["gate_fail_reasons"])
-    if row["bucket"] == "B":
-        reasons.append(f"不流畅 rank={disfluency_rank(row)}")
-    if row["bucket"] == "C":
-        reasons.append(f"综合分 {row['score']} < {LOW_SCORE}")
-    row["reason"] = "；".join(reasons) if reasons else "合格"
+    row["reason"] = _reason(row)
     return row
+
+
+def _reason(row: dict) -> str:
+    reasons = []
+    if row.get("missing_keywords") or (row.get("cer") is not None and row["cer"] >= 0.08):
+        if row.get("cer_pct") is not None:
+            reasons.append(f"发音 CER {row['cer_pct']}%")
+        if row.get("missing_keywords"):
+            reasons.append("缺 " + "、".join(row["missing_keywords"]))
+    if row.get("gate_fail_reasons"):
+        reasons.extend(row["gate_fail_reasons"])
+    if row.get("bucket") == "B":
+        reasons.append(f"不流畅 rank={disfluency_rank(row)}")
+    if row.get("bucket") == "C":
+        reasons.append(f"综合分 {row['score']} < {LOW_SCORE}")
+    return "；".join(reasons) if reasons else "合格"
+
+
+def apply_speed_band(row: dict, speed_ok: tuple[float, float]) -> None:
+    metrics = row["_metrics"]
+    lo, hi = speed_ok
+    metrics["speed_in_band"] = lo <= float(metrics["cpm"]) <= hi
+    scored = score_metrics(metrics, speed_ok=speed_ok)
+    row["score"] = scored["score"]
+    row["subscores"] = scored["subscores"]
+    row["speed_in_band"] = metrics["speed_in_band"]
+    row["bucket"] = bucket_of(row)
+    row["reason"] = _reason(row)
 
 
 def render_markdown(payload: dict) -> str:
@@ -204,6 +222,7 @@ def render_markdown(payload: dict) -> str:
         f"**课件综合分**：{s['score']} / 100",
         f"**句数**：{s['n']}（错误 {s['n_error']} / 不流畅 {s['n_disfluent']} / 其余 {s['n_ok']}）",
         f"**FunASR**：{s['asr']}",
+        f"**语速合格带**：{s.get('speed_band', '—')}（当课均值±{SPEED_MARGIN}）",
         f"**单句中位数**：{s['median']}",
         "",
         "### 错误（优先，不计入 6 例）",
@@ -268,6 +287,11 @@ def main() -> int:
         print(f"[{i}/{len(pairs)}] {mp3.name}", file=sys.stderr)
         items.append(evaluate_pair(mp3, js, model, args.force_asr))
 
+    mean_cpm = statistics.mean(x["cpm"] for x in items)
+    speed_ok = (mean_cpm - SPEED_MARGIN, mean_cpm + SPEED_MARGIN)
+    for row in items:
+        apply_speed_band(row, speed_ok)
+
     errors = sorted(
         (x for x in items if x["bucket"] == "A"),
         key=lambda x: (-float(x.get("cer") or 0), x["score"]),
@@ -287,6 +311,8 @@ def main() -> int:
             "n_ok": n_ok,
             "median": agg["median"],
             "asr": f"funasr-paraformer-{args.lang}",
+            "speed_mean": round(mean_cpm, 1),
+            "speed_band": f"{speed_ok[0]:.0f}–{speed_ok[1]:.0f} 字/分",
         },
         "errors": [compact(x) for x in errors],
         "typical": [compact(x) for x in typical],

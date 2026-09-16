@@ -19,8 +19,8 @@ def _clip(value: float, lo: float = 0.0, hi: float = 100.0) -> float:
     return max(lo, min(hi, value))
 
 
-def _speed_score(cpm: float) -> float:
-    lo, hi = SPEED_OK
+def _speed_score(cpm: float, speed_ok: tuple[float, float] | None = None) -> float:
+    lo, hi = speed_ok or SPEED_OK
     if lo <= cpm <= hi:
         return 92.0
     bound = lo if cpm < lo else hi
@@ -62,10 +62,10 @@ def _prosody_score(metrics: dict[str, Any]) -> float:
     return _clip(score, 40.0, 100.0)
 
 
-def score_metrics(metrics: dict[str, Any]) -> dict[str, Any]:
+def score_metrics(metrics: dict[str, Any], speed_ok: tuple[float, float] | None = None) -> dict[str, Any]:
     acc = _accuracy_score(metrics)
     flu = _fluency_score(metrics)
-    spd = _speed_score(float(metrics.get("cpm") or 0))
+    spd = _speed_score(float(metrics.get("cpm") or 0), speed_ok)
     pau = _pause_score(metrics)
     pro = _prosody_score(metrics)
 
