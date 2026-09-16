@@ -32,6 +32,10 @@ def _accuracy_score(metrics: dict[str, Any]) -> float:
     score -= 4.0 * int(metrics.get("repeat_n") or 0)
     score -= 8.0 * int(metrics.get("fragment_n") or 0)
     score -= 2.0 * int(metrics.get("filler_n") or 0)
+    cer = metrics.get("cer")
+    if cer is not None:
+        score -= min(30.0, float(cer) * 100.0 * 3.0)
+    score -= 6.0 * len(metrics.get("missing_keywords") or [])
     return _clip(score, 40.0, 100.0)
 
 

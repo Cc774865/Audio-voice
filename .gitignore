@@ -2,9 +2,11 @@
 /*.json
 *.mp3
 *.qa.json
+*.asr.json
 
 # python
 __pycache__/
 *.pyc
 .venv/
 venv/
+.funasr-cache/

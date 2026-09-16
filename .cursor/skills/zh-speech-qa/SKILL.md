@@ -1,73 +1,52 @@
 ---
 name: zh-speech-qa
 description: >-
-  Phase-1 Chinese speech QA for courseware TTS: score fluency, speed, pauses,
-  and rule-based text issues from word-timestamp JSON, then judge script logic.
-  Use when the user asks to 质检语音, 打分流畅度, 口播是否流畅, 语音有没有读错,
-  or to score an mp3/json clip like 3b88ea44a3aa976f.
+  Courseware Chinese/English speech QA with local FunASR. Scores a folder of
+  mp3+json sentence pairs, puts pronunciation errors in bucket A, then reports
+  one course score plus error clips and six typical examples. Use when the user
+  asks to 质检语音, 整课评分, 打分流畅度, 口播是否流畅, 发音错误, or to review a set of clips.
 ---
 
-# 中文口播质检（一期）
+# 中文口播质检（2b）
 
-无 ASR。用字级时间戳打流畅度分，再用口播稿做逻辑判断。错读、发音、自然度标为未测。
+本地 FunASR（中英）对照原稿，挑出发音错误；再按不流畅、低分抽样。默认只出**一个综合分 + 错误列表 + 6 个典型例**，不要把全部句子打出来。
 
-## 何时执行
-
-用户提到质检 / 流畅度 / 打分 / 某条 mp3 或 json 时，按下面做。
+必须用项目 `.venv`（Python 3.11），不要用系统 Python 3.14。
 
 ## 流程
 
 ```
-- [ ] 1. 定位时间戳 JSON
-- [ ] 2. 跑 qa_one.py
-- [ ] 3. 读分数与 issues
-- [ ] 4. 审口播稿逻辑（不计分）
-- [ ] 5. 按模板回复，写明局限
+- [ ] 1. 确认目录里是成对的 mp3 + json
+- [ ] 2. 跑 qa_course.py（FunASR 进桶 A）
+- [ ] 3. 按脚本输出回复；逻辑只评这几条例子的口播稿
+- [ ] 4. 未要求时不要列出其余句子
 ```
 
-### 1. 定位 JSON
-
-同目录、同主文件名：`foo.mp3` → `foo.json`。没有 JSON 就停，不要编时间戳。
-
-### 2. 打分（必须跑脚本，不要口算）
+### 打分命令
 
 在项目根目录：
 
 ```bash
-python .cursor/skills/zh-speech-qa/scripts/qa_one.py <json或mp3路径>
+.\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/qa_course.py .
 ```
 
-批量校准：
+英文口播加 `--lang en`。强制重识别加 `--force-asr`。JSON 调试加 `--json`。
 
-```bash
-python .cursor/skills/zh-speech-qa/scripts/qa_one.py --batch .
-```
+单句仍可用 `qa_one.py`（无 FunASR）。
 
-中位数应落在 76–84。只允许改 `scripts/score.py` 里的 `BASE` 和 `COMPRESS`。
+### 分桶（一条句子只进最高优先级）
 
-### 3. 逻辑（Agent，不计分）
+1. **A 发音错误**：CER≥8%，或缺拉丁字母/课件关键词，或 gate=fail。**全部列出，不占 6 例。**
+2. **B 不流畅**：停顿/拖音/吞音/语速出带。最多取 4 条进典型例。
+3. **C 综合分低**：单句分 < 76。
 
-读 `transcript_ref`，判断：
+6 例只从非 A 中挑：先 B（最多 4）→ 再 C → 再从合格句抽低/中/高。没有错误时这 6 条就是给人审的样本。
 
-- 句子是否完整、设问与前后是否衔接
-- 课件讲解是否自相矛盾或缺条件
-- 不要根据「听感」编造 ASR 没检出的错读
+### 回复模板
 
-结论写入报告的「逻辑」段：`ok` / `weak` / `fail` + 一句话理由。
-
-### 4. 回复模板
-
-```markdown
-**分数**：N / 100（gate: pass|fail）
-**语速**：X 字/分
-**问题**：无 / 列出 issues
-**逻辑**：ok|weak|fail — 理由
-**局限**：无 ASR，错字错读、发音、自然度未测
-```
-
-gate=fail 时分数已被上限 60。建议改稿或重合成后再跑同一条。
+直接采用脚本打印的 Markdown。可补一句「逻辑」判断（不计分），只针对列出的错误和典型例。
 
 ## 规则
 
-- 口误类型：[rules/disfluency.md](rules/disfluency.md)
-- 扣分与校准：[rules/scoring.md](rules/scoring.md)
+- 分桶与口误：[rules/disfluency.md](rules/disfluency.md)
+- 单句与整课打分：[rules/scoring.md](rules/scoring.md)
