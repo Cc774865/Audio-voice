@@ -15,11 +15,12 @@ PARTICLES = set("的了着过吗呢吧呀嘛哇哦噢哈地得")
 FILLERS = {"嗯", "呃", "额", "唔", "哎", "诶", "欸"}
 FILLER_PHRASES = (("那", "个", "那", "个"), ("就", "是", "就", "是"))
 MID_GAP_MS = 350.0
-LONG_COMMA_MS = 400.0
+SHORT_COMMA_MS = 120.0
+LONG_COMMA_MS = 500.0
 LONG_END_MS = 800.0
 SWALLOW_MS = 70.0
-PROLONG_MS = 450.0
-SPEED_OK = (180.0, 280.0)
+PROLONG_MS = 550.0
+SPEED_OK = (170.0, 200.0)
 
 
 def is_punct(token: str) -> bool:
@@ -89,15 +90,25 @@ def analyze(path: str | Path) -> dict[str, Any]:
                     }
                 )
 
-        if token in COMMA and dur >= LONG_COMMA_MS:
-            pause_events += 1
-            issues.append(
-                {
-                    "type": "pause",
-                    "at_ms": round(begin, 2),
-                    "detail": f"逗号过长 {dur:.0f}ms",
-                }
-            )
+        if token in COMMA:
+            if dur <= SHORT_COMMA_MS:
+                pause_events += 1
+                issues.append(
+                    {
+                        "type": "pause",
+                        "at_ms": round(begin, 2),
+                        "detail": f"逗号过短 {dur:.0f}ms（须>120ms）",
+                    }
+                )
+            elif dur > LONG_COMMA_MS:
+                pause_events += 1
+                issues.append(
+                    {
+                        "type": "pause",
+                        "at_ms": round(begin, 2),
+                        "detail": f"逗号过长 {dur:.0f}ms（>500ms）",
+                    }
+                )
         if token in SENT_END and dur >= LONG_END_MS:
             pause_events += 1
             issues.append(
@@ -118,13 +129,13 @@ def analyze(path: str | Path) -> dict[str, Any]:
                         "detail": f"疑似吞音「{token}」仅 {dur:.0f}ms",
                     }
                 )
-            if dur >= PROLONG_MS:
+            if dur > PROLONG_MS:
                 prolong_n += 1
                 issues.append(
                     {
                         "type": "prolong",
                         "at_ms": round(begin, 2),
-                        "detail": f"拖音「{token}」{dur:.0f}ms",
+                        "detail": f"拖音「{token}」{dur:.0f}ms（>550ms）",
                     }
                 )
 

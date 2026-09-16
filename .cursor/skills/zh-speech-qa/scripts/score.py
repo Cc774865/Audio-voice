@@ -5,12 +5,13 @@ from __future__ import annotations
 
 from typing import Any
 
+from analyze_timing import SPEED_OK
+
 # Calibrated on 35 local TTS clips so median lands near 80.
 # Only these two knobs should move after a batch re-run.
 BASE = 60.0
 COMPRESS = 0.70
 
-SPEED_OK = (180.0, 280.0)
 GATE_CAP = 60
 
 
