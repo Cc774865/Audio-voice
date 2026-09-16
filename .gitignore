@@ -1,0 +1,10 @@
+# local TTS samples (not part of the skill)
+/*.json
+*.mp3
+*.qa.json
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
