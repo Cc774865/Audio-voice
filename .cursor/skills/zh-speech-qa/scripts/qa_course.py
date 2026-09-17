@@ -10,9 +10,10 @@ import statistics
 import sys
 from pathlib import Path
 
-from analyze_timing import SPEED_MARGIN, SPEED_OK, analyze
+from analyze_timing import SPEED_MARGIN, SPEED_OK, analyze, analyze_words, words_from_asr
 from asr_local import CACHE_DIR, load_model, transcribe
 from cer import pronunciation_report
+from refs import ScriptRef, pair_clips
 from score import score_metrics
 
 TYPICAL_N = 6
@@ -25,32 +26,11 @@ def clip01(value: float) -> float:
     return max(0.0, min(100.0, value))
 
 
-def pair_clips(folder: Path) -> tuple[list[tuple[Path, Path]], list[str]]:
-    skipped: list[str] = []
-    pairs: list[tuple[Path, Path]] = []
-    mp3s = {p.stem: p for p in folder.glob("*.mp3")}
-    jsons = {
-        p.stem: p
-        for p in folder.glob("*.json")
-        if not p.name.endswith(".qa.json") and not p.name.endswith(".asr.json")
-    }
-    for stem, mp3 in sorted(mp3s.items()):
-        js = jsons.get(stem)
-        if js:
-            pairs.append((mp3, js))
-        else:
-            skipped.append(f"{mp3.name} (missing json)")
-    for stem, js in sorted(jsons.items()):
-        if stem not in mp3s:
-            skipped.append(f"{js.name} (missing mp3)")
-    return pairs, skipped
-
-
-def cached_asr(mp3: Path, model, force: bool) -> dict:
+def cached_asr(mp3: Path, model, force: bool, *, need_timestamp: bool = False) -> dict:
     cache = mp3.with_suffix(".asr.json")
     if cache.exists() and not force:
         data = json.loads(cache.read_text(encoding="utf-8"))
-        if data.get("text"):
+        if data.get("text") and (not need_timestamp or data.get("timestamp")):
             return data
     os.environ.setdefault("MODELSCOPE_CACHE", str(CACHE_DIR))
     result = transcribe(model, mp3)
@@ -143,13 +123,27 @@ def compact(row: dict) -> dict:
         "transcript_ref": row.get("transcript_ref"),
         "transcript_asr": row.get("transcript_asr"),
         "cpm": row.get("cpm"),
+        "ref_kind": row.get("ref_kind"),
     }
 
 
-def evaluate_pair(mp3: Path, js: Path, model, force: bool) -> dict:
-    metrics = analyze(js)
-    asr = cached_asr(mp3, model, force)
+def evaluate_pair(mp3: Path, ref: ScriptRef, model, force: bool) -> dict:
+    need_ts = ref.kind != "json"
+    asr = cached_asr(mp3, model, force, need_timestamp=need_ts)
     hyp = asr.get("text") or ""
+    if ref.kind == "json":
+        metrics = analyze(ref.path)
+    else:
+        duration = float(asr.get("duration_ms") or 0) / 1000.0
+        words = words_from_asr(hyp, asr.get("timestamp"), duration)
+        metrics = analyze_words(
+            words,
+            duration,
+            clip_id=mp3.stem,
+            path=str(mp3),
+            timing_source="asr",
+        )
+        metrics["transcript_ref"] = ref.transcript
     pron = pronunciation_report(metrics["transcript_ref"], hyp)
     metrics["asr"] = "funasr-zh"
     metrics["cer"] = pron["cer"]
@@ -181,6 +175,7 @@ def evaluate_pair(mp3: Path, js: Path, model, force: bool) -> dict:
         "gate_fail_reasons": metrics["gate_fail_reasons"],
         "issues": metrics["issues"],
         "bucket_a": bool(pron["is_error"] or metrics["gate_fail_reasons"]),
+        "ref_kind": ref.kind,
         "_metrics": metrics,
     }
     row["bucket"] = bucket_of(row)
@@ -225,6 +220,7 @@ def render_markdown(payload: dict) -> str:
         f"**FunASR**：{s['asr']}",
         f"**语速合格带**：{s.get('speed_band', '—')}（当课均值±{SPEED_MARGIN}）",
         f"**单句中位数**：{s['median']}",
+        f"**正确稿**：json {s.get('n_json', 0)} / txt {s.get('n_txt', 0)} / md {s.get('n_md', 0)}",
         "",
         "### 错误（优先，不计入 6 例）",
     ]
@@ -265,7 +261,7 @@ def main() -> int:
     ffmpeg_bin = Path(_ffmpeg()).parent
     os.environ["PATH"] = str(ffmpeg_bin) + os.pathsep + os.environ.get("PATH", "")
     parser = argparse.ArgumentParser(description="Course-level speech QA with FunASR bucket A")
-    parser.add_argument("path", nargs="?", default=".", help="directory of mp3+json pairs")
+    parser.add_argument("path", nargs="?", default=".", help="directory of mp3 + json/txt/md pairs")
     parser.add_argument("--json", action="store_true", help="print JSON instead of markdown")
     parser.add_argument("--force-asr", action="store_true", help="ignore *.asr.json cache")
     parser.add_argument("--lang", choices=("zh", "en"), default="zh")
@@ -276,7 +272,7 @@ def main() -> int:
         return 1
     pairs, skipped = pair_clips(folder)
     if not pairs:
-        print("no mp3+json pairs", file=sys.stderr)
+        print("no mp3 + json/txt/md pairs", file=sys.stderr)
         return 1
 
     print(f"loading FunASR {args.lang} ({len(pairs)} clips)…", file=sys.stderr)
@@ -284,9 +280,9 @@ def main() -> int:
     model._qa_lang = args.lang
 
     items = []
-    for i, (mp3, js) in enumerate(pairs, 1):
-        print(f"[{i}/{len(pairs)}] {mp3.name}", file=sys.stderr)
-        items.append(evaluate_pair(mp3, js, model, args.force_asr))
+    for i, (mp3, ref) in enumerate(pairs, 1):
+        print(f"[{i}/{len(pairs)}] {mp3.name} ({ref.kind})", file=sys.stderr)
+        items.append(evaluate_pair(mp3, ref, model, args.force_asr))
 
     mean_cpm = statistics.mean(x["cpm"] for x in items)
     speed_ok = (mean_cpm - SPEED_MARGIN, mean_cpm + SPEED_MARGIN)
@@ -315,6 +311,9 @@ def main() -> int:
             "asr": f"funasr-paraformer-{args.lang}",
             "speed_mean": round(mean_cpm, 1),
             "speed_band": f"{speed_ok[0]:.0f}–{speed_ok[1]:.0f} 字/分",
+            "n_json": sum(1 for x in items if x.get("ref_kind") == "json"),
+            "n_txt": sum(1 for x in items if x.get("ref_kind") == "txt"),
+            "n_md": sum(1 for x in items if x.get("ref_kind") == "md"),
         },
         "errors": [compact(x) for x in errors],
         "typical": [compact(x) for x in typical],

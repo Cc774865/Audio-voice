@@ -2,11 +2,12 @@
 name: zh-speech-qa
 description: >-
   Courseware Chinese/English speech QA with local FunASR. Scores a folder of
-  mp3+json sentence pairs, puts pronunciation errors in bucket A, then reports
+  mp3 paired with json, txt, or md scripts, puts pronunciation errors in bucket A, then reports
   one course score plus error clips and six typical examples. After the report,
   write bucket-A errors into the fail memory store with why they failed, then
   label each of the six typical examples pass/fail. Use when the user asks to
-  质检语音, 整课评分, 打分流畅度, 口播是否流畅, 发音错误, 标注入库, or to review a set of clips.
+  质检语音, 整课评分, 打分流畅度, 口播是否流畅, 发音错误, 标注入库, 对照原稿,
+  or to review scored clips. Do not use for 转写, 语音转文字, 只要mp3, or 生成文稿.
 ---
 
 # 中文口播质检（2b）
@@ -15,10 +16,18 @@ description: >-
 
 必须用项目 `.venv`（Python 3.11），不要用系统 Python 3.14。
 
+## 分流（只走质检）
+
+本 Skill 只做对照打分。用户说「转写 / 语音转文字 / 只要 mp3」时**不要**用本文件，去 `zh-speech-stt`。
+
+- **不要**运行 `.cursor/skills/zh-speech-stt/scripts/stt_course.py`
+- 没有 json/txt/md 的 mp3 列入跳过，不要改去转写
+- 不要把转写优化稿当作正确稿
+
 ## 流程
 
 ```
-- [ ] 1. 确认目录里是成对的 mp3 + json
+- [ ] 1. 确认目录里是成对的 mp3 + 正确稿（json / txt / md，同名；json 优先）
 - [ ] 2. 跑 qa_course.py（FunASR 进桶 A）
 - [ ] 3. 按脚本输出回复；逻辑只评这几条例子的口播稿
 - [ ] 4. 把报告中每条错误写入 fail 库（source=script，必填 script_reason 与 agent_reason）
@@ -36,7 +45,9 @@ description: >-
 
 英文口播加 `--lang en`。强制重识别加 `--force-asr`。JSON 调试加 `--json`。
 
-单句仍可用 `qa_one.py`（无 FunASR）。
+正确稿优先级：同名 `.json`（带字级时间戳）> `.txt` > `.md`。txt/md 只提供对照文本，停顿/拖音改用 FunASR 时间戳，精度低于 json。
+
+单句仍可用 `qa_one.py`（仅 json 时间戳，无 FunASR）。
 
 ### 分桶（一条句子只进最高优先级）
 

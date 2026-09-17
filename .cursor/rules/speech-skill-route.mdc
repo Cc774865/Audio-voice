@@ -1,0 +1,23 @@
+---
+description: Route 转写 vs 质检 to separate skills; never mix the two pipelines.
+alwaysApply: true
+---
+
+# 口播两条线（不要混跑）
+
+本仓库有两套互不调用的 Skill，一次用户请求只走其中一条。
+
+| 用户在说 | 走哪条 | 命令 |
+|---|---|---|
+| 转写、语音转文字、只要 mp3、识别成文字、生成文稿 | `.cursor/skills/zh-speech-stt/SKILL.md` | `stt_course.py` |
+| 质检语音、整课评分、打分、口播是否流畅、发音错误、标注入库、对照原稿 | `.cursor/skills/zh-speech-qa/SKILL.md` | `qa_course.py` |
+
+硬性限制：
+
+- 转写：**不要**跑 `qa_course.py` / `qa_one.py` / `memory.py`，**不要**要求 json/txt/md，**不要**出综合分或合格库。
+- 质检：**不要**跑 `stt_course.py`，**不要**把转写优化稿当成正确稿。
+- 同一条回复里不要两个脚本串着跑。
+
+质检遇到没配正确稿的 mp3：只放进「跳过」，不要自动改去转写。用户另外说「把这些也转写」再换转写 Skill。
+
+两句都提时：以更具体的那句为准；仍分不清就先问一句要转写还是打分。

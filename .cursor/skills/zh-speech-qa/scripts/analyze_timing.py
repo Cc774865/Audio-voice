@@ -55,12 +55,74 @@ def _dur(w: dict[str, Any]) -> float:
     return max(0.0, float(w.get("end") or 0) - float(w.get("begin") or 0))
 
 
+_TOKEN_RE = re.compile(r"[A-Za-z0-9]+|[\u4e00-\u9fff]|[^\s]")
+
+
+def words_from_asr(text: str, timestamp: Any, duration_s: float | None = None) -> list[dict[str, Any]]:
+    """Align punctuated ASR text to FunASR per-speech timestamps."""
+    text = text or ""
+    ts: list[list[int]] = []
+    for pair in timestamp or []:
+        if pair is None or len(pair) < 2:
+            continue
+        ts.append([int(pair[0]), int(pair[1])])
+    tokens = [m.group(0) for m in _TOKEN_RE.finditer(text)]
+    if not tokens:
+        return []
+    speech_idx = [i for i, tok in enumerate(tokens) if is_speech(tok)]
+    speech_chars = [ch for ch in text if is_speech(ch)]
+    stamp_of: dict[int, tuple[int, int]] = {}
+    if ts and len(ts) == len(speech_idx):
+        for i, pair in zip(speech_idx, ts):
+            stamp_of[i] = (pair[0], pair[1])
+    elif ts and len(ts) == len(speech_chars):
+        char_i = 0
+        for i, tok in enumerate(tokens):
+            if not is_speech(tok):
+                continue
+            stamp_of[i] = (ts[char_i][0], ts[char_i + len(tok) - 1][1])
+            char_i += len(tok)
+    elif ts:
+        n = min(len(speech_idx), len(ts))
+        for k in range(n):
+            stamp_of[speech_idx[k]] = (ts[k][0], ts[k][1])
+    last_end = float(max((end for _, end in stamp_of.values()), default=0.0))
+    audio_end = max(last_end, float(duration_s or 0) * 1000.0)
+    words: list[dict[str, Any]] = []
+    for i, tok in enumerate(tokens):
+        if i in stamp_of:
+            begin, end = stamp_of[i]
+            words.append({"word": tok, "begin": float(begin), "end": float(end)})
+            continue
+        prev_end = words[-1]["end"] if words else 0.0
+        nxt_begin = None
+        for j in range(i + 1, len(tokens)):
+            if j in stamp_of:
+                nxt_begin = float(stamp_of[j][0])
+                break
+        end = nxt_begin if nxt_begin is not None else audio_end
+        words.append({"word": tok, "begin": float(prev_end), "end": float(max(end, prev_end))})
+    return words
+
+
 def analyze(path: str | Path) -> dict[str, Any]:
     clip = load_clip(path)
-    words = clip["words"]
-    duration = clip["duration"]
-    transcript = transcript_of(words)
+    return analyze_words(clip["words"], clip["duration"], clip_id=clip["id"], path=clip["path"])
+
+
+def analyze_words(
+    words: list[dict[str, Any]],
+    duration: float,
+    *,
+    clip_id: str,
+    path: str = "",
+    timing_source: str = "json",
+    transcript_ref: str | None = None,
+) -> dict[str, Any]:
+    transcript = transcript_ref if transcript_ref is not None else transcript_of(words)
     speech = speech_tokens(words)
+    if duration <= 0 and words:
+        duration = max(float(w.get("end") or 0) for w in words) / 1000.0
     char_count = len(speech)
     cpm = (char_count * 60.0 / duration) if duration > 0 else 0.0
 
@@ -93,7 +155,7 @@ def analyze(path: str | Path) -> dict[str, Any]:
                 )
 
         if token in COMMA:
-            if dur <= SHORT_COMMA_MS:
+            if timing_source != "asr" and dur <= SHORT_COMMA_MS:
                 pause_events += 1
                 issues.append(
                     {
@@ -211,11 +273,12 @@ def analyze(path: str | Path) -> dict[str, Any]:
         gate_fail_reasons.append("多处重复")
 
     return {
-        "id": clip["id"],
-        "path": clip["path"],
+        "id": clip_id,
+        "path": path,
         "duration": round(duration, 3),
         "transcript_ref": transcript,
         "asr": "skipped",
+        "timing_source": timing_source,
         "char_count": char_count,
         "cpm": round(cpm, 1),
         "speed_in_band": speed_in_band,

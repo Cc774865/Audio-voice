@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Local FunASR for Chinese and English only (CPU). Requires project .venv (Python 3.11)."""
+"""Local FunASR for STT only (zh/en, CPU). Independent of the QA scoring skill."""
 
 from __future__ import annotations
 
@@ -25,12 +25,7 @@ def project_root() -> Path:
 
 ROOT = project_root()
 CACHE_DIR = ROOT / ".funasr-cache"
-
-# Chinese + English only. Do not load SenseVoice / Fun-ASR-Nano / Qwen3-ASR.
-MODELS = {
-    "zh": "paraformer-zh",
-    "en": "paraformer-en",
-}
+MODELS = {"zh": "paraformer-zh", "en": "paraformer-en"}
 
 
 def _ffmpeg() -> str:
@@ -102,27 +97,19 @@ def transcribe(model, audio: Path) -> dict:
         "text": text.strip(),
         "timestamp": timestamp,
         "duration_ms": max(last_ts, wav_ms),
-        "engine": f"funasr-{MODELS.get(getattr(model, '_qa_lang', 'zh'), 'paraformer-zh')}",
-        "lang": getattr(model, "_qa_lang", "zh"),
+        "engine": f"funasr-{MODELS.get(getattr(model, '_stt_lang', 'zh'), 'paraformer-zh')}",
+        "lang": getattr(model, "_stt_lang", "zh"),
         "device": "cpu",
     }
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Local FunASR transcription (zh/en only)")
+    parser = argparse.ArgumentParser(description="STT FunASR (zh/en)")
     parser.add_argument("path", nargs="?", help="mp3/wav file or directory")
     parser.add_argument("--lang", choices=("zh", "en"), default="zh")
-    parser.add_argument("--warmup", action="store_true", help="download zh+en models and exit")
     args = parser.parse_args()
-    if args.warmup:
-        for lang in ("zh", "en"):
-            print(json.dumps({"warmup": lang, "model": MODELS[lang]}, ensure_ascii=False), flush=True)
-            model = load_model(lang)
-            model._qa_lang = lang
-            print(json.dumps({"warmup": lang, "ok": True}, ensure_ascii=False), flush=True)
-        return 0
     if not args.path:
-        print("path required unless --warmup", file=sys.stderr)
+        print("path required", file=sys.stderr)
         return 1
     target = Path(args.path)
     files = [target] if target.is_file() else sorted(target.glob("*.mp3"))
@@ -130,10 +117,9 @@ def main() -> int:
         print("no audio files", file=sys.stderr)
         return 1
     model = load_model(args.lang)
-    model._qa_lang = args.lang
+    model._stt_lang = args.lang
     for audio in files:
-        result = transcribe(model, audio)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(transcribe(model, audio), ensure_ascii=False, indent=2))
     return 0
 
 
