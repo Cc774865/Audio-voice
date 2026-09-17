@@ -220,6 +220,7 @@ def render_markdown(payload: dict) -> str:
     s = payload["summary"]
     lines = [
         f"**课件综合分**：{s['score']} / 100",
+        f"**目录**：`{s.get('folder', '—')}`",
         f"**句数**：{s['n']}（错误 {s['n_error']} / 不流畅 {s['n_disfluent']} / 其余 {s['n_ok']}）",
         f"**FunASR**：{s['asr']}",
         f"**语速合格带**：{s.get('speed_band', '—')}（当课均值±{SPEED_MARGIN}）",
@@ -302,6 +303,7 @@ def main() -> int:
     n_ok = sum(1 for x in items if x["bucket"] == "ok")
     payload = {
         "summary": {
+            "folder": folder.name,
             "score": agg["score"],
             "base": agg["base"],
             "penalty": agg["penalty"],
