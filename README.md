@@ -1,12 +1,15 @@
 # Audio-voice
 
-中文课件口播质检 Skill（2b）：本地 FunASR（中英）对照原稿挑出发音错误，再按不流畅、低分抽样。默认只输出**一个课件综合分 + 错误列表 + 6 个典型例**。错误句不计入这 6 例。
+课件口播有两条互不调用的流水线。一次请求只走其中一条：转写不管打分，打分不拿转写稿当正确答案。
+
+| 你要做的事 | Skill | 命令 |
+|---|---|---|
+| 转写、语音转文字、只要 mp3、生成文稿 | `.cursor/skills/zh-speech-stt/` | `stt_course.py` |
+| 质检、整课评分、对照原稿、标注入库 | `.cursor/skills/zh-speech-qa/` | `qa_course.py` |
+
+仓库根目录就是 Cursor 项目。必须用 **Python 3.11** 的 `.venv`（不要用 3.14），并安装 ffmpeg。
 
 ## 安装
-
-仓库根目录就是 Cursor 项目。克隆后 Skill 位于 `.cursor/skills/zh-speech-qa/`。
-
-本机需要 **Python 3.11** 虚拟环境（不要用 3.14）和 ffmpeg：
 
 ```bash
 py -3.11 -m venv .venv
@@ -15,25 +18,48 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/asr_local.py --warmup
 ```
 
-`--warmup` 只下载中文 `paraformer-zh` 和英文 `paraformer-en`，不装多语种模型。
+`--warmup` 只下载中文 `paraformer-zh` 和英文 `paraformer-en`，不装多语种模型。两条线共用这一套模型和虚拟环境，识别缓存分开：转写写 `*.stt.json`，质检写 `*.asr.json`。
 
-触发词：质检语音、整课评分、打分流畅度、发音错误。
+## ① 转写
 
-## 用法
+只认音频，不要求 json/txt/md。输出识别原文、去口头禅后的优化稿，以及停顿/拖音/吞音/语速摘要。不出综合分，不写合格库。
 
-每句一对同名文件：`foo.mp3` + `foo.json`（`duration` + `words[].word/begin/end`，时间为毫秒）。
+```bash
+.\.venv\Scripts\python.exe .cursor/skills/zh-speech-stt/scripts/stt_course.py .
+```
+
+英文加 `--lang en`。强制重识别加 `--force-asr`。
+
+## ② 质检
+
+对照正确稿打分。每句一对同名文件：`foo.mp3` + 正确稿。正确稿优先级：`.json`（带字级时间戳）> `.txt` > `.md`。txt/md 只提供对照文本，停顿/拖音改用 FunASR 时间戳。没有正确稿的 mp3 列入跳过，不会自动改去转写。
+
+默认只输出**一个课件综合分 + 错误列表 + 6 个典型例**。桶 A 错误句全部列出，不占这 6 例。
 
 ```bash
 .\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/qa_course.py .
 ```
 
-英文口播加 `--lang en`。识别结果缓存在 `*.asr.json`，强制重跑加 `--force-asr`。
+英文加 `--lang en`。强制重识别加 `--force-asr`。JSON 调试加 `--json`。
 
-## 分桶
+单句仍可用 `qa_one.py`（仅 json 时间戳，无 FunASR）。
+
+### 分桶（一条句子只进最高优先级）
 
 1. **A 发音错误**（FunASR CER≥8%、缺拉丁字母/课件词、或残句）— 全部列出，不占 6 例
 2. **B 不流畅** — 典型例最多 4 条
 3. **C 综合分 < 76** — 再补典型例
+
+### 记忆库
+
+报告发出后：桶 A 错误句立刻写入不合格库（带脚本原因和判定原因），再对 6 个典型例逐条标合格/不合格。
+
+| 库 | 文件 | 何时写 |
+|---|---|---|
+| 合格 | `.cursor/skills/zh-speech-qa/memory/pass.jsonl` | 典型例标成合格 |
+| 不合格 | `.cursor/skills/zh-speech-qa/memory/fail.jsonl` | 桶 A 错误句；典型例标成不合格 |
+
+写入命令见 `.cursor/skills/zh-speech-qa/rules/memory.md`。转写线不读写这两个库。
 
 ## 校准
 
