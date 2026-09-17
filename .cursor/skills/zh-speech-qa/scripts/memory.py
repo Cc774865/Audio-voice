@@ -70,6 +70,93 @@ def load_all() -> dict[str, list[dict[str, Any]]]:
     return {"pass": load("pass"), "fail": load("fail")}
 
 
+NEIGHBOR_K = 2
+SCORE_SCALE = 40.0
+CER_SCALE = 8.0
+PAUSE_SCALE = 4.0
+
+
+def _as_float(rec: dict[str, Any], key: str) -> float | None:
+    value = rec.get(key)
+    if value is None or value == "":
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _identity(rec: dict[str, Any]) -> tuple[str, str]:
+    return (str(rec.get("id") or ""), str(rec.get("course") or ""))
+
+
+def feature_distance(query: dict[str, Any], mem: dict[str, Any]) -> float:
+    """Normalized L2 on score / CER / pause. Missing pause skips that axis."""
+    ds = ((_as_float(query, "score") or 0.0) - (_as_float(mem, "score") or 0.0)) / SCORE_SCALE
+    dc = ((_as_float(query, "cer_pct") or 0.0) - (_as_float(mem, "cer_pct") or 0.0)) / CER_SCALE
+    total = ds * ds + dc * dc
+    qp = _as_float(query, "pause_events")
+    mp = _as_float(mem, "pause_events")
+    if qp is not None and mp is not None:
+        dp = (qp - mp) / PAUSE_SCALE
+        total += dp * dp
+    return total ** 0.5
+
+
+def _neighbor_view(row: dict[str, Any], dist: float) -> dict[str, Any]:
+    item: dict[str, Any] = {
+        "id": row.get("id"),
+        "course": row.get("course"),
+        "score": row.get("score"),
+        "bucket": row.get("bucket"),
+        "cer_pct": row.get("cer_pct"),
+        "pause_events": row.get("pause_events"),
+        "transcript_ref": row.get("transcript_ref"),
+        "script_reason": row.get("script_reason"),
+        "human_reason": row.get("human_reason"),
+        "agent_reason": row.get("agent_reason"),
+        "source": row.get("source"),
+        "dist": round(float(dist), 4),
+    }
+    return {key: value for key, value in item.items() if value is not None and value != ""}
+
+
+def _same_clip(query: dict[str, Any], mem: dict[str, Any]) -> bool:
+    qid, qcourse = _identity(query)
+    mid, mcourse = _identity(mem)
+    if not qid or qid != mid:
+        return False
+    if not qcourse or not mcourse:
+        return True
+    return qcourse == mcourse
+
+
+def nearest(
+    query: dict[str, Any],
+    rows: list[dict[str, Any]],
+    k: int = NEIGHBOR_K,
+) -> list[dict[str, Any]]:
+    ranked: list[tuple[float, dict[str, Any]]] = []
+    for row in rows:
+        if _same_clip(query, row):
+            continue
+        ranked.append((feature_distance(query, row), row))
+    ranked.sort(key=lambda item: item[0])
+    return [_neighbor_view(row, dist) for dist, row in ranked[: max(0, k)]]
+
+
+def neighbors_for(
+    query: dict[str, Any],
+    k: int = NEIGHBOR_K,
+    stores: dict[str, list[dict[str, Any]]] | None = None,
+) -> dict[str, list[dict[str, Any]]]:
+    data = stores if stores is not None else load_all()
+    return {
+        "pass": nearest(query, data.get("pass") or [], k),
+        "fail": nearest(query, data.get("fail") or [], k),
+    }
+
+
 def disagreement(bucket: str | None, store: Store) -> bool:
     b = (bucket or "").strip().upper()
     if store == "pass":
@@ -204,6 +291,22 @@ def _cmd_append(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_nearest(args: argparse.Namespace) -> int:
+    rec = _read_json_arg(args.json, args.json_file)
+    if args.id:
+        rec["id"] = args.id
+    if args.course:
+        rec["course"] = args.course
+    if args.score is not None:
+        rec["score"] = args.score
+    if args.cer_pct is not None:
+        rec["cer_pct"] = args.cer_pct
+    if args.pause_events is not None:
+        rec["pause_events"] = args.pause_events
+    print(json.dumps(neighbors_for(rec, k=args.k), ensure_ascii=False, indent=2))
+    return 0
+
+
 def _cmd_list(args: argparse.Namespace) -> int:
     data = load_all() if args.store == "all" else {args.store: load(args.store)}
     if args.json:
@@ -253,6 +356,17 @@ def main() -> int:
     p_list.add_argument("store", nargs="?", default="all", choices=("all", "pass", "fail"))
     p_list.add_argument("--json", action="store_true")
     p_list.set_defaults(func=_cmd_list)
+
+    p_nn = sub.add_parser("nearest", help="nearest pass/fail neighbors by score/CER/pause")
+    p_nn.add_argument("--json-file", help="UTF-8 JSON object")
+    p_nn.add_argument("--json", help="JSON object string")
+    p_nn.add_argument("--id")
+    p_nn.add_argument("--course")
+    p_nn.add_argument("--score", type=int)
+    p_nn.add_argument("--cer-pct", dest="cer_pct", type=float)
+    p_nn.add_argument("--pause-events", dest="pause_events", type=int)
+    p_nn.add_argument("--k", type=int, default=NEIGHBOR_K)
+    p_nn.set_defaults(func=_cmd_nearest)
 
     args = parser.parse_args()
     try:

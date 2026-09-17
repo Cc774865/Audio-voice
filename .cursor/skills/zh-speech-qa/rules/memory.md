@@ -60,4 +60,41 @@
 }
 ```
 
-典型例不合格另加 `human_reason`，`source` 用 `human`（可省略，有 `human_reason` 即视为人工）。合格记录不要写 `human_reason`。
+典型例不合格另加 `human_reason`，`source` 用 `human`（可省略，有 `human_reason` 即视为人工）。合格记录不要写 `human_reason`。有则带上 `pause_events`，方便下次按停顿找近邻。
+
+## 下次质检前读库（P1）
+
+`qa_course.py` 默认在打完分、抽出 6 例之后读两库。对每条典型例按 **分数 / CER / 停顿次数** 找最近邻，合格、不合格各挂最多 2 条。同一 `id + course` 会排除，避免把自己当成对照。
+
+- 近邻只出现在报告里，**不改**综合分、单句分、分桶
+- Agent 写「逻辑」时引用这些锚点
+- `--no-memory` 可关掉
+
+查近邻：
+
+```bash
+.\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/memory.py nearest --score 73 --cer-pct 0 --pause-events 1 --k 2
+```
+
+## 阈值校准（P2）
+
+「深度学习」在这里是少量标注上的检索 + 校准，**不重训 FunASR**。
+
+标完后跑：
+
+```bash
+.\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/calibrate.py
+```
+
+只统计人标的合格/不合格。满 **20 条标注**或 **8 条人机不一致** 才出建议；否则只报计数。
+
+可建议的旋钮（每次最多 3 个、各挪一档）：
+
+| 旋钮 | 现在 | 文件 |
+|---|---|---|
+| `LOW_SCORE` | 76 | `qa_course.py` |
+| `CER_ERROR` | 8% | `cer.py` |
+| 句中停顿 / 逗号最短 / 拖音毫秒 | 350 / 120 / 550 | `analyze_timing.py` |
+| `BASE` / `COMPRESS` | 60 / 0.70 | `score.py` / `scoring.md` |
+
+脚本说合格你说不合格 → 门槛偏松；反过来 → 偏严。校准脚本**只打印 diff，不写文件**。Agent 必须等你确认后才改 `score.py` / `scoring.md`（动 CER 或停顿毫秒时才改对应脚本和 `disfluency.md`）。

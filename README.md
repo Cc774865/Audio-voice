@@ -59,8 +59,14 @@ py -3.11 -m venv .venv
 | 合格 | `.cursor/skills/zh-speech-qa/memory/pass.jsonl` | 典型例标成合格 |
 | 不合格 | `.cursor/skills/zh-speech-qa/memory/fail.jsonl` | 桶 A 错误句；典型例标成不合格 |
 
-写入命令见 `.cursor/skills/zh-speech-qa/rules/memory.md`。转写线不读写这两个库。
+写入命令见 `.cursor/skills/zh-speech-qa/rules/memory.md`。下次质检默认按分数 / CER / 停顿把最近邻挂在 6 例旁，只给「逻辑」当锚点，不改脚本硬分。转写线不读写这两个库。
 
 ## 校准
 
-单句中位数应落在 76–84。偏离时只改 `.cursor/skills/zh-speech-qa/scripts/score.py` 里的 `BASE` 和 `COMPRESS`。
+单句中位数应落在 76–84。不要重训 FunASR。用记忆库标注跑：
+
+```bash
+.\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/calibrate.py
+```
+
+满 20 条标注或 8 条人机不一致才建议改 `LOW_SCORE`、CER 8%、停顿/拖音毫秒、`BASE` / `COMPRESS`。脚本只打印建议，确认后才改 `score.py` / `scoring.md`。

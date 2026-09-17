@@ -13,6 +13,7 @@ from pathlib import Path
 from analyze_timing import SPEED_MARGIN, SPEED_OK, analyze, analyze_words, words_from_asr
 from asr_local import CACHE_DIR, load_model, transcribe
 from cer import pronunciation_report
+from memory import load_all, neighbors_for
 from refs import ScriptRef, pair_clips
 from score import score_metrics
 
@@ -116,15 +117,49 @@ def course_score(items: list[dict]) -> dict:
 def compact(row: dict) -> dict:
     return {
         "id": row["id"],
+        "course": row.get("course"),
         "score": row["score"],
         "bucket": row["bucket"],
         "cer_pct": row.get("cer_pct"),
+        "pause_events": row.get("pause_events"),
         "reason": row.get("reason"),
         "transcript_ref": row.get("transcript_ref"),
         "transcript_asr": row.get("transcript_asr"),
         "cpm": row.get("cpm"),
         "ref_kind": row.get("ref_kind"),
     }
+
+
+def attach_typical_neighbors(rows: list[dict], stores: dict) -> list[dict]:
+    """Hang pass/fail nearest neighbors on typical clips. Does not change scores."""
+    out = []
+    has_store = bool(stores.get("pass") or stores.get("fail"))
+    for row in rows:
+        item = compact(row)
+        if has_store:
+            nb = neighbors_for(row, stores=stores)
+            if nb["pass"] or nb["fail"]:
+                item["neighbors"] = nb
+        out.append(item)
+    return out
+
+
+def _clip_text(text: str | None, n: int = 28) -> str:
+    raw = str(text or "").replace("\n", "")
+    return raw if len(raw) <= n else raw[:n] + "…"
+
+
+def _neighbor_md(kind: str, row: dict) -> str:
+    extra = f" CER {row['cer_pct']}%" if row.get("cer_pct") is not None else ""
+    pause = f" 停顿{int(row['pause_events'])}" if row.get("pause_events") is not None else ""
+    why = row.get("human_reason") or row.get("agent_reason") or row.get("script_reason") or ""
+    why_part = f"  {why}" if why else ""
+    score = row.get("score")
+    score_part = f" {score}分" if score is not None else ""
+    return (
+        f"   - 近邻{kind}：`{row.get('id')}`{score_part}{extra}{pause}{why_part}  "
+        f"「{_clip_text(row.get('transcript_ref'))}」"
+    )
 
 
 def evaluate_pair(mp3: Path, ref: ScriptRef, model, force: bool) -> dict:
@@ -221,6 +256,14 @@ def render_markdown(payload: dict) -> str:
         f"**语速合格带**：{s.get('speed_band', '—')}（当课均值±{SPEED_MARGIN}）",
         f"**单句中位数**：{s['median']}",
         f"**正确稿**：json {s.get('n_json', 0)} / txt {s.get('n_txt', 0)} / md {s.get('n_md', 0)}",
+    ]
+    mem = payload.get("memory") or {}
+    if mem.get("pass_n") or mem.get("fail_n"):
+        lines.append(
+            f"**记忆库**：合格 {mem.get('pass_n', 0)} / 不合格 {mem.get('fail_n', 0)}"
+            "（近邻挂在 6 例旁，不改硬分）"
+        )
+    lines += [
         "",
         "### 错误（优先，不计入 6 例）",
     ]
@@ -246,6 +289,11 @@ def render_markdown(payload: dict) -> str:
                 f"{i}. [{tag}] `{row['id']}` {row['score']}分{extra}  {row['reason']}  "
                 f"「{row['transcript_ref']}」"
             )
+            nb = row.get("neighbors") or {}
+            for hit in nb.get("pass") or []:
+                lines.append(_neighbor_md("合格", hit))
+            for hit in nb.get("fail") or []:
+                lines.append(_neighbor_md("不合格", hit))
         if len(typical) < TYPICAL_N:
             lines.append(f"（typical_count={len(typical)} < 6）")
     if payload.get("skipped"):
@@ -264,6 +312,7 @@ def main() -> int:
     parser.add_argument("path", nargs="?", default=".", help="directory of mp3 + json/txt/md pairs")
     parser.add_argument("--json", action="store_true", help="print JSON instead of markdown")
     parser.add_argument("--force-asr", action="store_true", help="ignore *.asr.json cache")
+    parser.add_argument("--no-memory", action="store_true", help="do not attach pass/fail neighbors")
     parser.add_argument("--lang", choices=("zh", "en"), default="zh")
     args = parser.parse_args()
     folder = Path(args.path).resolve()
@@ -283,6 +332,8 @@ def main() -> int:
     for i, (mp3, ref) in enumerate(pairs, 1):
         print(f"[{i}/{len(pairs)}] {mp3.name} ({ref.kind})", file=sys.stderr)
         items.append(evaluate_pair(mp3, ref, model, args.force_asr))
+    for row in items:
+        row["course"] = folder.name
 
     mean_cpm = statistics.mean(x["cpm"] for x in items)
     speed_ok = (mean_cpm - SPEED_MARGIN, mean_cpm + SPEED_MARGIN)
@@ -294,6 +345,8 @@ def main() -> int:
         key=lambda x: (-float(x.get("cer") or 0), x["score"]),
     )
     typical = pick_typical(items)
+    stores = {"pass": [], "fail": []} if args.no_memory else load_all()
+    typical_out = attach_typical_neighbors(typical, stores)
     agg = course_score(items)
     n_b = sum(1 for x in items if x["bucket"] == "B")
     n_ok = sum(1 for x in items if x["bucket"] == "ok")
@@ -316,9 +369,11 @@ def main() -> int:
             "n_md": sum(1 for x in items if x.get("ref_kind") == "md"),
         },
         "errors": [compact(x) for x in errors],
-        "typical": [compact(x) for x in typical],
+        "typical": typical_out,
         "skipped": skipped,
     }
+    if not args.no_memory:
+        payload["memory"] = {"pass_n": len(stores["pass"]), "fail_n": len(stores["fail"])}
     if args.json:
         print(json.dumps(payload, ensure_ascii=False, indent=2))
     else:
