@@ -94,7 +94,7 @@
 |---|---|---|
 | `LOW_SCORE` | 76 | `qa_course.py` |
 | `CER_ERROR` | 8% | `cer.py` |
-| 句中停顿 / 逗号最短 / 拖音毫秒 | 350 / 120 / 550 | `analyze_timing.py` |
+| 句中停顿 / 逗号最短 / 拖音毫秒 | 400 / 140 / 550 | `analyze_timing.py` |
 | `BASE` / `COMPRESS` | 60 / 0.70 | `score.py` / `scoring.md` |
 
 脚本说合格你说不合格 → 门槛偏松；反过来 → 偏严。校准脚本**只打印 diff，不写文件**。Agent 必须等你确认后才改 `score.py` / `scoring.md`（动 CER 或停顿毫秒时才改对应脚本和 `disfluency.md`）。

@@ -53,4 +53,6 @@ Cursor 原版技能仍在仓库 `.cursor/skills/`，本目录是独立拷贝。
 .\.venv\Scripts\python.exe cli.py calibrate
 ```
 
-满 20 条标注或 8 条人机不一致才出建议。脚本只打印，确认后才改 `zh-speech-qa/scripts/score.py` 和 `zh-speech-qa/rules/scoring.md`。
+质检默认只出**一个综合分 + 错误列表 + 多音字列表 + 6 个典型例**。桶 A 进错误惩罚；桶 P 多音字只待审，不自动入库、不扣整课错误惩罚。
+
+满 20 条标注或 8 条人机不一致才出建议。脚本只打印，确认后才改对应文件（`score.py` / `scoring.md`；动 CER 或停顿毫秒时才改 `cer.py` / `analyze_timing.py` / `disfluency.md`）。

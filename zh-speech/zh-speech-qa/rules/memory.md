@@ -1,6 +1,6 @@
 # 标注入库
 
-两库共用：桶 A 错误句由脚本/Agent 写入不合格库；6 个典型例仍由用户逐条判定。
+两库共用：桶 A 错误句由脚本/Agent 写入不合格库；6 个典型例仍由用户逐条判定。桶 P 多音字不自动入库。
 
 ## 库
 
@@ -13,7 +13,7 @@
 
 ## 错误句（报告发出后立刻写，不要问用户）
 
-报告里的每一条桶 A 都必须进 `fail.jsonl`，`source` 为 `script`。不要等人选合格/不合格。
+报告里的每一条桶 A 都必须进 `fail.jsonl`，`source` 为 `script`。不要等人选合格/不合格。桶 P 不要按错误句写进去。
 
 必填：
 
@@ -34,7 +34,7 @@
 
 ## 入库命令
 
-在项目根目录。先把这一条写成 UTF-8 JSON 文件（含中文原因时必须走文件，不要把 JSON 塞进 PowerShell 参数），再：
+在 `zh-speech` 目录。先把这一条写成 UTF-8 JSON 文件（含中文原因时必须走文件，不要把 JSON 塞进 PowerShell 参数），再：
 
 ```bash
 python cli.py memory append fail --json-file record.json
@@ -94,7 +94,7 @@ python cli.py calibrate
 |---|---|---|
 | `LOW_SCORE` | 76 | `qa_course.py` |
 | `CER_ERROR` | 8% | `cer.py` |
-| 句中停顿 / 逗号最短 / 拖音毫秒 | 350 / 120 / 550 | `analyze_timing.py` |
+| 句中停顿 / 逗号最短 / 拖音毫秒 | 400 / 140 / 550 | `analyze_timing.py` |
 | `BASE` / `COMPRESS` | 60 / 0.70 | `score.py` / `scoring.md` |
 
 脚本说合格你说不合格 → 门槛偏松；反过来 → 偏严。校准脚本**只打印 diff，不写文件**。Agent 必须等你确认后才改 `score.py` / `scoring.md`（动 CER 或停顿毫秒时才改对应脚本和 `disfluency.md`）。

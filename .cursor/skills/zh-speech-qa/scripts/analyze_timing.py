@@ -14,8 +14,8 @@ COMMA = set("，、；,;")
 PARTICLES = set("的了着过吗呢吧呀嘛哇哦噢哈地得")
 FILLERS = {"嗯", "呃", "额", "唔", "哎", "诶", "欸"}
 FILLER_PHRASES = (("那", "个", "那", "个"), ("就", "是", "就", "是"))
-MID_GAP_MS = 350.0
-SHORT_COMMA_MS = 120.0
+MID_GAP_MS = 400.0
+SHORT_COMMA_MS = 140.0
 LONG_COMMA_MS = 500.0
 LONG_END_MS = 800.0
 SWALLOW_MS = 70.0
@@ -271,7 +271,7 @@ def analyze_words(
                     {
                         "type": "pause",
                         "at_ms": round(begin, 2),
-                        "detail": f"逗号过短 {dur:.0f}ms（须>120ms）",
+                        "detail": f"逗号过短 {dur:.0f}ms（须>{SHORT_COMMA_MS:.0f}ms）",
                     }
                 )
             elif dur > LONG_COMMA_MS:

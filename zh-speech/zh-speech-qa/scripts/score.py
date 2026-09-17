@@ -37,7 +37,7 @@ def _accuracy_score(metrics: dict[str, Any]) -> float:
     if cer is not None:
         score -= min(30.0, float(cer) * 100.0 * 3.0)
     score -= 6.0 * len(metrics.get("missing_keywords") or [])
-    score -= 6.0 * len(metrics.get("polyphone_errors") or [])
+    score -= 3.0 * len(metrics.get("polyphone_errors") or [])
     return _clip(score, 40.0, 100.0)
 
 
