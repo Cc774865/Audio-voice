@@ -10,10 +10,11 @@ import statistics
 import sys
 from pathlib import Path
 
-from analyze_timing import SPEED_MARGIN, SPEED_OK, analyze, analyze_words, words_from_asr
+from analyze_timing import SPEED_MARGIN, SPEED_OK, analyze_words, load_clip, words_from_asr
 from asr_local import CACHE_DIR, load_model, transcribe
 from cer import pronunciation_report
 from memory import load_all, neighbors_for
+from polyphone import check_polyphones
 from refs import ScriptRef, pair_clips
 from score import score_metrics
 
@@ -127,6 +128,7 @@ def compact(row: dict) -> dict:
         "transcript_asr": row.get("transcript_asr"),
         "cpm": row.get("cpm"),
         "ref_kind": row.get("ref_kind"),
+        "polyphone_errors": row.get("polyphone_errors") or [],
     }
 
 
@@ -167,7 +169,14 @@ def evaluate_pair(mp3: Path, ref: ScriptRef, model, force: bool) -> dict:
     asr = cached_asr(mp3, model, force, need_timestamp=need_ts)
     hyp = asr.get("text") or ""
     if ref.kind == "json":
-        metrics = analyze(ref.path)
+        clip = load_clip(ref.path)
+        metrics = analyze_words(
+            clip["words"],
+            clip["duration"],
+            clip_id=clip["id"],
+            path=clip["path"],
+        )
+        words = clip["words"]
     else:
         duration = float(asr.get("duration_ms") or 0) / 1000.0
         words = words_from_asr(hyp, asr.get("timestamp"), duration)
@@ -180,15 +189,23 @@ def evaluate_pair(mp3: Path, ref: ScriptRef, model, force: bool) -> dict:
         )
         metrics["transcript_ref"] = ref.transcript
     pron = pronunciation_report(metrics["transcript_ref"], hyp)
+    poly = {"n_checked": 0, "errors": []}
+    if getattr(model, "_qa_lang", "zh") == "zh":
+        poly = check_polyphones(mp3, metrics["transcript_ref"], words)
     metrics["asr"] = "funasr-zh"
     metrics["cer"] = pron["cer"]
     metrics["missing_keywords"] = pron["missing_keywords"]
+    metrics["polyphone_errors"] = poly["errors"]
     if pron["is_error"]:
         detail = f"CER {pron['cer_pct']}%"
         if pron["missing_keywords"]:
             detail += " 缺：" + "、".join(pron["missing_keywords"])
         metrics["issues"] = list(metrics["issues"]) + [
             {"type": "mispronunciation", "at_ms": None, "detail": detail}
+        ]
+    for err in poly["errors"]:
+        metrics["issues"] = list(metrics["issues"]) + [
+            {"type": "polyphone", "at_ms": err.get("at_ms"), "detail": err["detail"]}
         ]
     scored = score_metrics(metrics)
     row = {
@@ -207,9 +224,10 @@ def evaluate_pair(mp3: Path, ref: ScriptRef, model, force: bool) -> dict:
         "cer": pron["cer"],
         "cer_pct": pron["cer_pct"],
         "missing_keywords": pron["missing_keywords"],
+        "polyphone_errors": poly["errors"],
         "gate_fail_reasons": metrics["gate_fail_reasons"],
         "issues": metrics["issues"],
-        "bucket_a": bool(pron["is_error"] or metrics["gate_fail_reasons"]),
+        "bucket_a": bool(pron["is_error"] or metrics["gate_fail_reasons"] or poly["errors"]),
         "ref_kind": ref.kind,
         "_metrics": metrics,
     }
@@ -225,6 +243,8 @@ def _reason(row: dict) -> str:
             reasons.append(f"发音 CER {row['cer_pct']}%")
         if row.get("missing_keywords"):
             reasons.append("缺 " + "、".join(row["missing_keywords"]))
+    for err in row.get("polyphone_errors") or []:
+        reasons.append(err.get("detail") or "多音字读音错误")
     if row.get("gate_fail_reasons"):
         reasons.extend(row["gate_fail_reasons"])
     if row.get("bucket") == "B":

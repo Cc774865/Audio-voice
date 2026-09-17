@@ -1,0 +1,11367 @@
+{
+  "source": "最全多音字总汇.xls",
+  "n_chars": 529,
+  "n_readings": 1134,
+  "chars": {
+    "阿": [
+      {
+        "pinyin": "a1",
+        "display": "ā",
+        "phrases": [
+          "阿大",
+          "阿公",
+          "阿姨",
+          "阿昌族"
+        ]
+      },
+      {
+        "pinyin": "e1",
+        "display": "ē",
+        "phrases": [
+          "阿胶",
+          "阿附",
+          "阿其所好",
+          "阿谀奉承",
+          "阿谀逢迎"
+        ]
+      }
+    ],
+    "奔": [
+      {
+        "pinyin": "ben4",
+        "display": "bèn",
+        "phrases": [
+          "投奔",
+          "奔头儿",
+          "奔向前方"
+        ]
+      },
+      {
+        "pinyin": "ben1",
+        "display": "bēn",
+        "phrases": [
+          "奔忙",
+          "奔波",
+          "奔驰",
+          "奔放",
+          "奔赴",
+          "东奔西跑"
+        ]
+      }
+    ],
+    "绷": [
+      {
+        "pinyin": "beng1",
+        "display": "bēnɡ",
+        "phrases": [
+          "绷直",
+          "绷紧",
+          "绷带",
+          "坑绷拐骗"
+        ]
+      },
+      {
+        "pinyin": "beng3",
+        "display": "běnɡ",
+        "phrases": [
+          "绷劲",
+          "绷住",
+          "绷着脸"
+        ]
+      }
+    ],
+    "挨": [
+      {
+        "pinyin": "ai1",
+        "display": "āi",
+        "phrases": [
+          "挨次",
+          "挨近",
+          "挨个",
+          "一步一挨",
+          "挨门挨户"
+        ]
+      },
+      {
+        "pinyin": "ai2",
+        "display": "ái",
+        "phrases": [
+          "挨说",
+          "挨冻",
+          "挨打",
+          "挨时间"
+        ]
+      }
+    ],
+    "贲": [
+      {
+        "pinyin": "bi4",
+        "display": "bì",
+        "phrases": [
+          "贲临"
+        ]
+      },
+      {
+        "pinyin": "ben1",
+        "display": "bēn",
+        "phrases": [
+          "贲门",
+          "虎贲"
+        ]
+      }
+    ],
+    "艾": [
+      {
+        "pinyin": "ai4",
+        "display": "ài",
+        "phrases": [
+          "艾草",
+          "艾绒",
+          "方兴未艾"
+        ]
+      },
+      {
+        "pinyin": "yi4",
+        "display": "yì",
+        "phrases": [
+          "自怨自艾"
+        ]
+      }
+    ],
+    "裨": [
+      {
+        "pinyin": "bi4",
+        "display": "bì",
+        "phrases": [
+          "裨益",
+          "裨辅",
+          "裨补"
+        ]
+      },
+      {
+        "pinyin": "pi2",
+        "display": "pí",
+        "phrases": [
+          "裨将",
+          "裨海"
+        ]
+      }
+    ],
+    "熬": [
+      {
+        "pinyin": "ao1",
+        "display": "āo",
+        "phrases": [
+          "熬菜",
+          "熬心"
+        ]
+      },
+      {
+        "pinyin": "ao2",
+        "display": "áo",
+        "phrases": [
+          "熬夜",
+          "熬药",
+          "熬粥熬时间"
+        ]
+      }
+    ],
+    "辟": [
+      {
+        "pinyin": "bi4",
+        "display": "bì",
+        "phrases": [
+          "复辟",
+          "辟邪"
+        ]
+      },
+      {
+        "pinyin": "pi4",
+        "display": "pì",
+        "phrases": [
+          "开辟",
+          "精辟",
+          "辟谣"
+        ]
+      }
+    ],
+    "拗": [
+      {
+        "pinyin": "ao3",
+        "display": "ǎo",
+        "phrases": [
+          "拗断",
+          "拗开",
+          "拗过去"
+        ]
+      },
+      {
+        "pinyin": "ao4",
+        "display": "ào",
+        "phrases": [
+          "违拗",
+          "拗口令"
+        ]
+      },
+      {
+        "pinyin": "niu4",
+        "display": "niù",
+        "phrases": [
+          "执拗",
+          "拗不过"
+        ]
+      }
+    ],
+    "臂": [
+      {
+        "pinyin": "bi4",
+        "display": "bì",
+        "phrases": [
+          "手臂",
+          "臂膀",
+          "振臂高呼"
+        ]
+      },
+      {
+        "pinyin": "bei5",
+        "display": "bei",
+        "phrases": [
+          "胳膊"
+        ]
+      }
+    ],
+    "扒": [
+      {
+        "pinyin": "ba1",
+        "display": "bā",
+        "phrases": [
+          "扒开",
+          "扒拉",
+          "扒土",
+          "扒皮",
+          "扒着窗户"
+        ]
+      },
+      {
+        "pinyin": "pa2",
+        "display": "pá",
+        "phrases": [
+          "扒草",
+          "扒手",
+          "扒痒",
+          "扒犁",
+          "扒鸡"
+        ]
+      }
+    ],
+    "扁": [
+      {
+        "pinyin": "bian3",
+        "display": "biǎn",
+        "phrases": [
+          "扁担",
+          "扁豆",
+          "扁铲",
+          "扁桃体"
+        ]
+      },
+      {
+        "pinyin": "pian1",
+        "display": "piān",
+        "phrases": [
+          "扁舟"
+        ]
+      }
+    ],
+    "把": [
+      {
+        "pinyin": "ba3",
+        "display": "bǎ",
+        "phrases": [
+          "把握",
+          "把手",
+          "把持",
+          "把柄",
+          "把戏",
+          "把关",
+          "把脉"
+        ]
+      },
+      {
+        "pinyin": "ba4",
+        "display": "bà",
+        "phrases": [
+          "刀把",
+          "印把",
+          "话把儿"
+        ]
+      }
+    ],
+    "便": [
+      {
+        "pinyin": "bian4",
+        "display": "biàn",
+        "phrases": [
+          "便捷",
+          "便当",
+          "便条",
+          "便饭",
+          "方便",
+          "简便",
+          "随便"
+        ]
+      },
+      {
+        "pinyin": "pian2",
+        "display": "pián",
+        "phrases": [
+          "便宜",
+          "大腹便便"
+        ]
+      }
+    ],
+    "耙": [
+      {
+        "pinyin": "ba4",
+        "display": "bà",
+        "phrases": [
+          "耙地",
+          "圆盘耙"
+        ]
+      },
+      {
+        "pinyin": "pa2",
+        "display": "pá",
+        "phrases": [
+          "耙子",
+          "猪八戒摔耙子"
+        ]
+      }
+    ],
+    "瘪": [
+      {
+        "pinyin": "bie1",
+        "display": "biē",
+        "phrases": [
+          "瘪三"
+        ]
+      },
+      {
+        "pinyin": "bie3",
+        "display": "biě",
+        "phrases": [
+          "瘪子",
+          "干瘪",
+          "车带瘪了"
+        ]
+      }
+    ],
+    "柏": [
+      {
+        "pinyin": "bai3",
+        "display": "bǎi",
+        "phrases": [
+          "柏树",
+          "松柏长青"
+        ]
+      },
+      {
+        "pinyin": "bo2",
+        "display": "bó",
+        "phrases": [
+          "柏林"
+        ]
+      },
+      {
+        "pinyin": "bo4",
+        "display": "bò",
+        "phrases": [
+          "黄柏（即黄檗）"
+        ]
+      }
+    ],
+    "别": [
+      {
+        "pinyin": "bie2",
+        "display": "bié",
+        "phrases": [
+          "告别",
+          "临别",
+          "区别",
+          "性别",
+          "天渊之别",
+          "别开生面"
+        ]
+      },
+      {
+        "pinyin": "bie4",
+        "display": "biè",
+        "phrases": [
+          "别扭"
+        ]
+      }
+    ],
+    "槟": [
+      {
+        "pinyin": "bin1",
+        "display": "bīn",
+        "phrases": [
+          "槟子（苹果树的一种）"
+        ]
+      },
+      {
+        "pinyin": "bing1",
+        "display": "bīnɡ",
+        "phrases": [
+          "槟榔"
+        ]
+      }
+    ],
+    "膀": [
+      {
+        "pinyin": "bang3",
+        "display": "bǎnɡ",
+        "phrases": [
+          "肩膀",
+          "翅膀",
+          "臂膀",
+          "膀阔腰圆"
+        ]
+      },
+      {
+        "pinyin": "pang1",
+        "display": "pānɡ",
+        "phrases": [
+          "膀肿",
+          "脸膀了"
+        ]
+      },
+      {
+        "pinyin": "pang2",
+        "display": "pánɡ",
+        "phrases": [
+          "膀胱"
+        ]
+      }
+    ],
+    "剥": [
+      {
+        "pinyin": "bo1",
+        "display": "bō",
+        "phrases": [
+          "剥削",
+          "剥夺",
+          "剥夺",
+          "剥蚀",
+          "剥落",
+          "生吞活剥"
+        ]
+      },
+      {
+        "pinyin": "bao1",
+        "display": "bāo",
+        "phrases": [
+          "剥皮",
+          "剥花生"
+        ]
+      }
+    ],
+    "蚌": [
+      {
+        "pinyin": "bang4",
+        "display": "bànɡ",
+        "phrases": [
+          "蛤蚌",
+          "河蚌"
+        ]
+      },
+      {
+        "pinyin": "beng4",
+        "display": "bènɡ",
+        "phrases": [
+          "蚌埠"
+        ]
+      }
+    ],
+    "伯": [
+      {
+        "pinyin": "bo2",
+        "display": "bó",
+        "phrases": [
+          "伯父",
+          "老伯",
+          "伯仲之间"
+        ]
+      },
+      {
+        "pinyin": "bai3",
+        "display": "bǎi",
+        "phrases": [
+          "大伯子（夫兄）"
+        ]
+      }
+    ],
+    "磅": [
+      {
+        "pinyin": "bang4",
+        "display": "bànɡ",
+        "phrases": [
+          "磅秤",
+          "过磅"
+        ]
+      },
+      {
+        "pinyin": "pang2",
+        "display": "pánɡ",
+        "phrases": [
+          "磅礴"
+        ]
+      }
+    ],
+    "泊": [
+      {
+        "pinyin": "bo2",
+        "display": "bó",
+        "phrases": [
+          "淡泊",
+          "停泊",
+          "漂泊",
+          "伯（姓）"
+        ]
+      },
+      {
+        "pinyin": "po1",
+        "display": "pō",
+        "phrases": [
+          "血泊",
+          "湖泊",
+          "梁山泊"
+        ]
+      }
+    ],
+    "薄": [
+      {
+        "pinyin": "bao2",
+        "display": "báo",
+        "phrases": [
+          "薄片",
+          "薄纸",
+          "薄板",
+          "薄被",
+          "薄云",
+          "薄雾",
+          "薄饼"
+        ]
+      },
+      {
+        "pinyin": "bo2",
+        "display": "bó",
+        "phrases": [
+          "稀薄",
+          "刻薄",
+          "单薄",
+          "薄（姓）日薄西山"
+        ]
+      },
+      {
+        "pinyin": "bo4",
+        "display": "bò",
+        "phrases": [
+          "薄荷"
+        ]
+      }
+    ],
+    "簸": [
+      {
+        "pinyin": "bo3",
+        "display": "bǒ",
+        "phrases": [
+          "颠簸",
+          "簸米"
+        ]
+      },
+      {
+        "pinyin": "bo4",
+        "display": "bò",
+        "phrases": [
+          "簸箕"
+        ]
+      }
+    ],
+    "卜": [
+      {
+        "pinyin": "pu3",
+        "display": "pǔ",
+        "phrases": [
+          "占卜",
+          "预卜",
+          "吉凶未卜",
+          "未卜先知",
+          "卜（姓）"
+        ]
+      },
+      {
+        "pinyin": "bo5",
+        "display": "bo",
+        "phrases": [
+          "萝卜"
+        ]
+      }
+    ],
+    "堡": [
+      {
+        "pinyin": "bao3",
+        "display": "bǎo",
+        "phrases": [
+          "碉堡",
+          "堡垒"
+        ]
+      },
+      {
+        "pinyin": "bu3",
+        "display": "bǔ",
+        "phrases": [
+          "瓦窑堡",
+          "吴堡"
+        ]
+      },
+      {
+        "pinyin": "pu4",
+        "display": "pù",
+        "phrases": [
+          "十里堡"
+        ]
+      }
+    ],
+    "采": [
+      {
+        "pinyin": "cai3",
+        "display": "cǎi",
+        "phrases": [
+          "采访",
+          "采矿",
+          "采纳",
+          "采集",
+          "采花",
+          "兴高采烈"
+        ]
+      },
+      {
+        "pinyin": "cai4",
+        "display": "cài",
+        "phrases": [
+          "采邑（古代卿大夫的封地）"
+        ]
+      }
+    ],
+    "暴": [
+      {
+        "pinyin": "bao4",
+        "display": "bào",
+        "phrases": [
+          "暴露",
+          "暴躁",
+          "暴徒",
+          "暴动",
+          "自暴自弃",
+          "暴跳如雷"
+        ]
+      },
+      {
+        "pinyin": "pu4",
+        "display": "pù",
+        "phrases": [],
+        "note": "（晒干，后作曝）一曝十寒"
+      }
+    ],
+    "参": [
+      {
+        "pinyin": "can1",
+        "display": "cān",
+        "phrases": [
+          "参与",
+          "参照",
+          "参考",
+          "参拜",
+          "参谋",
+          "古树参天"
+        ]
+      },
+      {
+        "pinyin": "shen1",
+        "display": "shēn",
+        "phrases": [
+          "人参",
+          "海参",
+          "沙参"
+        ]
+      },
+      {
+        "pinyin": "cen1",
+        "display": "cēn",
+        "phrases": [
+          "参差不齐"
+        ]
+      }
+    ],
+    "曝": [
+      {
+        "pinyin": "bao4",
+        "display": "bào",
+        "phrases": [
+          "曝光"
+        ]
+      },
+      {
+        "pinyin": "pu4",
+        "display": "pù",
+        "phrases": [
+          "一曝十寒"
+        ]
+      },
+      {
+        "pinyin": "pu4",
+        "display": "pù",
+        "phrases": [
+          "一曝十寒"
+        ]
+      },
+      {
+        "pinyin": "bao4",
+        "display": "bào",
+        "phrases": [
+          "曝光"
+        ]
+      }
+    ],
+    "伧": [
+      {
+        "pinyin": "cang1",
+        "display": "cānɡ",
+        "phrases": [
+          "伧俗",
+          "伧夫"
+        ]
+      },
+      {
+        "pinyin": "chen5",
+        "display": "chen",
+        "phrases": [
+          "寒伧"
+        ]
+      }
+    ],
+    "陂": [
+      {
+        "pinyin": "bei1",
+        "display": "bēi",
+        "phrases": [
+          "陂塘",
+          "陂池"
+        ]
+      },
+      {
+        "pinyin": "pi2",
+        "display": "pí",
+        "phrases": [
+          "黄陂"
+        ]
+      },
+      {
+        "pinyin": "po1",
+        "display": "pō",
+        "phrases": [
+          "陂陀"
+        ]
+      }
+    ],
+    "藏": [
+      {
+        "pinyin": "cang2",
+        "display": "cánɡ",
+        "phrases": [
+          "储藏",
+          "收藏",
+          "珍藏",
+          "蕴藏",
+          "躲藏",
+          "埋藏",
+          "矿藏"
+        ]
+      },
+      {
+        "pinyin": "zang4",
+        "display": "zànɡ",
+        "phrases": [
+          "宝藏",
+          "西藏",
+          "藏族",
+          "唐三藏",
+          "青藏高原"
+        ]
+      }
+    ],
+    "背": [
+      {
+        "pinyin": "bei1",
+        "display": "bēi",
+        "phrases": [
+          "背包",
+          "背带",
+          "背水",
+          "背包袱"
+        ]
+      },
+      {
+        "pinyin": "bei4",
+        "display": "bèi",
+        "phrases": [
+          "背景",
+          "背叛",
+          "背诵",
+          "背时",
+          "背信弃义"
+        ]
+      }
+    ],
+    "叉": [
+      {
+        "pinyin": "cha1",
+        "display": "chā",
+        "phrases": [
+          "叉子",
+          "鱼叉",
+          "三齿叉",
+          "叉着手"
+        ]
+      },
+      {
+        "pinyin": "cha2",
+        "display": "chá",
+        "phrases": [
+          "叉住了（堵塞）"
+        ]
+      },
+      {
+        "pinyin": "cha3",
+        "display": "chǎ",
+        "phrases": [],
+        "note": "（张开，分开）叉腿"
+      }
+    ],
+    "衩": [
+      {
+        "pinyin": "cha4",
+        "display": "chà",
+        "phrases": [
+          "开衩（衣服旁边开口的地方）"
+        ]
+      },
+      {
+        "pinyin": "cha3",
+        "display": "chǎ",
+        "phrases": [
+          "裤衩"
+        ]
+      }
+    ],
+    "创": [
+      {
+        "pinyin": "chuang1",
+        "display": "chuānɡ",
+        "phrases": [
+          "创伤",
+          "创口",
+          "予以重创"
+        ]
+      },
+      {
+        "pinyin": "chuang4",
+        "display": "chuànɡ",
+        "phrases": [
+          "创造",
+          "创建",
+          "创举",
+          "创刊",
+          "创办",
+          "颇具创意"
+        ]
+      }
+    ],
+    "刹": [
+      {
+        "pinyin": "cha4",
+        "display": "chà",
+        "phrases": [
+          "古刹",
+          "刹那间"
+        ]
+      },
+      {
+        "pinyin": "sha1",
+        "display": "shā",
+        "phrases": [
+          "刹车",
+          "刹住歪风"
+        ]
+      }
+    ],
+    "啜": [
+      {
+        "pinyin": "chuo4",
+        "display": "chuò",
+        "phrases": [
+          "啜茗",
+          "啜粥",
+          "啜泣"
+        ]
+      },
+      {
+        "pinyin": "chuai4",
+        "display": "chuài",
+        "phrases": [
+          "啜（姓）"
+        ]
+      }
+    ],
+    "差": [
+      {
+        "pinyin": "cha1",
+        "display": "chā",
+        "phrases": [
+          "差别",
+          "差异",
+          "偏差",
+          "差数",
+          "差强人意",
+          "阴差阳错"
+        ]
+      },
+      {
+        "pinyin": "cha4",
+        "display": "chà",
+        "phrases": [
+          "说差了",
+          "差不多",
+          "成绩差",
+          "条件很差"
+        ]
+      },
+      {
+        "pinyin": "chai1",
+        "display": "chāi",
+        "phrases": [
+          "出差",
+          "差遣",
+          "差役",
+          "差事",
+          "邮差",
+          "钦差大臣"
+        ]
+      },
+      {
+        "pinyin": "ci1",
+        "display": "cī",
+        "phrases": [
+          "参差不齐"
+        ]
+      }
+    ],
+    "绰": [
+      {
+        "pinyin": "chuo4",
+        "display": "chuò",
+        "phrases": [
+          "绰号",
+          "绰约",
+          "绰绰有余"
+        ]
+      },
+      {
+        "pinyin": "chao1",
+        "display": "chāo",
+        "phrases": [
+          "绰起棍子"
+        ]
+      },
+      {
+        "pinyin": "chuo5",
+        "display": "chuo",
+        "phrases": [
+          "宽绰"
+        ]
+      }
+    ],
+    "跐": [
+      {
+        "pinyin": "ci3",
+        "display": "cǐ",
+        "phrases": [],
+        "note": "（踩，踏）脚跐两只船"
+      },
+      {
+        "pinyin": "ci1",
+        "display": "cī",
+        "phrases": [
+          "（脚下滑动）登跐了"
+        ]
+      }
+    ],
+    "查": [
+      {
+        "pinyin": "cha2",
+        "display": "chá",
+        "phrases": [
+          "查账",
+          "检查",
+          "查字典"
+        ]
+      },
+      {
+        "pinyin": "zha1",
+        "display": "zhā",
+        "phrases": [
+          "查（姓）"
+        ]
+      }
+    ],
+    "刺": [
+      {
+        "pinyin": "ci4",
+        "display": "cì",
+        "phrases": [
+          "刺绣",
+          "刺激",
+          "刺探",
+          "刺猬",
+          "讽刺",
+          "刺刺不休"
+        ]
+      },
+      {
+        "pinyin": "ci1",
+        "display": "cī",
+        "phrases": [
+          "（拟声词）刺棱",
+          "刺溜"
+        ]
+      }
+    ],
+    "禅": [
+      {
+        "pinyin": "chan2",
+        "display": "chán",
+        "phrases": [
+          "禅师",
+          "禅杖",
+          "禅房",
+          "坐禅"
+        ]
+      },
+      {
+        "pinyin": "shan4",
+        "display": "shàn",
+        "phrases": [
+          "禅让",
+          "禅位"
+        ]
+      }
+    ],
+    "枞": [
+      {
+        "pinyin": "cong1",
+        "display": "cōnɡ",
+        "phrases": [
+          "枞树（又叫“冷杉”）"
+        ]
+      },
+      {
+        "pinyin": "zong1",
+        "display": "zōnɡ",
+        "phrases": [
+          "枞阳（地名）"
+        ]
+      }
+    ],
+    "孱": [
+      {
+        "pinyin": "chan2",
+        "display": "chán",
+        "phrases": [
+          "孱弱"
+        ]
+      },
+      {
+        "pinyin": "can4",
+        "display": "càn",
+        "phrases": [
+          "孱头"
+        ]
+      }
+    ],
+    "撮": [
+      {
+        "pinyin": "cuo1",
+        "display": "cuō",
+        "phrases": [
+          "撮合",
+          "撮弄",
+          "撮要",
+          "一小撮儿"
+        ]
+      },
+      {
+        "pinyin": "zuo3",
+        "display": "zuǒ",
+        "phrases": [
+          "（成丛的毛发）一撮头发"
+        ]
+      }
+    ],
+    "颤": [
+      {
+        "pinyin": "chan4",
+        "display": "chàn",
+        "phrases": [
+          "颤动",
+          "颤抖",
+          "颤音",
+          "颤悠"
+        ]
+      },
+      {
+        "pinyin": "zhan4",
+        "display": "zhàn",
+        "phrases": [
+          "打颤",
+          "颤栗"
+        ]
+      }
+    ],
+    "答": [
+      {
+        "pinyin": "da2",
+        "display": "dá",
+        "phrases": [
+          "报答",
+          "答谢",
+          "答话",
+          "答复",
+          "答对",
+          "答非所问"
+        ]
+      },
+      {
+        "pinyin": "da1",
+        "display": "dā",
+        "phrases": [
+          "答应",
+          "答理"
+        ]
+      }
+    ],
+    "长": [
+      {
+        "pinyin": "chang2",
+        "display": "chánɡ",
+        "phrases": [
+          "长度",
+          "特长",
+          "长此以往",
+          "长驱直入",
+          "长歌当哭"
+        ]
+      },
+      {
+        "pinyin": "zhang3",
+        "display": "zhǎnɡ",
+        "phrases": [
+          "长辈",
+          "成长",
+          "生长",
+          "学长",
+          "科长",
+          "增长才干"
+        ]
+      }
+    ],
+    "打": [
+      {
+        "pinyin": "da3",
+        "display": "dǎ",
+        "phrases": [
+          "打击",
+          "打柴",
+          "打酒",
+          "打旗",
+          "打球",
+          "打扮",
+          "打扫"
+        ]
+      },
+      {
+        "pinyin": "da2",
+        "display": "dá",
+        "phrases": [
+          "（量词）12个为1打"
+        ]
+      }
+    ],
+    "场": [
+      {
+        "pinyin": "chang2",
+        "display": "chánɡ",
+        "phrases": [
+          "打场",
+          "场院",
+          "一场大雨",
+          "一场激烈搏斗"
+        ]
+      },
+      {
+        "pinyin": "chang3",
+        "display": "chǎnɡ",
+        "phrases": [
+          "场所",
+          "场面",
+          "场合",
+          "冷场",
+          "球场",
+          "操场",
+          "市场"
+        ]
+      }
+    ],
+    "大": [
+      {
+        "pinyin": "da4",
+        "display": "dà",
+        "phrases": [
+          "大山",
+          "大众",
+          "大名",
+          "大概",
+          "大作",
+          "大夫（古官名"
+        ]
+      },
+      {
+        "pinyin": "dai4",
+        "display": "dài",
+        "phrases": [
+          "大夫（医生）山大王"
+        ]
+      }
+    ],
+    "朝": [
+      {
+        "pinyin": "chao2",
+        "display": "cháo",
+        "phrases": [
+          "朝廷",
+          "朝向",
+          "朝野",
+          "改朝换代",
+          "朝前看"
+        ]
+      },
+      {
+        "pinyin": "zhao1",
+        "display": "zhāo",
+        "phrases": [
+          "朝阳",
+          "朝霞",
+          "朝夕",
+          "今朝",
+          "朝气蓬勃",
+          "朝思暮想"
+        ]
+      }
+    ],
+    "待": [
+      {
+        "pinyin": "dai4",
+        "display": "dài",
+        "phrases": [
+          "待业",
+          "待客",
+          "待遇",
+          "接人待物",
+          "自不待言"
+        ]
+      },
+      {
+        "pinyin": "dai1",
+        "display": "dāi",
+        "phrases": [
+          "(停留）待一会再走"
+        ]
+      }
+    ],
+    "吵": [
+      {
+        "pinyin": "chao3",
+        "display": "chǎo",
+        "phrases": [
+          "吵闹",
+          "吵嘴",
+          "吵架",
+          "争吵",
+          "吵得慌",
+          "吵得很"
+        ]
+      },
+      {
+        "pinyin": "chao1",
+        "display": "chāo",
+        "phrases": [
+          "吵吵",
+          "吵嚷"
+        ]
+      }
+    ],
+    "逮": [
+      {
+        "pinyin": "dai4",
+        "display": "dài",
+        "phrases": [
+          "逮捕",
+          "力有未逮"
+        ]
+      },
+      {
+        "pinyin": "dai3",
+        "display": "dǎi",
+        "phrases": [
+          "逮小偷"
+        ]
+      }
+    ],
+    "称": [
+      {
+        "pinyin": "cheng1",
+        "display": "chēnɡ",
+        "phrases": [
+          "自称",
+          "简称",
+          "称道",
+          "称呼",
+          "称号",
+          "拍手称快"
+        ]
+      },
+      {
+        "pinyin": "chen4",
+        "display": "chèn",
+        "phrases": [
+          "对称",
+          "称心",
+          "称职",
+          "对称",
+          "匀称"
+        ]
+      },
+      {
+        "pinyin": "cheng4",
+        "display": "chènɡ",
+        "phrases": [
+          "（同“秤”）"
+        ]
+      }
+    ],
+    "担": [
+      {
+        "pinyin": "dan1",
+        "display": "dān",
+        "phrases": [
+          "担保",
+          "担待",
+          "担负",
+          "担任",
+          "担架",
+          "担忧",
+          "担风险"
+        ]
+      },
+      {
+        "pinyin": "dan4",
+        "display": "dàn",
+        "phrases": [
+          "担子",
+          "一担水",
+          "勇挑重担（一百斤等于一担）"
+        ]
+      },
+      {
+        "pinyin": "dan3",
+        "display": "dǎn",
+        "phrases": [],
+        "note": "（拂拭，后作“掸”）"
+      }
+    ],
+    "乘": [
+      {
+        "pinyin": "cheng2",
+        "display": "chénɡ",
+        "phrases": [
+          "乘车",
+          "乘便",
+          "乘势",
+          "乘机",
+          "乘兴",
+          "乘（姓）"
+        ]
+      },
+      {
+        "pinyin": "sheng4",
+        "display": "shènɡ",
+        "phrases": [
+          "千乘之国"
+        ]
+      }
+    ],
+    "单": [
+      {
+        "pinyin": "dan1",
+        "display": "dān",
+        "phrases": [
+          "单纯",
+          "单独",
+          "单身",
+          "单衣",
+          "单薄",
+          "单数",
+          "账单"
+        ]
+      },
+      {
+        "pinyin": "shan4",
+        "display": "shàn",
+        "phrases": [
+          "单县",
+          "姓单"
+        ]
+      },
+      {
+        "pinyin": "chan2",
+        "display": "chán",
+        "phrases": [
+          "单于（古代匈奴的君主）"
+        ]
+      }
+    ],
+    "澄": [
+      {
+        "pinyin": "cheng2",
+        "display": "chénɡ",
+        "phrases": [
+          "澄清（问题）溪水澄清"
+        ]
+      },
+      {
+        "pinyin": "deng4",
+        "display": "dènɡ",
+        "phrases": [
+          "澄清（使液体变清）"
+        ]
+      }
+    ],
+    "匙": [
+      {
+        "pinyin": "chi2",
+        "display": "chí",
+        "phrases": [
+          "汤匙"
+        ]
+      },
+      {
+        "pinyin": "shi5",
+        "display": "shi",
+        "phrases": [
+          "钥匙"
+        ]
+      }
+    ],
+    "掸": [
+      {
+        "pinyin": "dan3",
+        "display": "dǎn",
+        "phrases": [
+          "掸子",
+          "掸衣服",
+          "掸桌子"
+        ]
+      },
+      {
+        "pinyin": "shan4",
+        "display": "shàn",
+        "phrases": [
+          "掸（史书上对傣族的一种称呼）"
+        ]
+      }
+    ],
+    "冲": [
+      {
+        "pinyin": "chong1",
+        "display": "chōnɡ",
+        "phrases": [
+          "冲击",
+          "冲淡",
+          "要冲",
+          "冲撞",
+          "冲动",
+          "首当其冲"
+        ]
+      },
+      {
+        "pinyin": "chong4",
+        "display": "chònɡ",
+        "phrases": [
+          "冲床",
+          "冲模",
+          "气味冲人",
+          "冲着敌人开火"
+        ]
+      }
+    ],
+    "弹": [
+      {
+        "pinyin": "dan4",
+        "display": "dàn",
+        "phrases": [
+          "炮弹",
+          "炸弹",
+          "信号弹",
+          "弹丸之地"
+        ]
+      },
+      {
+        "pinyin": "tan2",
+        "display": "tán",
+        "phrases": [
+          "弹琴",
+          "弹力",
+          "弹劾",
+          "讥弹",
+          "弹簧",
+          "弹冠相庆"
+        ]
+      }
+    ],
+    "仇": [
+      {
+        "pinyin": "chou2",
+        "display": "chóu",
+        "phrases": [
+          "仇恨",
+          "仇视",
+          "仇人",
+          "报仇",
+          "恩将仇报"
+        ]
+      },
+      {
+        "pinyin": "qiu2",
+        "display": "qiú",
+        "phrases": [
+          "仇（姓）"
+        ]
+      }
+    ],
+    "澹": [
+      {
+        "pinyin": "dan4",
+        "display": "dàn",
+        "phrases": [
+          "恬澹",
+          "澹泊"
+        ]
+      },
+      {
+        "pinyin": "tan2",
+        "display": "tán",
+        "phrases": [
+          "澹台（复姓）"
+        ]
+      }
+    ],
+    "臭": [
+      {
+        "pinyin": "chou4",
+        "display": "chòu",
+        "phrases": [
+          "臭气",
+          "臭美",
+          "臭骂",
+          "臭棋",
+          "遗臭万年"
+        ]
+      },
+      {
+        "pinyin": "xiu4",
+        "display": "xiù",
+        "phrases": [
+          "（气味）无声无臭",
+          "乳臭",
+          "铜臭"
+        ]
+      }
+    ],
+    "当": [
+      {
+        "pinyin": "dang1",
+        "display": "dānɡ",
+        "phrases": [
+          "当选",
+          "当初",
+          "当局",
+          "当心",
+          "瓦当",
+          "旗鼓相当"
+        ]
+      },
+      {
+        "pinyin": "dang4",
+        "display": "dànɡ",
+        "phrases": [
+          "妥当",
+          "当天",
+          "当票",
+          "上当",
+          "恰当",
+          "安步当车"
+        ]
+      }
+    ],
+    "处": [
+      {
+        "pinyin": "chu4",
+        "display": "chù",
+        "phrases": [
+          "住处",
+          "好处",
+          "益处",
+          "妙处",
+          "处所",
+          "办事处"
+        ]
+      },
+      {
+        "pinyin": "chu3",
+        "display": "chǔ",
+        "phrases": [
+          "处罚",
+          "处置",
+          "处理",
+          "相处",
+          "设身处地"
+        ]
+      }
+    ],
+    "铛": [
+      {
+        "pinyin": "dang1",
+        "display": "dānɡ",
+        "phrases": [
+          "锒铛"
+        ]
+      },
+      {
+        "pinyin": "cheng1",
+        "display": "chēnɡ",
+        "phrases": [
+          "电饼铛"
+        ]
+      }
+    ],
+    "揣": [
+      {
+        "pinyin": "chuai3",
+        "display": "chuǎi",
+        "phrases": [
+          "揣测",
+          "揣度",
+          "揣摩",
+          "不揣冒昧",
+          "揣（姓）"
+        ]
+      },
+      {
+        "pinyin": "chuai1",
+        "display": "chuāi",
+        "phrases": [
+          "揣起来",
+          "踹面"
+        ]
+      },
+      {
+        "pinyin": "chuai4",
+        "display": "chuài",
+        "phrases": [
+          "挣揣（挣扎）"
+        ]
+      }
+    ],
+    "挡": [
+      {
+        "pinyin": "dang3",
+        "display": "dǎnɡ",
+        "phrases": [
+          "阻挡",
+          "拦挡",
+          "挡驾",
+          "挡箭牌",
+          "水来土挡"
+        ]
+      },
+      {
+        "pinyin": "dang4",
+        "display": "dànɡ",
+        "phrases": [],
+        "note": "（收拾，料理）摒挡"
+      }
+    ],
+    "倒": [
+      {
+        "pinyin": "dao3",
+        "display": "dǎo",
+        "phrases": [
+          "倒台",
+          "倒戈",
+          "倒把",
+          "倒替",
+          "倒霉",
+          "翻江倒海"
+        ]
+      },
+      {
+        "pinyin": "dao4",
+        "display": "dào",
+        "phrases": [
+          "倒立",
+          "倒流",
+          "倒叙",
+          "倒贴",
+          "倒插门",
+          "本末倒置"
+        ]
+      }
+    ],
+    "传": [
+      {
+        "pinyin": "chuan2",
+        "display": "chuán",
+        "phrases": [
+          "传言",
+          "传奇",
+          "传球",
+          "传染",
+          "传播",
+          "传统",
+          "传送"
+        ]
+      },
+      {
+        "pinyin": "zhuan4",
+        "display": "zhuàn",
+        "phrases": [
+          "传记",
+          "外传",
+          "别传",
+          "传略",
+          "水浒传"
+        ]
+      }
+    ],
+    "得": [
+      {
+        "pinyin": "de2",
+        "display": "dé",
+        "phrases": [
+          "得到",
+          "得便",
+          "得体",
+          "得意",
+          "得失",
+          "得天独厚"
+        ]
+      },
+      {
+        "pinyin": "dei3",
+        "display": "děi",
+        "phrases": [
+          "得动脑筋",
+          "你得用功",
+          "挺得",
+          "慢了就得迟到"
+        ]
+      },
+      {
+        "pinyin": "de5",
+        "display": "de",
+        "phrases": [
+          "要不得",
+          "香得很",
+          "做得对",
+          "拿得起放得下"
+        ]
+      }
+    ],
+    "幢": [
+      {
+        "pinyin": "chuang4",
+        "display": "chuànɡ",
+        "phrases": [
+          "（佛教的经幢）经幢",
+          "石幢"
+        ]
+      },
+      {
+        "pinyin": "zhuang4",
+        "display": "zhuànɡ",
+        "phrases": [
+          "（量词）一幢楼"
+        ]
+      }
+    ],
+    "翟": [
+      {
+        "pinyin": "di2",
+        "display": "dí",
+        "phrases": [
+          "墨子名翟",
+          "翟（古书上指长尾野鸡）"
+        ]
+      },
+      {
+        "pinyin": "zhai2",
+        "display": "zhái",
+        "phrases": [
+          "姓翟"
+        ]
+      }
+    ],
+    "佛": [
+      {
+        "pinyin": "fo2",
+        "display": "fó",
+        "phrases": [
+          "佛教",
+          "佛家",
+          "佛经",
+          "佛陀"
+        ]
+      },
+      {
+        "pinyin": "fu2",
+        "display": "fú",
+        "phrases": [
+          "仿佛",
+          "佛戾"
+        ]
+      }
+    ],
+    "地": [
+      {
+        "pinyin": "di4",
+        "display": "dì",
+        "phrases": [
+          "地质",
+          "地势",
+          "内地",
+          "目的地",
+          "白地儿红花"
+        ]
+      },
+      {
+        "pinyin": "de5",
+        "display": "de",
+        "phrases": [],
+        "note": "助词，用在状语后，主要修饰动词形容词"
+      }
+    ],
+    "否": [
+      {
+        "pinyin": "fou3",
+        "display": "fǒu",
+        "phrases": [
+          "是否",
+          "能否",
+          "可否",
+          "否认",
+          "否决",
+          "否定",
+          "否则"
+        ]
+      },
+      {
+        "pinyin": "pi3",
+        "display": "pǐ",
+        "phrases": [
+          "否极泰来",
+          "臧否人物"
+        ]
+      }
+    ],
+    "的": [
+      {
+        "pinyin": "di4",
+        "display": "dì",
+        "phrases": [
+          "目的",
+          "中的",
+          "有的放矢",
+          "众矢之的"
+        ]
+      },
+      {
+        "pinyin": "di2",
+        "display": "dí",
+        "phrases": [
+          "的当",
+          "的确",
+          "的证"
+        ]
+      },
+      {
+        "pinyin": "de5",
+        "display": "de",
+        "phrases": [],
+        "note": "助词，用在定语、词或词组、句末"
+      }
+    ],
+    "夫": [
+      {
+        "pinyin": "fu1",
+        "display": "fū",
+        "phrases": [
+          "夫人",
+          "夫子",
+          "农夫",
+          "渔夫",
+          "姐夫",
+          "夫子自道"
+        ]
+      },
+      {
+        "pinyin": "fu2",
+        "display": "fú",
+        "phrases": [],
+        "note": "（作指示词、代词、助词）逝者如斯夫"
+      }
+    ],
+    "袱": [
+      {
+        "pinyin": "fu2",
+        "display": "fú",
+        "phrases": [
+          "(漩涡、水在地下潜流）"
+        ]
+      },
+      {
+        "pinyin": "fu4",
+        "display": "fù",
+        "phrases": [
+          "洑水"
+        ]
+      }
+    ],
+    "佃": [
+      {
+        "pinyin": "dian4",
+        "display": "diàn",
+        "phrases": [
+          "佃户",
+          "佃农",
+          "佃租"
+        ]
+      },
+      {
+        "pinyin": "tian2",
+        "display": "tián",
+        "phrases": [
+          "佃作"
+        ]
+      }
+    ],
+    "服": [
+      {
+        "pinyin": "fu2",
+        "display": "fú",
+        "phrases": [
+          "服装",
+          "服从",
+          "说服",
+          "服务",
+          "水土不服",
+          "心悦诚服"
+        ]
+      },
+      {
+        "pinyin": "fu4",
+        "display": "fù",
+        "phrases": [],
+        "note": "（量词，用于中药，也作“付”）一服药"
+      }
+    ],
+    "钿": [
+      {
+        "pinyin": "dian4",
+        "display": "diàn",
+        "phrases": [
+          "金钿",
+          "宝钿"
+        ]
+      },
+      {
+        "pinyin": "tian2",
+        "display": "tián",
+        "phrases": [
+          "铜钿"
+        ]
+      }
+    ],
+    "脯": [
+      {
+        "pinyin": "fu3",
+        "display": "fǔ",
+        "phrases": [
+          "果脯",
+          "杏脯",
+          "桃脯",
+          "(肉干)鹿脯",
+          "兔脯"
+        ]
+      },
+      {
+        "pinyin": "pu2",
+        "display": "pú",
+        "phrases": [
+          "胸脯"
+        ]
+      }
+    ],
+    "钉": [
+      {
+        "pinyin": "ding1",
+        "display": "dīnɡ",
+        "phrases": [
+          "螺丝钉",
+          "碰钉子",
+          "盯着点儿"
+        ]
+      },
+      {
+        "pinyin": "ding4",
+        "display": "dìnɡ",
+        "phrases": [
+          "钉钉子",
+          "钉扣子"
+        ]
+      }
+    ],
+    "父": [
+      {
+        "pinyin": "fu4",
+        "display": "fù",
+        "phrases": [
+          "父亲",
+          "叔父",
+          "姨夫",
+          "师父",
+          "父执",
+          "父老乡亲"
+        ]
+      },
+      {
+        "pinyin": "fu3",
+        "display": "fǔ",
+        "phrases": [
+          "(老年人)田父",
+          "渔父"
+        ]
+      }
+    ],
+    "酊": [
+      {
+        "pinyin": "ding1",
+        "display": "dīnɡ",
+        "phrases": [
+          "碘酊",
+          "橙皮酊"
+        ]
+      },
+      {
+        "pinyin": "ding3",
+        "display": "dǐnɡ",
+        "phrases": [
+          "酩酊"
+        ]
+      }
+    ],
+    "咖": [
+      {
+        "pinyin": "ga1",
+        "display": "ɡā",
+        "phrases": [
+          "咖喱(一种调料)"
+        ]
+      },
+      {
+        "pinyin": "ka1",
+        "display": "kā",
+        "phrases": [
+          "咖啡"
+        ]
+      }
+    ],
+    "斗": [
+      {
+        "pinyin": "dou3",
+        "display": "dǒu",
+        "phrases": [
+          "斗胆",
+          "斗室",
+          "漏斗",
+          "熨斗",
+          "（1斗是10升）"
+        ]
+      },
+      {
+        "pinyin": "dou4",
+        "display": "dòu",
+        "phrases": [
+          "斗争",
+          "斗气",
+          "斗志",
+          "斗殴",
+          "奋斗",
+          "斗智斗勇"
+        ]
+      }
+    ],
+    "嘎": [
+      {
+        "pinyin": "ga1",
+        "display": "ɡā",
+        "phrases": [
+          "嘎渣",
+          "(拟声词)嘎巴",
+          "嘎吱",
+          "嘎叭"
+        ]
+      },
+      {
+        "pinyin": "ga2",
+        "display": "ɡá",
+        "phrases": [
+          "嘎嘎(同\"尜尜\")"
+        ]
+      },
+      {
+        "pinyin": "ga3",
+        "display": "ɡǎ",
+        "phrases": [
+          "(同\"玍\")嘎小子"
+        ]
+      }
+    ],
+    "都": [
+      {
+        "pinyin": "du1",
+        "display": "dū",
+        "phrases": [
+          "首都",
+          "都市",
+          "通都大邑",
+          "姓都"
+        ]
+      },
+      {
+        "pinyin": "dou1",
+        "display": "dōu",
+        "phrases": [
+          "都有",
+          "都要",
+          "都说",
+          "都来了"
+        ]
+      }
+    ],
+    "肚": [
+      {
+        "pinyin": "du4",
+        "display": "dù",
+        "phrases": [
+          "肚脐",
+          "肚量",
+          "腿肚子"
+        ]
+      },
+      {
+        "pinyin": "du3",
+        "display": "dǔ",
+        "phrases": [
+          "猪肚子",
+          "羊肚子",
+          "拌肚丝儿",
+          "涮肚"
+        ]
+      }
+    ],
+    "干": [
+      {
+        "pinyin": "gan1",
+        "display": "ɡān",
+        "phrases": [
+          "干涉",
+          "干戈",
+          "干柴",
+          "干脆",
+          "不相干",
+          "外强中干"
+        ]
+      },
+      {
+        "pinyin": "gan4",
+        "display": "ɡàn",
+        "phrases": [
+          "树干",
+          "干线",
+          "干练",
+          "干事",
+          "才干",
+          "干细胞"
+        ]
+      }
+    ],
+    "度": [
+      {
+        "pinyin": "du4",
+        "display": "dù",
+        "phrases": [
+          "温度",
+          "知名度",
+          "度量衡",
+          "适度",
+          "法度",
+          "姓度"
+        ]
+      },
+      {
+        "pinyin": "duo2",
+        "display": "duó",
+        "phrases": [
+          "揣度",
+          "测度",
+          "度德量力",
+          "审时度势"
+        ]
+      }
+    ],
+    "杆": [
+      {
+        "pinyin": "gan1",
+        "display": "ɡān",
+        "phrases": [
+          "旗杆",
+          "栏杆",
+          "电线杆"
+        ]
+      },
+      {
+        "pinyin": "gan3",
+        "display": "ɡǎn",
+        "phrases": [
+          "秤杆",
+          "笔杆儿",
+          "烟袋杆儿",
+          "一杆枪"
+        ]
+      }
+    ],
+    "蹲": [
+      {
+        "pinyin": "dun1",
+        "display": "dūn",
+        "phrases": [
+          "蹲下",
+          "蹲点",
+          "蹲在家里"
+        ]
+      },
+      {
+        "pinyin": "cun2",
+        "display": "cún",
+        "phrases": [
+          "蹲腿了"
+        ]
+      }
+    ],
+    "钢": [
+      {
+        "pinyin": "gang1",
+        "display": "ɡānɡ",
+        "phrases": [
+          "炼钢",
+          "钢材",
+          "钢锭",
+          "钢铁意志"
+        ]
+      },
+      {
+        "pinyin": "gang4",
+        "display": "ɡànɡ",
+        "phrases": [
+          "钢刀布",
+          "把刀钢一钢"
+        ]
+      }
+    ],
+    "囤": [
+      {
+        "pinyin": "dun4",
+        "display": "dùn",
+        "phrases": [
+          "粮食囤子",
+          "大囤满小囤流"
+        ]
+      },
+      {
+        "pinyin": "tun2",
+        "display": "tún",
+        "phrases": [
+          "囤积",
+          "囤聚"
+        ]
+      }
+    ],
+    "膏": [
+      {
+        "pinyin": "gao1",
+        "display": "ɡāo",
+        "phrases": [
+          "牙膏",
+          "药膏",
+          "梨膏",
+          "膏腴"
+        ]
+      },
+      {
+        "pinyin": "gao4",
+        "display": "ɡào",
+        "phrases": [
+          "膏点儿油",
+          "膏膏笔"
+        ]
+      }
+    ],
+    "垛": [
+      {
+        "pinyin": "duo3",
+        "display": "duǒ",
+        "phrases": [
+          "箭垛子",
+          "门垛子",
+          "城墙垛口"
+        ]
+      },
+      {
+        "pinyin": "duo4",
+        "display": "duò",
+        "phrases": [
+          "麦垛",
+          "砖垛",
+          "柴火垛"
+        ]
+      }
+    ],
+    "仡": [
+      {
+        "pinyin": "ge1",
+        "display": "ɡē",
+        "phrases": [
+          "仡佬族"
+        ]
+      },
+      {
+        "pinyin": "yi4",
+        "display": "yì",
+        "phrases": [
+          "仡仡"
+        ]
+      }
+    ],
+    "恶": [
+      {
+        "pinyin": "e4",
+        "display": "è",
+        "phrases": [
+          "恶棍",
+          "恶习",
+          "恶霸",
+          "恶劣",
+          "罪恶",
+          "恶贯满盈"
+        ]
+      },
+      {
+        "pinyin": "wu4",
+        "display": "wù",
+        "phrases": [
+          "憎恶",
+          "厌恶",
+          "好恶",
+          "嫌恶",
+          "深恶痛绝"
+        ]
+      },
+      {
+        "pinyin": "e3",
+        "display": "ě",
+        "phrases": [
+          "恶心"
+        ]
+      }
+    ],
+    "搁": [
+      {
+        "pinyin": "ge1",
+        "display": "ɡē",
+        "phrases": [
+          "搁下",
+          "搁置",
+          "搁浅",
+          "耽搁"
+        ]
+      },
+      {
+        "pinyin": "ge2",
+        "display": "ɡé",
+        "phrases": [
+          "搁不住"
+        ]
+      }
+    ],
+    "革": [
+      {
+        "pinyin": "ge1",
+        "display": "ɡē",
+        "phrases": [
+          "皮革",
+          "革除",
+          "革新",
+          "洗心革面",
+          "革故鼎新"
+        ]
+      },
+      {
+        "pinyin": "ji2",
+        "display": "jí",
+        "phrases": [
+          "病革"
+        ]
+      }
+    ],
+    "发": [
+      {
+        "pinyin": "fa1",
+        "display": "fā",
+        "phrases": [
+          "发落",
+          "发誓",
+          "发扬",
+          "揭发",
+          "发芽",
+          "发端",
+          "发育"
+        ]
+      },
+      {
+        "pinyin": "fa4",
+        "display": "fà",
+        "phrases": [
+          "理发",
+          "脱发",
+          "令人发指"
+        ]
+      }
+    ],
+    "蛤": [
+      {
+        "pinyin": "ge2",
+        "display": "ɡé",
+        "phrases": [
+          "蛤蜊",
+          "蛤蚧"
+        ]
+      },
+      {
+        "pinyin": "ha2",
+        "display": "há",
+        "phrases": [
+          "蛤蟆"
+        ]
+      }
+    ],
+    "番": [
+      {
+        "pinyin": "fan1",
+        "display": "fān",
+        "phrases": [
+          "番茄",
+          "番薯",
+          "轮番",
+          "三番五次",
+          "一番心思"
+        ]
+      },
+      {
+        "pinyin": "pan1",
+        "display": "pān",
+        "phrases": [
+          "（地名）番禺"
+        ]
+      }
+    ],
+    "葛": [
+      {
+        "pinyin": "ge2",
+        "display": "ɡé",
+        "phrases": [
+          "葛藤",
+          "葛巾",
+          "瓜葛"
+        ]
+      },
+      {
+        "pinyin": "ge3",
+        "display": "ɡě",
+        "phrases": [
+          "姓葛"
+        ]
+      }
+    ],
+    "繁": [
+      {
+        "pinyin": "fan1",
+        "display": "fān",
+        "phrases": [
+          "繁殖",
+          "繁华",
+          "繁荣",
+          "删繁就简",
+          "实繁有徒"
+        ]
+      },
+      {
+        "pinyin": "po2",
+        "display": "pó",
+        "phrases": [
+          "姓繁"
+        ]
+      }
+    ],
+    "个": [
+      {
+        "pinyin": "ge4",
+        "display": "ɡè",
+        "phrases": [
+          "个人",
+          "个体",
+          "个别",
+          "个性",
+          "高个子",
+          "一个不留神"
+        ]
+      },
+      {
+        "pinyin": "ge3",
+        "display": "ɡě",
+        "phrases": [
+          "自个儿"
+        ]
+      }
+    ],
+    "坊": [
+      {
+        "pinyin": "fang1",
+        "display": "fānɡ",
+        "phrases": [
+          "坊间",
+          "牌坊"
+        ]
+      },
+      {
+        "pinyin": "fang2",
+        "display": "fánɡ",
+        "phrases": [
+          "染坊",
+          "油坊",
+          "粉坊",
+          "磨坊"
+        ]
+      }
+    ],
+    "各": [
+      {
+        "pinyin": "ge4",
+        "display": "ɡè",
+        "phrases": [
+          "各个",
+          "各色",
+          "各执一词",
+          "各行其是",
+          "各有千秋"
+        ]
+      },
+      {
+        "pinyin": "ge3",
+        "display": "ɡě",
+        "phrases": [
+          "那人挺各"
+        ]
+      }
+    ],
+    "菲": [
+      {
+        "pinyin": "fei1",
+        "display": "fēi",
+        "phrases": [
+          "芳菲",
+          "菲菲",
+          "烟飞云敛"
+        ]
+      },
+      {
+        "pinyin": "fei3",
+        "display": "fěi",
+        "phrases": [
+          "菲薄",
+          "菲仪",
+          "妄自菲薄"
+        ]
+      }
+    ],
+    "给": [
+      {
+        "pinyin": "gei3",
+        "display": "ɡěi",
+        "phrases": [
+          "交给",
+          "给你一本书",
+          "把花瓶给打碎了"
+        ]
+      },
+      {
+        "pinyin": "ji3",
+        "display": "jǐ",
+        "phrases": [
+          "给养",
+          "给予",
+          "补给",
+          "家给人足",
+          "自给自足"
+        ]
+      }
+    ],
+    "芾": [
+      {
+        "pinyin": "fei4",
+        "display": "fèi",
+        "phrases": [
+          "蔽芾（形容树干、叶小）"
+        ]
+      },
+      {
+        "pinyin": "fu2",
+        "display": "fú",
+        "phrases": [
+          "米芾（宋书画家）"
+        ]
+      }
+    ],
+    "艮": [
+      {
+        "pinyin": "gen4",
+        "display": "ɡèn",
+        "phrases": [
+          "八卦之一",
+          "姓艮"
+        ]
+      },
+      {
+        "pinyin": "gen3",
+        "display": "ɡěn",
+        "phrases": [
+          "(生硬)他说话太艮(食物韧而不脆)发艮"
+        ]
+      }
+    ],
+    "分": [
+      {
+        "pinyin": "fen1",
+        "display": "fēn",
+        "phrases": [
+          "分类",
+          "分离",
+          "分配",
+          "分清",
+          "分解",
+          "分析",
+          "分寸"
+        ]
+      },
+      {
+        "pinyin": "fen4",
+        "display": "fèn",
+        "phrases": [
+          "本分",
+          "名分",
+          "水分",
+          "养分",
+          "分量",
+          "分外",
+          "分子"
+        ]
+      }
+    ],
+    "更": [
+      {
+        "pinyin": "geng1",
+        "display": "ɡēnɡ",
+        "phrases": [
+          "更衣",
+          "更换",
+          "更正",
+          "更新",
+          "少不更事",
+          "三更半夜"
+        ]
+      },
+      {
+        "pinyin": "geng4",
+        "display": "ɡènɡ",
+        "phrases": [
+          "更好",
+          "更加",
+          "更上一层楼"
+        ]
+      }
+    ],
+    "缝": [
+      {
+        "pinyin": "feng2",
+        "display": "fénɡ",
+        "phrases": [
+          "缝纫",
+          "缝合",
+          "缝缀",
+          "缝穷"
+        ]
+      },
+      {
+        "pinyin": "feng4",
+        "display": "fènɡ",
+        "phrases": [
+          "缝子",
+          "缝隙",
+          "裂缝",
+          "门缝儿",
+          "见缝插针"
+        ]
+      }
+    ],
+    "供": [
+      {
+        "pinyin": "gong1",
+        "display": "ɡōnɡ",
+        "phrases": [
+          "供给",
+          "供求",
+          "供销",
+          "供养",
+          "供需",
+          "供不应求"
+        ]
+      },
+      {
+        "pinyin": "gong4",
+        "display": "ɡònɡ",
+        "phrases": [
+          "供认",
+          "供养",
+          "供职",
+          "供奉",
+          "供品"
+        ]
+      }
+    ],
+    "喝": [
+      {
+        "pinyin": "he4",
+        "display": "hè",
+        "phrases": [
+          "喝彩",
+          "喝令",
+          "喝道",
+          "吆喝",
+          "大喝一声"
+        ]
+      },
+      {
+        "pinyin": "he1",
+        "display": "hē",
+        "phrases": [
+          "喝水",
+          "喝酒",
+          "喝茶",
+          "喝西北风"
+        ]
+      }
+    ],
+    "勾": [
+      {
+        "pinyin": "gou1",
+        "display": "ɡōu",
+        "phrases": [
+          "勾搭",
+          "勾勒",
+          "勾结",
+          "勾销",
+          "勾引",
+          "勾心斗角"
+        ]
+      },
+      {
+        "pinyin": "gog4",
+        "display": "ɡòɡ",
+        "phrases": [
+          "勾当",
+          "姓勾"
+        ]
+      }
+    ],
+    "和": [
+      {
+        "pinyin": "he2",
+        "display": "hé",
+        "phrases": [
+          "和睦",
+          "和解",
+          "和棋",
+          "和盘托出",
+          "和衷共济",
+          "姓和"
+        ]
+      },
+      {
+        "pinyin": "he4",
+        "display": "hè",
+        "phrases": [
+          "和诗",
+          "一唱十和",
+          "曲高和寡"
+        ]
+      },
+      {
+        "pinyin": "huo2",
+        "display": "huó",
+        "phrases": [
+          "和面",
+          "和泥"
+        ]
+      },
+      {
+        "pinyin": "huo4",
+        "display": "huò",
+        "phrases": [
+          "和药",
+          "粥里和点糖",
+          "和稀泥",
+          "洗两和"
+        ]
+      },
+      {
+        "pinyin": "hu2",
+        "display": "hú",
+        "phrases": [
+          "和牌"
+        ]
+      }
+    ],
+    "枸": [
+      {
+        "pinyin": "gou1",
+        "display": "ɡōu",
+        "phrases": [
+          "枸橘(即枳)"
+        ]
+      },
+      {
+        "pinyin": "gou3",
+        "display": "ɡǒu",
+        "phrases": [
+          "枸杞"
+        ]
+      },
+      {
+        "pinyin": "jv3",
+        "display": "jǚ",
+        "phrases": [
+          "枸橼(即香橼)"
+        ]
+      }
+    ],
+    "估": [
+      {
+        "pinyin": "gu1",
+        "display": "ɡū",
+        "phrases": [
+          "估计",
+          "估量",
+          "估算",
+          "估一估价钱"
+        ]
+      },
+      {
+        "pinyin": "gu4",
+        "display": "ɡù",
+        "phrases": [
+          "估衣(出售的旧衣,唯一例词)"
+        ]
+      }
+    ],
+    "合": [
+      {
+        "pinyin": "he2",
+        "display": "hé",
+        "phrases": [
+          "合抱",
+          "合璧",
+          "合并",
+          "合成",
+          "合谋",
+          "合计",
+          "合约"
+        ]
+      },
+      {
+        "pinyin": "ge3",
+        "display": "ɡě",
+        "phrases": [
+          "1合(十分之一升)",
+          "合(量粮食的器具)"
+        ]
+      }
+    ],
+    "谷": [
+      {
+        "pinyin": "gu3",
+        "display": "ɡǔ",
+        "phrases": [
+          "山谷",
+          "谷子",
+          "五谷",
+          "谷雨",
+          "万丈深谷"
+        ]
+      },
+      {
+        "pinyin": "yv4",
+        "display": "yǜ",
+        "phrases": [
+          "吐谷浑(古代西部民族名)"
+        ]
+      }
+    ],
+    "荷": [
+      {
+        "pinyin": "he2",
+        "display": "hé",
+        "phrases": [
+          "荷花",
+          "荷包"
+        ]
+      },
+      {
+        "pinyin": "he4",
+        "display": "hè",
+        "phrases": [
+          "电荷",
+          "感荷",
+          "荷锄",
+          "荷枪实弹",
+          "肩负重荷"
+        ]
+      }
+    ],
+    "骨": [
+      {
+        "pinyin": "gu3",
+        "display": "ɡǔ",
+        "phrases": [
+          "骨干",
+          "骨骼",
+          "骨鲠",
+          "骨气",
+          "骨子里",
+          "钢骨水泥"
+        ]
+      },
+      {
+        "pinyin": "gu1",
+        "display": "ɡū",
+        "phrases": [
+          "骨朵儿",
+          "骨碌"
+        ]
+      }
+    ],
+    "核": [
+      {
+        "pinyin": "he2",
+        "display": "hé",
+        "phrases": [
+          "核算",
+          "核实",
+          "核计",
+          "核心",
+          "核准",
+          "核武器"
+        ]
+      },
+      {
+        "pinyin": "hu2",
+        "display": "hú",
+        "phrases": [
+          "煤核",
+          "梨核儿",
+          "苹果核儿"
+        ]
+      }
+    ],
+    "鹄": [
+      {
+        "pinyin": "gu3",
+        "display": "ɡǔ",
+        "phrases": [
+          "鹄的",
+          "中鹄"
+        ]
+      },
+      {
+        "pinyin": "hu2",
+        "display": "hú",
+        "phrases": [
+          "鹄立",
+          "鹄望"
+        ]
+      }
+    ],
+    "貉": [
+      {
+        "pinyin": "he2",
+        "display": "hé",
+        "phrases": [
+          "一丘之貉"
+        ]
+      },
+      {
+        "pinyin": "hao2",
+        "display": "háo",
+        "phrases": [
+          "貉子",
+          "貉绒"
+        ]
+      }
+    ],
+    "呱": [
+      {
+        "pinyin": "gua1",
+        "display": "ɡuā",
+        "phrases": [
+          "呱哒",
+          "呱呱叫",
+          "顶呱呱",
+          "(拟声词)呱呱"
+        ]
+      },
+      {
+        "pinyin": "gu1",
+        "display": "ɡū",
+        "phrases": [
+          "呱呱(小儿哭声)"
+        ]
+      },
+      {
+        "pinyin": "gua3",
+        "display": "ɡuǎ",
+        "phrases": [
+          "拉呱儿(聊天)"
+        ]
+      }
+    ],
+    "横": [
+      {
+        "pinyin": "heng2",
+        "display": "hénɡ",
+        "phrases": [
+          "横幅",
+          "横亘",
+          "横竖",
+          "人行横道",
+          "蔓草横生"
+        ]
+      },
+      {
+        "pinyin": "heng4",
+        "display": "hènɡ",
+        "phrases": [
+          "横暴",
+          "横财",
+          "横祸",
+          "横蛮",
+          "横事"
+        ]
+      }
+    ],
+    "哄": [
+      {
+        "pinyin": "hong1",
+        "display": "hōnɡ",
+        "phrases": [
+          "哄传",
+          "哄然",
+          "哄动",
+          "乱哄哄",
+          "哄堂大笑"
+        ]
+      },
+      {
+        "pinyin": "hong3",
+        "display": "hǒnɡ",
+        "phrases": [
+          "哄骗",
+          "哄人",
+          "哄孩子",
+          "别哄我"
+        ]
+      },
+      {
+        "pinyin": "hong4",
+        "display": "hònɡ",
+        "phrases": [
+          "起哄",
+          "一哄而起"
+        ]
+      }
+    ],
+    "观": [
+      {
+        "pinyin": "guan1",
+        "display": "ɡuān",
+        "phrases": [
+          "观摩",
+          "奇观",
+          "乐观",
+          "观点",
+          "观瞻",
+          "观礼",
+          "观光"
+        ]
+      },
+      {
+        "pinyin": "guan4",
+        "display": "ɡuàn",
+        "phrases": [
+          "(道教的庙宇)道观",
+          "姓观"
+        ]
+      }
+    ],
+    "冠": [
+      {
+        "pinyin": "guan1",
+        "display": "ɡuān",
+        "phrases": [
+          "鸡冠子",
+          "衣冠整齐",
+          "怒发冲冠",
+          "冠冕堂皇"
+        ]
+      },
+      {
+        "pinyin": "guan4",
+        "display": "ɡuàn",
+        "phrases": [
+          "冠军",
+          "行业之冠",
+          "冠以诗人的桂冠(ɡuān)"
+        ]
+      }
+    ],
+    "红": [
+      {
+        "pinyin": "hong2",
+        "display": "hónɡ",
+        "phrases": [
+          "红火",
+          "红色",
+          "红利",
+          "红润",
+          "红晕",
+          "红男绿女"
+        ]
+      },
+      {
+        "pinyin": "gong1",
+        "display": "ɡōnɡ",
+        "phrases": [
+          "女红"
+        ]
+      }
+    ],
+    "莞": [
+      {
+        "pinyin": "guan3",
+        "display": "ɡuǎn",
+        "phrases": [
+          "(地名)东莞"
+        ]
+      },
+      {
+        "pinyin": "wan3",
+        "display": "wǎn",
+        "phrases": [
+          "莞尔一笑"
+        ]
+      }
+    ],
+    "侯": [
+      {
+        "pinyin": "hou2",
+        "display": "hóu",
+        "phrases": [
+          "封侯",
+          "侯爵",
+          "公侯",
+          "侯门似海",
+          "姓侯"
+        ]
+      },
+      {
+        "pinyin": "hou4",
+        "display": "hòu",
+        "phrases": [
+          "闽侯(福建省一地名)"
+        ]
+      }
+    ],
+    "桄": [
+      {
+        "pinyin": "guang4",
+        "display": "ɡuànɡ",
+        "phrases": [
+          "桄子",
+          "把线桄上"
+        ]
+      },
+      {
+        "pinyin": "guang1",
+        "display": "ɡuānɡ",
+        "phrases": [
+          "(一种乔木)桄榔"
+        ]
+      }
+    ],
+    "糊": [
+      {
+        "pinyin": "hu2",
+        "display": "hú",
+        "phrases": [
+          "裱糊",
+          "糊涂",
+          "糊口",
+          "糊窗户"
+        ]
+      },
+      {
+        "pinyin": "hu4",
+        "display": "hù",
+        "phrases": [
+          "糊弄",
+          "面糊",
+          "辣椒糊"
+        ]
+      },
+      {
+        "pinyin": "hu1",
+        "display": "hū",
+        "phrases": [
+          "糊了一层泥"
+        ]
+      }
+    ],
+    "龟": [
+      {
+        "pinyin": "gui1",
+        "display": "ɡuī",
+        "phrases": [
+          "乌龟",
+          "龟卜",
+          "龟甲",
+          "龟鉴",
+          "龟缩"
+        ]
+      },
+      {
+        "pinyin": "jvn1",
+        "display": "jǖn",
+        "phrases": [
+          "龟裂(同\"皲”)"
+        ]
+      },
+      {
+        "pinyin": "qiu1",
+        "display": "qiū",
+        "phrases": [
+          "龟兹(古代西域国名)"
+        ]
+      }
+    ],
+    "浒": [
+      {
+        "pinyin": "hu3",
+        "display": "hǔ",
+        "phrases": [
+          "水浒传"
+        ]
+      },
+      {
+        "pinyin": "xv3",
+        "display": "xǚ",
+        "phrases": [
+          "(地名)浒湾",
+          "浒浦",
+          "浒墅关"
+        ]
+      }
+    ],
+    "氿": [
+      {
+        "pinyin": "gui3",
+        "display": "ɡuǐ",
+        "phrases": [
+          "氿泉(从侧面喷出的泉)"
+        ]
+      },
+      {
+        "pinyin": "jiu3",
+        "display": "jiǔ",
+        "phrases": [
+          "东氿",
+          "西氿(湖名,在江苏宜兴)"
+        ]
+      }
+    ],
+    "华": [
+      {
+        "pinyin": "hua2",
+        "display": "huá",
+        "phrases": [
+          "华丽",
+          "华光",
+          "才华",
+          "荣华",
+          "华发",
+          "华诞",
+          "华贵"
+        ]
+      },
+      {
+        "pinyin": "hua4",
+        "display": "huà",
+        "phrases": [
+          "华山",
+          "姓华"
+        ]
+      },
+      {
+        "pinyin": "hua1",
+        "display": "huā",
+        "phrases": [
+          "(古同\"花\")"
+        ]
+      }
+    ],
+    "柜": [
+      {
+        "pinyin": "gui4",
+        "display": "ɡuì",
+        "phrases": [
+          "衣柜",
+          "碗柜",
+          "保险柜",
+          "柜房",
+          "柜台"
+        ]
+      },
+      {
+        "pinyin": "jv4",
+        "display": "jǜ",
+        "phrases": [
+          "柜柳(即枫杨)"
+        ]
+      }
+    ],
+    "哗": [
+      {
+        "pinyin": "hua2",
+        "display": "huá",
+        "phrases": [
+          "哗变",
+          "哗然",
+          "喧哗",
+          "舆论大哗",
+          "哗众取宠"
+        ]
+      },
+      {
+        "pinyin": "hua1",
+        "display": "huā",
+        "phrases": [
+          "(拟声词)水哗哗地流",
+          "雨哗哗地下",
+          "哗啦"
+        ]
+      }
+    ],
+    "桧": [
+      {
+        "pinyin": "gui4",
+        "display": "ɡuì",
+        "phrases": [
+          "桧(即圆柏,乔木"
+        ]
+      },
+      {
+        "pinyin": "hui4",
+        "display": "huì",
+        "phrases": [
+          "(用于人名)秦桧"
+        ]
+      }
+    ],
+    "划": [
+      {
+        "pinyin": "hua4",
+        "display": "huà",
+        "phrases": [
+          "划分",
+          "划清",
+          "计划",
+          "筹划",
+          "划一",
+          "划款",
+          "划策"
+        ]
+      },
+      {
+        "pinyin": "hua2",
+        "display": "huá",
+        "phrases": [
+          "划船",
+          "划拳",
+          "划算",
+          "划火柴",
+          "划不来"
+        ]
+      },
+      {
+        "pinyin": "huai5",
+        "display": "huai",
+        "phrases": [
+          "(百刂)划"
+        ]
+      }
+    ],
+    "过": [
+      {
+        "pinyin": "guo4",
+        "display": "ɡuò",
+        "phrases": [
+          "过从",
+          "过目",
+          "过多",
+          "过后",
+          "过问",
+          "过瘾",
+          "过谦"
+        ]
+      },
+      {
+        "pinyin": "guo1",
+        "display": "ɡuō",
+        "phrases": [
+          "过费",
+          "过福",
+          "姓过"
+        ]
+      }
+    ],
+    "哈": [
+      {
+        "pinyin": "ha1",
+        "display": "hā",
+        "phrases": [
+          "哈喇",
+          "哈欠",
+          "哈腰",
+          "哈尼族",
+          "哈萨克族"
+        ]
+      },
+      {
+        "pinyin": "ha3",
+        "display": "hǎ",
+        "phrases": [
+          "哈达",
+          "哈巴狗"
+        ]
+      },
+      {
+        "pinyin": "ha4",
+        "display": "hà",
+        "phrases": [
+          "哈什蚂"
+        ]
+      }
+    ],
+    "还": [
+      {
+        "pinyin": "huan2",
+        "display": "huán",
+        "phrases": [
+          "还原",
+          "还家",
+          "还击",
+          "还价",
+          "还礼",
+          "还手",
+          "还嘴"
+        ]
+      },
+      {
+        "pinyin": "hai2",
+        "display": "hái",
+        "phrases": [
+          "还是",
+          "还有",
+          "还在",
+          "还要",
+          "还不回来"
+        ]
+      }
+    ],
+    "晃": [
+      {
+        "pinyin": "huang3",
+        "display": "huǎnɡ",
+        "phrases": [
+          "晃眼",
+          "明晃晃",
+          "一晃就不见了"
+        ]
+      },
+      {
+        "pinyin": "huang4",
+        "display": "huànɡ",
+        "phrases": [
+          "晃动",
+          "摇晃",
+          "晃荡",
+          "晃悠"
+        ]
+      }
+    ],
+    "汗": [
+      {
+        "pinyin": "han4",
+        "display": "hàn",
+        "phrases": [
+          "汗水",
+          "汗颜",
+          "汗马功劳",
+          "汗流浃背",
+          "汗牛充栋"
+        ]
+      },
+      {
+        "pinyin": "han2",
+        "display": "hán",
+        "phrases": [
+          "可汗",
+          "大汗"
+        ]
+      }
+    ],
+    "会": [
+      {
+        "pinyin": "hui4",
+        "display": "huì",
+        "phrases": [
+          "会话",
+          "会师",
+          "省会",
+          "会意",
+          "机会",
+          "会账",
+          "那会儿"
+        ]
+      },
+      {
+        "pinyin": "kuai4",
+        "display": "kuài",
+        "phrases": [
+          "会计",
+          "财会"
+        ]
+      }
+    ],
+    "吭": [
+      {
+        "pinyin": "hang2",
+        "display": "hánɡ",
+        "phrases": [
+          "引吭高歌"
+        ]
+      },
+      {
+        "pinyin": "keng1",
+        "display": "kēnɡ",
+        "phrases": [
+          "吭声",
+          "吭哧",
+          "吭气",
+          "一声不吭"
+        ]
+      }
+    ],
+    "珲": [
+      {
+        "pinyin": "hun1",
+        "display": "hūn",
+        "phrases": [
+          "珲春"
+        ]
+      },
+      {
+        "pinyin": "hui1",
+        "display": "huī",
+        "phrases": [
+          "瑷珲"
+        ]
+      }
+    ],
+    "好": [
+      {
+        "pinyin": "hao3",
+        "display": "hǎo",
+        "phrases": [
+          "好比",
+          "好歹",
+          "好似",
+          "好在",
+          "好转",
+          "好端端"
+        ]
+      },
+      {
+        "pinyin": "hao4",
+        "display": "hào",
+        "phrases": [
+          "好奇",
+          "好客",
+          "好学",
+          "好高骛远",
+          "好整以暇"
+        ]
+      }
+    ],
+    "混": [
+      {
+        "pinyin": "hun4",
+        "display": "hùn",
+        "phrases": [
+          "混杂",
+          "鬼混",
+          "混乱",
+          "混沌",
+          "混淆",
+          "混账",
+          "混迹"
+        ]
+      },
+      {
+        "pinyin": "hun2",
+        "display": "hún",
+        "phrases": [
+          "混浊",
+          "混蛋",
+          "浑水摸鱼"
+        ]
+      }
+    ],
+    "号": [
+      {
+        "pinyin": "hao4",
+        "display": "hào",
+        "phrases": [
+          "号称",
+          "商号",
+          "记好",
+          "号令",
+          "号脉",
+          "号召",
+          "号外"
+        ]
+      },
+      {
+        "pinyin": "hao2",
+        "display": "háo",
+        "phrases": [
+          "呼号",
+          "号叫",
+          "号啕",
+          "哀号",
+          "北风怒号"
+        ]
+      }
+    ],
+    "豁": [
+      {
+        "pinyin": "huo1",
+        "display": "huō",
+        "phrases": [
+          "豁口",
+          "豁唇",
+          "豁出性命"
+        ]
+      },
+      {
+        "pinyin": "huo4",
+        "display": "huò",
+        "phrases": [
+          "豁达",
+          "豁亮",
+          "豁朗",
+          "豁然",
+          "豁免"
+        ]
+      }
+    ],
+    "稽": [
+      {
+        "pinyin": "ji1",
+        "display": "jī",
+        "phrases": [
+          "稽查",
+          "稽留",
+          "无稽之谈",
+          "稽延时日",
+          "姓稽"
+        ]
+      },
+      {
+        "pinyin": "qi3",
+        "display": "qǐ",
+        "phrases": [
+          "稽首"
+        ]
+      }
+    ],
+    "侥": [
+      {
+        "pinyin": "jiao4",
+        "display": "jiǎò",
+        "phrases": [
+          "侥幸"
+        ]
+      },
+      {
+        "pinyin": "yao2",
+        "display": "yáo",
+        "phrases": [
+          "僬侥(传说中的矮人)"
+        ]
+      }
+    ],
+    "缉": [
+      {
+        "pinyin": "ji1",
+        "display": "jī",
+        "phrases": [
+          "缉拿",
+          "缉私",
+          "缉捕",
+          "通缉"
+        ]
+      },
+      {
+        "pinyin": "qi1",
+        "display": "qī",
+        "phrases": [
+          "缉鞋口"
+        ]
+      }
+    ],
+    "矫": [
+      {
+        "pinyin": "jiao4",
+        "display": "jiǎò",
+        "phrases": [
+          "矫捷",
+          "矫健",
+          "矫命",
+          "矫枉过正",
+          "矫揉造作"
+        ]
+      },
+      {
+        "pinyin": "jiao2",
+        "display": "jiáo",
+        "phrases": [
+          "(指强词夺理",
+          "无理取闹)矫情",
+          "瞎矫矫",
+          "犯矫"
+        ]
+      }
+    ],
+    "亟": [
+      {
+        "pinyin": "ji2",
+        "display": "jí",
+        "phrases": [
+          "亟待解决",
+          "亟须纠正",
+          "亟亟奔走"
+        ]
+      },
+      {
+        "pinyin": "qi4",
+        "display": "qì",
+        "phrases": [
+          "亟来问讯"
+        ]
+      }
+    ],
+    "脚": [
+      {
+        "pinyin": "jiao3",
+        "display": "jiǎo",
+        "phrases": [
+          "脚本",
+          "脚行",
+          "脚力",
+          "山脚",
+          "脚踏实地"
+        ]
+      },
+      {
+        "pinyin": "jue2",
+        "display": "jué",
+        "phrases": [
+          "脚儿(同“角儿”)"
+        ]
+      }
+    ],
+    "几": [
+      {
+        "pinyin": "ji3",
+        "display": "jǐ",
+        "phrases": [
+          "几个",
+          "几何",
+          "几时",
+          "几许",
+          "几多",
+          "所剩无几"
+        ]
+      },
+      {
+        "pinyin": "ji1",
+        "display": "jī",
+        "phrases": [
+          "茶几",
+          "条几",
+          "几乎",
+          "几为所害",
+          "知几其神乎"
+        ]
+      }
+    ],
+    "剿": [
+      {
+        "pinyin": "jiao3",
+        "display": "jiǎo",
+        "phrases": [
+          "剿灭",
+          "剿匪",
+          "围剿"
+        ]
+      },
+      {
+        "pinyin": "chao1",
+        "display": "chāo",
+        "phrases": [
+          "剿袭",
+          "剿说"
+        ]
+      }
+    ],
+    "纪": [
+      {
+        "pinyin": "ji4",
+        "display": "jì",
+        "phrases": [
+          "纪念",
+          "纪实",
+          "纪律",
+          "世纪",
+          "军纪",
+          "第四纪"
+        ]
+      },
+      {
+        "pinyin": "ji3",
+        "display": "jǐ",
+        "phrases": [
+          "姓纪"
+        ]
+      }
+    ],
+    "教": [
+      {
+        "pinyin": "jiao4",
+        "display": "jiào",
+        "phrases": [
+          "施教",
+          "指教",
+          "教条",
+          "教益",
+          "教正",
+          "教诲",
+          "姓教"
+        ]
+      },
+      {
+        "pinyin": "jiao1",
+        "display": "jiāo",
+        "phrases": [
+          "教书",
+          "教唱歌",
+          "教徒弟"
+        ]
+      }
+    ],
+    "荠": [
+      {
+        "pinyin": "ji4",
+        "display": "jì",
+        "phrases": [
+          "荠菜"
+        ]
+      },
+      {
+        "pinyin": "qi5",
+        "display": "qi",
+        "phrases": [
+          "荸荠"
+        ]
+      }
+    ],
+    "节": [
+      {
+        "pinyin": "jie2",
+        "display": "jié",
+        "phrases": [
+          "音节",
+          "关节",
+          "使节",
+          "节选",
+          "节气",
+          "节奏",
+          "节制"
+        ]
+      },
+      {
+        "pinyin": "jie1",
+        "display": "jiē",
+        "phrases": [
+          "节子",
+          "节骨眼"
+        ]
+      }
+    ],
+    "济": [
+      {
+        "pinyin": "ji4",
+        "display": "jì",
+        "phrases": [
+          "接济",
+          "救济",
+          "济困扶危",
+          "同舟共济",
+          "无济于事"
+        ]
+      },
+      {
+        "pinyin": "ji3",
+        "display": "jǐ",
+        "phrases": [
+          "济南",
+          "济宁",
+          "济水",
+          "人才济济"
+        ]
+      }
+    ],
+    "诘": [
+      {
+        "pinyin": "jie2",
+        "display": "jié",
+        "phrases": [
+          "反诘",
+          "盘诘"
+        ]
+      },
+      {
+        "pinyin": "ji2",
+        "display": "jí",
+        "phrases": [
+          "佶屈聱牙(诘屈：曲折；聱牙：拗口)"
+        ]
+      }
+    ],
+    "偈": [
+      {
+        "pinyin": "ji4",
+        "display": "jì",
+        "phrases": [
+          "偈语"
+        ]
+      },
+      {
+        "pinyin": "jie2",
+        "display": "jié",
+        "phrases": [
+          "(勇武；跑得快)"
+        ]
+      }
+    ],
+    "结": [
+      {
+        "pinyin": "jie2",
+        "display": "jié",
+        "phrases": [
+          "绳结",
+          "打结",
+          "结冰",
+          "结局",
+          "具结",
+          "结交",
+          "结缘"
+        ]
+      },
+      {
+        "pinyin": "jie1",
+        "display": "jiē",
+        "phrases": [
+          "结实",
+          "开花结果",
+          "结巴"
+        ]
+      }
+    ],
+    "夹": [
+      {
+        "pinyin": "jia1",
+        "display": "jiā",
+        "phrases": [
+          "夹道",
+          "夹击",
+          "夹攻",
+          "夹缝",
+          "夹杂",
+          "夹生"
+        ]
+      },
+      {
+        "pinyin": "jia2",
+        "display": "jiá",
+        "phrases": [
+          "夹袄",
+          "夹裤",
+          "夹被"
+        ]
+      },
+      {
+        "pinyin": "ga1",
+        "display": "ɡā",
+        "phrases": [
+          "夹肢窝"
+        ]
+      }
+    ],
+    "桔": [
+      {
+        "pinyin": "jie2",
+        "display": "jié",
+        "phrases": [
+          "桔梗",
+          "桔槔(一种汲水的设备)"
+        ]
+      },
+      {
+        "pinyin": "jv2",
+        "display": "jǘ",
+        "phrases": [
+          "橘,俗作“桔”"
+        ]
+      }
+    ],
+    "颉": [
+      {
+        "pinyin": "jie2",
+        "display": "jié",
+        "phrases": [
+          "仓颉(传说是黄帝的史官,汉字的创造者)"
+        ]
+      },
+      {
+        "pinyin": "xie2",
+        "display": "xié",
+        "phrases": [
+          "颉颃(泛指不相上下,相抗衡)",
+          "姓颉"
+        ]
+      }
+    ],
+    "家": [
+      {
+        "pinyin": "jia1",
+        "display": "jiā",
+        "phrases": [
+          "家父",
+          "家属",
+          "家伙",
+          "家世",
+          "家畜",
+          "儒家",
+          "姓家"
+        ]
+      },
+      {
+        "pinyin": "jia5",
+        "display": "jia",
+        "phrases": [
+          "孩子家",
+          "姑娘家"
+        ]
+      },
+      {
+        "pinyin": "jie5",
+        "display": "jie",
+        "phrases": [
+          "整天家",
+          "成年家"
+        ]
+      }
+    ],
+    "解": [
+      {
+        "pinyin": "jie3",
+        "display": "jiě",
+        "phrases": [
+          "解扣",
+          "解剖",
+          "解渴",
+          "解答",
+          "解手",
+          "解方程"
+        ]
+      },
+      {
+        "pinyin": "jie4",
+        "display": "jiè",
+        "phrases": [
+          "解送",
+          "押解",
+          "解元",
+          "起解"
+        ]
+      },
+      {
+        "pinyin": "xie4",
+        "display": "xiè",
+        "phrases": [
+          "解县",
+          "解不开",
+          "浑身解数",
+          "姓解"
+        ]
+      }
+    ],
+    "贾": [
+      {
+        "pinyin": "jia3",
+        "display": "jiǎ",
+        "phrases": [
+          "姓贾"
+        ]
+      },
+      {
+        "pinyin": "gu3",
+        "display": "ɡǔ",
+        "phrases": [
+          "商贾",
+          "贾祸",
+          "余勇可贾"
+        ]
+      }
+    ],
+    "芥": [
+      {
+        "pinyin": "jie4",
+        "display": "jiè",
+        "phrases": [
+          "芥菜",
+          "芥末",
+          "芥蒂"
+        ]
+      },
+      {
+        "pinyin": "gai4",
+        "display": "ɡài",
+        "phrases": [
+          "芥蓝菜",
+          "芥菜(芥jiè菜的变种)"
+        ]
+      }
+    ],
+    "假": [
+      {
+        "pinyin": "jia3",
+        "display": "jiǎ",
+        "phrases": [
+          "假使",
+          "假如",
+          "假设",
+          "假说",
+          "假手于人",
+          "假公济私"
+        ]
+      },
+      {
+        "pinyin": "jia4",
+        "display": "jià",
+        "phrases": [
+          "假期",
+          "假日",
+          "放假",
+          "寒假",
+          "请假"
+        ]
+      }
+    ],
+    "藉": [
+      {
+        "pinyin": "jie4",
+        "display": "jiè",
+        "phrases": [
+          "枕藉",
+          "慰藉",
+          "(同\"借\")藉故",
+          "藉口",
+          "藉助"
+        ]
+      },
+      {
+        "pinyin": "ji2",
+        "display": "jí",
+        "phrases": [
+          "狼藉",
+          "姓藉"
+        ]
+      }
+    ],
+    "价": [
+      {
+        "pinyin": "jia4",
+        "display": "jià",
+        "phrases": [
+          "物价",
+          "涨价",
+          "减价",
+          "价值",
+          "价码"
+        ]
+      },
+      {
+        "pinyin": "jie4",
+        "display": "jiè",
+        "phrases": [
+          "(旧时称被派遣传送东西或传达事情的人)"
+        ]
+      },
+      {
+        "pinyin": "jie5",
+        "display": "jie",
+        "phrases": [
+          "震天价响",
+          "整天价闹"
+        ]
+      }
+    ],
+    "矜": [
+      {
+        "pinyin": "jin1",
+        "display": "jīn",
+        "phrases": [
+          "矜持",
+          "矜夸",
+          "骄矜",
+          "自矜其功"
+        ]
+      },
+      {
+        "pinyin": "guan1",
+        "display": "ɡuān",
+        "phrases": [
+          "(同\"鳏\".\"瘝\")"
+        ]
+      },
+      {
+        "pinyin": "qin2",
+        "display": "qín",
+        "phrases": [
+          "矜(矛柄)",
+          "锄镰棘矜"
+        ]
+      }
+    ],
+    "间": [
+      {
+        "pinyin": "jian1",
+        "display": "jiān",
+        "phrases": [
+          "中间",
+          "田间",
+          "车间",
+          "间架",
+          "间不容发"
+        ]
+      },
+      {
+        "pinyin": "jian4",
+        "display": "jiàn",
+        "phrases": [
+          "间隔",
+          "间断",
+          "间接",
+          "间隙",
+          "间歇",
+          "间或",
+          "间杂"
+        ]
+      }
+    ],
+    "仅": [
+      {
+        "pinyin": "jin3",
+        "display": "jǐn",
+        "phrases": [
+          "仅有",
+          "仅见",
+          "仅仅",
+          "不仅如此",
+          "绝无仅有"
+        ]
+      },
+      {
+        "pinyin": "jin4",
+        "display": "jìn",
+        "phrases": [
+          "(多见于唐人诗文)山城仅百层.士卒仅万人"
+        ]
+      }
+    ],
+    "监": [
+      {
+        "pinyin": "jian1",
+        "display": "jiān",
+        "phrases": [
+          "监督",
+          "监护",
+          "监管",
+          "监视",
+          "监狱",
+          "监守",
+          "监考"
+        ]
+      },
+      {
+        "pinyin": "jian4",
+        "display": "jiàn",
+        "phrases": [
+          "太监",
+          "国子监",
+          "钦天监"
+        ]
+      }
+    ],
+    "尽": [
+      {
+        "pinyin": "jin4",
+        "display": "jìn",
+        "phrases": [
+          "尽头",
+          "尽量",
+          "尽情",
+          "尽兴",
+          "尽善尽美",
+          "人尽其才"
+        ]
+      },
+      {
+        "pinyin": "jin3",
+        "display": "jǐn",
+        "phrases": [
+          "尽早",
+          "尽管",
+          "尽可能",
+          "尽前边",
+          "尽这一天办完"
+        ]
+      }
+    ],
+    "槛": [
+      {
+        "pinyin": "jian4",
+        "display": "jiàn",
+        "phrases": [
+          "兽槛",
+          "槛车"
+        ]
+      },
+      {
+        "pinyin": "kan3",
+        "display": "kǎn",
+        "phrases": [
+          "门槛"
+        ]
+      }
+    ],
+    "劲": [
+      {
+        "pinyin": "jin4",
+        "display": "jìn",
+        "phrases": [
+          "用劲",
+          "干劲",
+          "真没劲",
+          "劲头十足"
+        ]
+      },
+      {
+        "pinyin": "jing4",
+        "display": "jìnɡ",
+        "phrases": [
+          "劲敌",
+          "劲旅",
+          "强劲",
+          "刚劲",
+          "疾风知劲草"
+        ]
+      }
+    ],
+    "渐": [
+      {
+        "pinyin": "jian4",
+        "display": "jiàn",
+        "phrases": [
+          "渐变",
+          "渐次",
+          "渐渐",
+          "循序渐进",
+          "渐入佳境"
+        ]
+      },
+      {
+        "pinyin": "jian1",
+        "display": "jiān",
+        "phrases": [
+          "(浸)渐染",
+          "(流入)东渐于海"
+        ]
+      }
+    ],
+    "禁": [
+      {
+        "pinyin": "jin4",
+        "display": "jìn",
+        "phrases": [
+          "禁止",
+          "犯禁",
+          "禁闭",
+          "禁地",
+          "禁锢",
+          "紫禁城"
+        ]
+      },
+      {
+        "pinyin": "jin1",
+        "display": "jīn",
+        "phrases": [
+          "禁受",
+          "禁不起",
+          "禁用",
+          "弱不禁风"
+        ]
+      }
+    ],
+    "将": [
+      {
+        "pinyin": "jiang1",
+        "display": "jiānɡ",
+        "phrases": [
+          "将要",
+          "将养",
+          "将息",
+          "将就",
+          "将信将疑",
+          "姓将"
+        ]
+      },
+      {
+        "pinyin": "jiang4",
+        "display": "jiànɡ",
+        "phrases": [
+          "将官",
+          "将领",
+          "将士",
+          "将指"
+        ]
+      }
+    ],
+    "颈": [
+      {
+        "pinyin": "jing3",
+        "display": "jǐnɡ",
+        "phrases": [
+          "颈项",
+          "长颈鹿"
+        ]
+      },
+      {
+        "pinyin": "geng3",
+        "display": "ɡěnɡ",
+        "phrases": [
+          "脖颈子"
+        ]
+      }
+    ],
+    "浆": [
+      {
+        "pinyin": "jiang1",
+        "display": "jiānɡ",
+        "phrases": [
+          "豆浆",
+          "纸浆",
+          "泥浆",
+          "浆洗",
+          "浆衣服"
+        ]
+      },
+      {
+        "pinyin": "jiang4",
+        "display": "jiànɡ",
+        "phrases": [
+          "浆子",
+          "浆糊(同“糨子”、糨糊”)"
+        ]
+      }
+    ],
+    "靓": [
+      {
+        "pinyin": "jing4",
+        "display": "jìnɡ",
+        "phrases": [
+          "靓妆"
+        ]
+      },
+      {
+        "pinyin": "liang4",
+        "display": "liànɡ",
+        "phrases": [
+          "靓丽"
+        ]
+      }
+    ],
+    "降": [
+      {
+        "pinyin": "jiang4",
+        "display": "jiànɡ",
+        "phrases": [
+          "下降",
+          "降雨",
+          "降格",
+          "降临",
+          "降生",
+          "降落伞"
+        ]
+      },
+      {
+        "pinyin": "xiang4",
+        "display": "xiànɡ",
+        "phrases": [
+          "投降",
+          "降服",
+          "降龙伏虎",
+          "宁死不降"
+        ]
+      }
+    ],
+    "锔": [
+      {
+        "pinyin": "ju2",
+        "display": "jú",
+        "phrases": [
+          "(一种人造的放射性元素)"
+        ]
+      },
+      {
+        "pinyin": "ju1",
+        "display": "jū",
+        "phrases": [
+          "锔缸"
+        ]
+      }
+    ],
+    "嚼": [
+      {
+        "pinyin": "jiao2",
+        "display": "jiáo",
+        "phrases": [
+          "嚼子",
+          "嚼舌",
+          "嚼碎"
+        ]
+      },
+      {
+        "pinyin": "jue2",
+        "display": "jué",
+        "phrases": [
+          "咀嚼",
+          "过屠门而大嚼"
+        ]
+      },
+      {
+        "pinyin": "jiao4",
+        "display": "jiào",
+        "phrases": [
+          "倒嚼(即反刍)"
+        ]
+      }
+    ],
+    "咀": [
+      {
+        "pinyin": "ju3",
+        "display": "jǔ",
+        "phrases": [
+          "咀嚼",
+          "含英咀华"
+        ]
+      },
+      {
+        "pinyin": "zui3",
+        "display": "zuǐ",
+        "phrases": [
+          "\"嘴\"俗作\"咀\""
+        ]
+      }
+    ],
+    "角": [
+      {
+        "pinyin": "jiao3",
+        "display": "jiǎo",
+        "phrases": [
+          "菱角",
+          "直角",
+          "锐角",
+          "角度",
+          "角落",
+          "一角钱"
+        ]
+      },
+      {
+        "pinyin": "jue2",
+        "display": "jué",
+        "phrases": [
+          "角逐",
+          "角斗",
+          "角色",
+          "角力",
+          "主角",
+          "配角",
+          "姓角"
+        ]
+      }
+    ],
+    "沮": [
+      {
+        "pinyin": "ju3",
+        "display": "jǔ",
+        "phrases": [
+          "沮丧",
+          "沮其成行"
+        ]
+      },
+      {
+        "pinyin": "ju4",
+        "display": "jù",
+        "phrases": [
+          "沮洳(低湿的地带)"
+        ]
+      }
+    ],
+    "苣": [
+      {
+        "pinyin": "ju4",
+        "display": "jù",
+        "phrases": [
+          "莴苣"
+        ]
+      },
+      {
+        "pinyin": "qu3",
+        "display": "qǔ",
+        "phrases": [
+          "苣荬菜"
+        ]
+      }
+    ],
+    "潦": [
+      {
+        "pinyin": "liao2",
+        "display": "liáo",
+        "phrases": [
+          "潦草",
+          "潦倒"
+        ]
+      },
+      {
+        "pinyin": "lao3",
+        "display": "lǎo",
+        "phrases": [
+          "积潦(雨水大.路上的流水)"
+        ]
+      }
+    ],
+    "烙": [
+      {
+        "pinyin": "lao4",
+        "display": "lào",
+        "phrases": [
+          "烙印",
+          "烙花",
+          "烙铁",
+          "烙饼"
+        ]
+      },
+      {
+        "pinyin": "luo4",
+        "display": "luò",
+        "phrases": [
+          "炮烙(古代的一种酷刑)"
+        ]
+      }
+    ],
+    "句": [
+      {
+        "pinyin": "ju4",
+        "display": "jù",
+        "phrases": [
+          "句子",
+          "句号",
+          "句法",
+          "造句",
+          "词句"
+        ]
+      },
+      {
+        "pinyin": "gou1",
+        "display": "ɡōu",
+        "phrases": [
+          "高句丽",
+          "句践"
+        ]
+      }
+    ],
+    "唠": [
+      {
+        "pinyin": "lao4",
+        "display": "lào",
+        "phrases": [
+          "唠嗑",
+          "唠一唠"
+        ]
+      },
+      {
+        "pinyin": "lao2",
+        "display": "láo",
+        "phrases": [
+          "唠叨",
+          "唠唠叨叨"
+        ]
+      }
+    ],
+    "据": [
+      {
+        "pinyin": "ju4",
+        "display": "jù",
+        "phrases": [
+          "凭据",
+          "据点",
+          "据守",
+          "据理力争",
+          "真凭实据"
+        ]
+      },
+      {
+        "pinyin": "ju1",
+        "display": "jū",
+        "phrases": [
+          "拮据"
+        ]
+      }
+    ],
+    "勒": [
+      {
+        "pinyin": "le4",
+        "display": "lè",
+        "phrases": [
+          "勒令",
+          "勒索",
+          "勒石",
+          "勒碑"
+        ]
+      },
+      {
+        "pinyin": "lei1",
+        "display": "lēi",
+        "phrases": [
+          "勒紧点",
+          "勒掯"
+        ]
+      }
+    ],
+    "卷": [
+      {
+        "pinyin": "juan4",
+        "display": "juàn",
+        "phrases": [
+          "手卷",
+          "长卷",
+          "试卷",
+          "卷子",
+          "卷宗",
+          "卷帙"
+        ]
+      },
+      {
+        "pinyin": "juan3",
+        "display": "juǎn",
+        "phrases": [
+          "卷烟",
+          "卷袖子",
+          "卷帘门",
+          "蒸花卷",
+          "卷土重来"
+        ]
+      }
+    ],
+    "乐": [
+      {
+        "pinyin": "le4",
+        "display": "lè",
+        "phrases": [
+          "乐趣",
+          "乐得",
+          "取乐",
+          "逗乐",
+          "乐此不疲",
+          "姓乐"
+        ]
+      },
+      {
+        "pinyin": "yue4",
+        "display": "yuè",
+        "phrases": [
+          "音乐",
+          "奏乐",
+          "乐器",
+          "乐章",
+          "乐府"
+        ]
+      }
+    ],
+    "隽": [
+      {
+        "pinyin": "juan4",
+        "display": "juàn",
+        "phrases": [
+          "隽永"
+        ]
+      },
+      {
+        "pinyin": "jun4",
+        "display": "jùn",
+        "phrases": [
+          "(同\"俊\")"
+        ]
+      }
+    ],
+    "擂": [
+      {
+        "pinyin": "lei2",
+        "display": "léi",
+        "phrases": [
+          "擂鼓",
+          "擂钵",
+          "自吹自擂",
+          "雷他一拳"
+        ]
+      },
+      {
+        "pinyin": "lei4",
+        "display": "lèi",
+        "phrases": [
+          "擂台",
+          "摆擂",
+          "打擂"
+        ]
+      }
+    ],
+    "觉": [
+      {
+        "pinyin": "jue2",
+        "display": "jué",
+        "phrases": [
+          "嗅觉",
+          "听觉",
+          "觉悟",
+          "觉醒",
+          "觉得",
+          "觉察"
+        ]
+      },
+      {
+        "pinyin": "jiao4",
+        "display": "jiào",
+        "phrases": [
+          "睡觉",
+          "午觉"
+        ]
+      }
+    ],
+    "累": [
+      {
+        "pinyin": "lei3",
+        "display": "lěi",
+        "phrases": [
+          "累积",
+          "累进",
+          "连累",
+          "受累",
+          "累卵",
+          "日积月累"
+        ]
+      },
+      {
+        "pinyin": "lei4",
+        "display": "lèi",
+        "phrases": [
+          "劳累",
+          "累了一天",
+          "不觉得累",
+          "别累着他"
+        ]
+      },
+      {
+        "pinyin": "lei2",
+        "display": "léi",
+        "phrases": [
+          "累赘",
+          "果实累累"
+        ]
+      }
+    ],
+    "倔": [
+      {
+        "pinyin": "jue2",
+        "display": "jué",
+        "phrases": [
+          "倔强"
+        ]
+      },
+      {
+        "pinyin": "jue4",
+        "display": "juè",
+        "phrases": [
+          "倔老头儿"
+        ]
+      }
+    ],
+    "蹶": [
+      {
+        "pinyin": "jue2",
+        "display": "jué",
+        "phrases": [
+          "一蹶不振"
+        ]
+      },
+      {
+        "pinyin": "jue3",
+        "display": "juě",
+        "phrases": [
+          "尥蹶子"
+        ]
+      }
+    ],
+    "肋": [
+      {
+        "pinyin": "lei4",
+        "display": "lèi",
+        "phrases": [
+          "肋骨",
+          "两肋",
+          "鸡肋"
+        ]
+      },
+      {
+        "pinyin": "le1",
+        "display": "lē",
+        "phrases": [
+          "肋脦(不整洁,不利落)"
+        ]
+      }
+    ],
+    "菌": [
+      {
+        "pinyin": "jun4",
+        "display": "jùn",
+        "phrases": [
+          "香菌",
+          "菌子",
+          "(同\"蕈\")"
+        ]
+      },
+      {
+        "pinyin": "jun1",
+        "display": "jūn",
+        "phrases": [
+          "细菌",
+          "真菌",
+          "霉菌"
+        ]
+      }
+    ],
+    "棱": [
+      {
+        "pinyin": "leng2",
+        "display": "lénɡ",
+        "phrases": [
+          "棱角",
+          "瓦楞",
+          "见棱见角"
+        ]
+      },
+      {
+        "pinyin": "ling2",
+        "display": "línɡ",
+        "phrases": [
+          "(地名)穆棱",
+          "绥棱"
+        ]
+      }
+    ],
+    "咯": [
+      {
+        "pinyin": "ka3",
+        "display": "kǎ",
+        "phrases": [
+          "咯痰",
+          "咯血",
+          "把鱼刺咯出来"
+        ]
+      },
+      {
+        "pinyin": "lo5",
+        "display": "lo",
+        "phrases": [
+          "那到好咯"
+        ],
+        "note": "(助词,用法入\"了\")当然咯 那到好咯"
+      },
+      {
+        "pinyin": "ge1",
+        "display": "ɡē",
+        "phrases": [
+          "(拟声词)咯噔",
+          "咯吱",
+          "咯咯"
+        ]
+      }
+    ],
+    "蠡": [
+      {
+        "pinyin": "li3",
+        "display": "lǐ",
+        "phrases": [
+          "蠡县",
+          "范蠡"
+        ]
+      },
+      {
+        "pinyin": "li2",
+        "display": "lí",
+        "phrases": [
+          "以蠡测海",
+          "管窥蠡测(喻见识浅薄)"
+        ]
+      }
+    ],
+    "丽": [
+      {
+        "pinyin": "li4",
+        "display": "lì",
+        "phrases": [
+          "美丽",
+          "秀丽",
+          "壮丽",
+          "富丽堂皇",
+          "风和日丽"
+        ]
+      },
+      {
+        "pinyin": "li2",
+        "display": "lí",
+        "phrases": [
+          "丽水",
+          "高丽"
+        ]
+      }
+    ],
+    "楷": [
+      {
+        "pinyin": "kai3",
+        "display": "kǎi",
+        "phrases": [
+          "楷模",
+          "楷书",
+          "小楷"
+        ]
+      },
+      {
+        "pinyin": "jie1",
+        "display": "jiē",
+        "phrases": [
+          "楷树(也叫\"黄连木\")"
+        ]
+      }
+    ],
+    "俩": [
+      {
+        "pinyin": "lia3",
+        "display": "liǎ",
+        "phrases": [
+          "咱俩",
+          "夫妇(\"俩\"字后不再用\"个\"等量词)"
+        ]
+      },
+      {
+        "pinyin": "liang3",
+        "display": "liǎnɡ",
+        "phrases": [
+          "伎俩"
+        ]
+      }
+    ],
+    "看": [
+      {
+        "pinyin": "kan4",
+        "display": "kàn",
+        "phrases": [
+          "看待",
+          "看望",
+          "看顾",
+          "看台",
+          "看承"
+        ]
+      },
+      {
+        "pinyin": "kan1",
+        "display": "kān",
+        "phrases": [
+          "看护",
+          "看管",
+          "看家",
+          "看守",
+          "看押"
+        ]
+      }
+    ],
+    "量": [
+      {
+        "pinyin": "liang2",
+        "display": "liánɡ",
+        "phrases": [
+          "丈量",
+          "量具",
+          "思量",
+          "打量"
+        ]
+      },
+      {
+        "pinyin": "liang4",
+        "display": "liànɡ",
+        "phrases": [
+          "量变",
+          "量词",
+          "量力",
+          "胆量",
+          "酒量",
+          "质量",
+          "分量"
+        ]
+      }
+    ],
+    "扛": [
+      {
+        "pinyin": "kang2",
+        "display": "kánɡ",
+        "phrases": [
+          "扛枪",
+          "扛活"
+        ]
+      },
+      {
+        "pinyin": "gang1",
+        "display": "ɡānɡ",
+        "phrases": [
+          "力能扛鼎"
+        ]
+      }
+    ],
+    "踉": [
+      {
+        "pinyin": "liang2",
+        "display": "liánɡ",
+        "phrases": [
+          "跳踉(跳跃)"
+        ]
+      },
+      {
+        "pinyin": "liang4",
+        "display": "liànɡ",
+        "phrases": [
+          "踉跄(走路不稳)"
+        ]
+      }
+    ],
+    "坷": [
+      {
+        "pinyin": "ke1",
+        "display": "kē",
+        "phrases": [
+          "坷垃"
+        ]
+      },
+      {
+        "pinyin": "ke3",
+        "display": "kě",
+        "phrases": [
+          "坎坷"
+        ]
+      }
+    ],
+    "撩": [
+      {
+        "pinyin": "liao1",
+        "display": "liāo",
+        "phrases": [
+          "撩起长衫",
+          "撩起帘子",
+          "撩点儿水"
+        ]
+      },
+      {
+        "pinyin": "liao2",
+        "display": "liáo",
+        "phrases": [
+          "撩拨",
+          "景色撩人"
+        ]
+      }
+    ],
+    "壳": [
+      {
+        "pinyin": "ke2",
+        "display": "ké",
+        "phrases": [
+          "贝壳",
+          "鸡蛋壳",
+          "核桃壳"
+        ]
+      },
+      {
+        "pinyin": "qiao4",
+        "display": "qiào",
+        "phrases": [
+          "地壳",
+          "甲壳",
+          "金蝉脱壳"
+        ]
+      }
+    ],
+    "燎": [
+      {
+        "pinyin": "liao2",
+        "display": "liáo",
+        "phrases": [
+          "(延烧)星星之火,可以燎原"
+        ]
+      },
+      {
+        "pinyin": "liao3",
+        "display": "liǎo",
+        "phrases": [
+          "把头发燎了"
+        ]
+      }
+    ],
+    "咳": [
+      {
+        "pinyin": "ke2",
+        "display": "ké",
+        "phrases": [
+          "咳嗽"
+        ]
+      },
+      {
+        "pinyin": "hai1",
+        "display": "hāi",
+        "phrases": [
+          "咳声叹气"
+        ]
+      }
+    ],
+    "了": [
+      {
+        "pinyin": "liao3",
+        "display": "liǎo",
+        "phrases": [
+          "了解",
+          "未了",
+          "了得",
+          "明了",
+          "直截了当",
+          "一目了然"
+        ]
+      },
+      {
+        "pinyin": "le5",
+        "display": "le",
+        "phrases": [
+          "放在动词或形容词后,表示动作或变化已经"
+        ]
+      }
+    ],
+    "可": [
+      {
+        "pinyin": "ke3",
+        "display": "kě",
+        "phrases": [
+          "许可",
+          "认可",
+          "可靠",
+          "可见",
+          "可爱",
+          "可心",
+          "可怜"
+        ]
+      },
+      {
+        "pinyin": "ke4",
+        "display": "kè",
+        "phrases": [
+          "可汗"
+        ]
+      }
+    ],
+    "空": [
+      {
+        "pinyin": "kong1",
+        "display": "kōnɡ",
+        "phrases": [
+          "空想",
+          "空洞",
+          "空间",
+          "空虚",
+          "空旷",
+          "空穴来风"
+        ]
+      },
+      {
+        "pinyin": "kong4",
+        "display": "kònɡ",
+        "phrases": [
+          "空白",
+          "空缺",
+          "空闲",
+          "空子",
+          "空隙",
+          "空房"
+        ]
+      }
+    ],
+    "咧": [
+      {
+        "pinyin": "lie3",
+        "display": "liě",
+        "phrases": [
+          "咧嘴"
+        ]
+      },
+      {
+        "pinyin": "lie1",
+        "display": "liē",
+        "phrases": [
+          "(乱说；小孩哭)咧咧",
+          "瞎咧咧",
+          "大大咧咧"
+        ]
+      },
+      {
+        "pinyin": "lie5",
+        "display": "lie",
+        "phrases": [],
+        "note": "(助词,相当于\"了\"\"啦\")"
+      }
+    ],
+    "溃": [
+      {
+        "pinyin": "kui4",
+        "display": "kuì",
+        "phrases": [
+          "溃决",
+          "溃散",
+          "溃烂",
+          "溃疡",
+          "溃败",
+          "经济崩溃"
+        ]
+      },
+      {
+        "pinyin": "hui4",
+        "display": "huì",
+        "phrases": [
+          "溃脓"
+        ]
+      }
+    ],
+    "括": [
+      {
+        "pinyin": "kuo4",
+        "display": "kuò",
+        "phrases": [
+          "括号",
+          "包括",
+          "概括",
+          "括约肌"
+        ]
+      },
+      {
+        "pinyin": "gua1",
+        "display": "ɡuā",
+        "phrases": [
+          "挺括"
+        ]
+      }
+    ],
+    "裂": [
+      {
+        "pinyin": "lie4",
+        "display": "liè",
+        "phrases": [
+          "裂痕",
+          "裂缝",
+          "裂变",
+          "分裂",
+          "破裂",
+          "裂纹"
+        ]
+      },
+      {
+        "pinyin": "lie3",
+        "display": "liě",
+        "phrases": [
+          "裂着怀"
+        ]
+      }
+    ],
+    "拉": [
+      {
+        "pinyin": "la1",
+        "display": "lā",
+        "phrases": [
+          "拉车",
+          "拉倒",
+          "拉锯",
+          "拉杂",
+          "拉二胡",
+          "扒拉",
+          "趾拉"
+        ]
+      },
+      {
+        "pinyin": "la2",
+        "display": "lá",
+        "phrases": [
+          "拉个口子",
+          "拉下一块肉"
+        ]
+      }
+    ],
+    "淋": [
+      {
+        "pinyin": "lin2",
+        "display": "lín",
+        "phrases": [
+          "淋巴",
+          "淋漓",
+          "淋浴"
+        ]
+      },
+      {
+        "pinyin": "lin4",
+        "display": "lìn",
+        "phrases": [
+          "淋病",
+          "过淋"
+        ]
+      }
+    ],
+    "剌": [
+      {
+        "pinyin": "la4",
+        "display": "là",
+        "phrases": [
+          "(违背常情)乖剌",
+          "剌谬"
+        ]
+      },
+      {
+        "pinyin": "la2",
+        "display": "lá",
+        "phrases": [],
+        "note": "(划破、割开。同“拉”)"
+      }
+    ],
+    "令": [
+      {
+        "pinyin": "ling4",
+        "display": "lìnɡ",
+        "phrases": [
+          "口令",
+          "酒令",
+          "令爱",
+          "令郎",
+          "令堂",
+          "令尊",
+          "命令"
+        ]
+      },
+      {
+        "pinyin": "ling3",
+        "display": "lǐnɡ",
+        "phrases": [
+          "(量词,原张的纸500张为1令)"
+        ]
+      }
+    ],
+    "郎": [
+      {
+        "pinyin": "lang2",
+        "display": "lánɡ",
+        "phrases": [
+          "货郎",
+          "郎君",
+          "郎中",
+          "侍郎",
+          "郎才女貌",
+          "姓郎"
+        ]
+      },
+      {
+        "pinyin": "lang4",
+        "display": "lànɡ",
+        "phrases": [
+          "屎壳郎"
+        ]
+      }
+    ],
+    "溜": [
+      {
+        "pinyin": "liu1",
+        "display": "liū",
+        "phrases": [
+          "溜达",
+          "溜走",
+          "溜光",
+          "溜边儿",
+          "溜须拍马"
+        ]
+      },
+      {
+        "pinyin": "liu4",
+        "display": "liù",
+        "phrases": [
+          "一溜儿",
+          "水溜",
+          "河水溜很大"
+        ]
+      }
+    ],
+    "镏": [
+      {
+        "pinyin": "liu2",
+        "display": "liú",
+        "phrases": [
+          "镏金(镀金)"
+        ]
+      },
+      {
+        "pinyin": "liu4",
+        "display": "liù",
+        "phrases": [
+          "金镏子(金戒)"
+        ]
+      }
+    ],
+    "没": [
+      {
+        "pinyin": "mei2",
+        "display": "méi",
+        "phrases": [
+          "没有",
+          "没用",
+          "衣服没干"
+        ]
+      },
+      {
+        "pinyin": "mo4",
+        "display": "mò",
+        "phrases": [
+          "没落",
+          "没收",
+          "没世",
+          "没药",
+          "没奈何",
+          "没齿不忘"
+        ]
+      }
+    ],
+    "馏": [
+      {
+        "pinyin": "liu4",
+        "display": "liù",
+        "phrases": [
+          "把馒头馏一馏"
+        ]
+      },
+      {
+        "pinyin": "liu2",
+        "display": "liú",
+        "phrases": [
+          "蒸馏"
+        ]
+      }
+    ],
+    "闷": [
+      {
+        "pinyin": "men4",
+        "display": "mèn",
+        "phrases": [
+          "愁闷",
+          "闷雷",
+          "闷气",
+          "闷倦",
+          "闷得慌",
+          "闷闷不乐"
+        ]
+      },
+      {
+        "pinyin": "men1",
+        "display": "mēn",
+        "phrases": [
+          "闷热",
+          "闷头干活",
+          "闷声闷气",
+          "别总闷在家里"
+        ]
+      }
+    ],
+    "笼": [
+      {
+        "pinyin": "long2",
+        "display": "lónɡ",
+        "phrases": [
+          "鸟笼",
+          "鸡笼",
+          "牢笼",
+          "蒸笼",
+          "笼屉"
+        ]
+      },
+      {
+        "pinyin": "long3",
+        "display": "lǒnɡ",
+        "phrases": [
+          "笼络",
+          "笼统",
+          "笼罩",
+          "箱笼"
+        ]
+      }
+    ],
+    "氓": [
+      {
+        "pinyin": "meng2",
+        "display": "ménɡ",
+        "phrases": [
+          "(古指百姓)"
+        ]
+      },
+      {
+        "pinyin": "mang2",
+        "display": "mánɡ",
+        "phrases": [
+          "流氓"
+        ]
+      }
+    ],
+    "搂": [
+      {
+        "pinyin": "lou3",
+        "display": "lǒu",
+        "phrases": [
+          "搂抱",
+          "搂孩子",
+          "一搂粗的树"
+        ]
+      },
+      {
+        "pinyin": "lou1",
+        "display": "lōu",
+        "phrases": [
+          "搂柴禾",
+          "搂枪机",
+          "搂起袖子",
+          "搂钱"
+        ]
+      }
+    ],
+    "蒙": [
+      {
+        "pinyin": "meng2",
+        "display": "ménɡ",
+        "phrases": [
+          "启蒙",
+          "空蒙",
+          "蒙蔽",
+          "蒙眬",
+          "蒙混",
+          "蒙昧",
+          "蒙受"
+        ]
+      },
+      {
+        "pinyin": "meng1",
+        "display": "mēnɡ",
+        "phrases": [
+          "蒙骗",
+          "别蒙人",
+          "蒙蒙亮",
+          "蒙头转向"
+        ]
+      },
+      {
+        "pinyin": "meng3",
+        "display": "měnɡ",
+        "phrases": [
+          "蒙古包",
+          "蒙古族"
+        ]
+      }
+    ],
+    "陆": [
+      {
+        "pinyin": "lu4",
+        "display": "lù",
+        "phrases": [
+          "陆地",
+          "陆路",
+          "陆离",
+          "陆续",
+          "登陆"
+        ]
+      },
+      {
+        "pinyin": "liu4",
+        "display": "liù",
+        "phrases": [
+          "(\"六\"的大写)"
+        ]
+      }
+    ],
+    "碌": [
+      {
+        "pinyin": "lu4",
+        "display": "lù",
+        "phrases": [
+          "庸碌",
+          "忙碌",
+          "劳碌"
+        ]
+      },
+      {
+        "pinyin": "liu4",
+        "display": "liù",
+        "phrases": [
+          "碌碡(liùzhóu,用来轧谷物或平场地的石磙)"
+        ]
+      }
+    ],
+    "眯": [
+      {
+        "pinyin": "mi2",
+        "display": "mí",
+        "phrases": [
+          "眯眼"
+        ]
+      },
+      {
+        "pinyin": "mi1",
+        "display": "mī",
+        "phrases": [
+          "眯缝",
+          "眯一会儿",
+          "眯着眼笑"
+        ]
+      }
+    ],
+    "露": [
+      {
+        "pinyin": "lu4",
+        "display": "lù",
+        "phrases": [
+          "露水",
+          "露营",
+          "露天",
+          "露骨",
+          "暴露",
+          "揭露",
+          "果子露"
+        ]
+      },
+      {
+        "pinyin": "lou4",
+        "display": "lòu",
+        "phrases": [
+          "露头",
+          "露脸",
+          "露怯",
+          "露马脚",
+          "露馅儿"
+        ]
+      }
+    ],
+    "糜": [
+      {
+        "pinyin": "mi2",
+        "display": "mí",
+        "phrases": [
+          "糜烂",
+          "糜费",
+          "眯财妨农"
+        ]
+      },
+      {
+        "pinyin": "mei2",
+        "display": "méi",
+        "phrases": [
+          "糜子(一种谷物)"
+        ]
+      }
+    ],
+    "偻": [
+      {
+        "pinyin": "lv3",
+        "display": "lǚ",
+        "phrases": [
+          "伛偻(yǔlǚ,脊背弯曲)",
+          "不能偻指"
+        ]
+      },
+      {
+        "pinyin": "lou2",
+        "display": "lóu",
+        "phrases": [
+          "佝偻"
+        ]
+      }
+    ],
+    "靡": [
+      {
+        "pinyin": "mi2",
+        "display": "mí",
+        "phrases": [
+          "靡费",
+          "奢靡"
+        ]
+      },
+      {
+        "pinyin": "mi3",
+        "display": "mǐ",
+        "phrases": [
+          "风靡",
+          "披靡",
+          "靡丽",
+          "靡靡之音",
+          "靡日不思"
+        ]
+      }
+    ],
+    "绿": [
+      {
+        "pinyin": "lv4",
+        "display": "lǜ",
+        "phrases": [
+          "绿荫",
+          "绿化",
+          "绿洲",
+          "绿油油",
+          "绿茸茸",
+          "绿莹莹"
+        ]
+      },
+      {
+        "pinyin": "lu4",
+        "display": "lù",
+        "phrases": [
+          "绿林",
+          "鸭绿江"
+        ]
+      }
+    ],
+    "泌": [
+      {
+        "pinyin": "mi4",
+        "display": "mì",
+        "phrases": [
+          "分泌",
+          "泌尿",
+          "泌乳"
+        ]
+      },
+      {
+        "pinyin": "bi4",
+        "display": "bì",
+        "phrases": [
+          "(地名)泌阳"
+        ]
+      }
+    ],
+    "抡": [
+      {
+        "pinyin": "lun1",
+        "display": "lūn",
+        "phrases": [
+          "抡拳",
+          "抡刀",
+          "抡起铁锤"
+        ]
+      },
+      {
+        "pinyin": "lun2",
+        "display": "lún",
+        "phrases": [
+          "抡材"
+        ]
+      }
+    ],
+    "秘": [
+      {
+        "pinyin": "mi4",
+        "display": "mì",
+        "phrases": [
+          "秘密",
+          "秘籍",
+          "秘方",
+          "秘诀",
+          "秘书",
+          "便秘"
+        ]
+      },
+      {
+        "pinyin": "bi4",
+        "display": "bì",
+        "phrases": [
+          "秘鲁",
+          "姓秘"
+        ]
+      }
+    ],
+    "纶": [
+      {
+        "pinyin": "lun2",
+        "display": "lún",
+        "phrases": [
+          "垂纶",
+          "锦纶",
+          "涤纶"
+        ]
+      },
+      {
+        "pinyin": "guan1",
+        "display": "ɡuān",
+        "phrases": [
+          "纶巾"
+        ]
+      }
+    ],
+    "缪": [
+      {
+        "pinyin": "miao4",
+        "display": "miào",
+        "phrases": [
+          "姓缪"
+        ]
+      },
+      {
+        "pinyin": "mou2",
+        "display": "móu",
+        "phrases": [
+          "绸缪",
+          "未雨绸缪",
+          "情意绸缪"
+        ]
+      },
+      {
+        "pinyin": "miu4",
+        "display": "miù",
+        "phrases": [
+          "纰缪(错误)"
+        ]
+      }
+    ],
+    "论": [
+      {
+        "pinyin": "lun4",
+        "display": "lùn",
+        "phrases": [
+          "评论",
+          "社论",
+          "议论",
+          "论坛",
+          "论件",
+          "论功行赏"
+        ]
+      },
+      {
+        "pinyin": "lun2",
+        "display": "lún",
+        "phrases": [
+          "论语"
+        ]
+      }
+    ],
+    "模": [
+      {
+        "pinyin": "mo2",
+        "display": "mó",
+        "phrases": [
+          "楷模",
+          "模型",
+          "英模",
+          "模糊",
+          "模特儿",
+          "模棱两可"
+        ]
+      },
+      {
+        "pinyin": "mu2",
+        "display": "mú",
+        "phrases": [
+          "模具",
+          "模样",
+          "字模儿"
+        ]
+      }
+    ],
+    "捋": [
+      {
+        "pinyin": "luo1",
+        "display": "luō",
+        "phrases": [
+          "捋榆钱儿",
+          "捋起袖子",
+          "捋虎须(喻冒险)"
+        ]
+      },
+      {
+        "pinyin": "lv3",
+        "display": "lǚ",
+        "phrases": [
+          "捋头发",
+          "捋胡子"
+        ]
+      }
+    ],
+    "摩": [
+      {
+        "pinyin": "mo2",
+        "display": "mó",
+        "phrases": [
+          "摩擦",
+          "按摩",
+          "观摩",
+          "摩托车"
+        ]
+      },
+      {
+        "pinyin": "ma1",
+        "display": "mā",
+        "phrases": [
+          "摩挲"
+        ]
+      }
+    ],
+    "络": [
+      {
+        "pinyin": "luo4",
+        "display": "luò",
+        "phrases": [
+          "脉络",
+          "橘络",
+          "经络",
+          "络绎不绝",
+          "络腮胡子"
+        ]
+      },
+      {
+        "pinyin": "lao4",
+        "display": "lào",
+        "phrases": [
+          "络子"
+        ]
+      }
+    ],
+    "磨": [
+      {
+        "pinyin": "mo2",
+        "display": "mó",
+        "phrases": [
+          "磨墨",
+          "磨练",
+          "磨合",
+          "磨灭",
+          "折磨",
+          "好事多磨"
+        ]
+      },
+      {
+        "pinyin": "mo4",
+        "display": "mò",
+        "phrases": [
+          "石磨",
+          "电磨",
+          "磨豆腐",
+          "磨面"
+        ]
+      }
+    ],
+    "硌": [
+      {
+        "pinyin": "luo4",
+        "display": "luò",
+        "phrases": [
+          "(山上的大石)"
+        ]
+      },
+      {
+        "pinyin": "ge4",
+        "display": "ɡè",
+        "phrases": [
+          "硌脚",
+          "硌牙"
+        ]
+      }
+    ],
+    "抹": [
+      {
+        "pinyin": "mo3",
+        "display": "mǒ",
+        "phrases": [
+          "涂抹",
+          "抹眼泪",
+          "抹杀",
+          "抹零儿"
+        ]
+      },
+      {
+        "pinyin": "mo4",
+        "display": "mò",
+        "phrases": [
+          "抹墙",
+          "抹不开",
+          "转弯抹角"
+        ]
+      },
+      {
+        "pinyin": "ma1",
+        "display": "mā",
+        "phrases": [
+          "抹布",
+          "抹桌子",
+          "抹下脸来"
+        ]
+      }
+    ],
+    "落": [
+      {
+        "pinyin": "luo4",
+        "display": "luò",
+        "phrases": [
+          "降落",
+          "没落",
+          "落伍",
+          "落寞",
+          "落空",
+          "落井下石"
+        ]
+      },
+      {
+        "pinyin": "lao4",
+        "display": "lào",
+        "phrases": [
+          "落枕",
+          "落炕",
+          "落色",
+          "落子"
+        ]
+      },
+      {
+        "pinyin": "la4",
+        "display": "là",
+        "phrases": [
+          "落下",
+          "丢三落四",
+          "把书落家了"
+        ]
+      }
+    ],
+    "牟": [
+      {
+        "pinyin": "mou2",
+        "display": "móu",
+        "phrases": [
+          "牟取",
+          "牟利",
+          "姓牟"
+        ]
+      },
+      {
+        "pinyin": "mu4",
+        "display": "mù",
+        "phrases": [
+          "(地名)牟平"
+        ]
+      }
+    ],
+    "蚂": [
+      {
+        "pinyin": "ma3",
+        "display": "mǎ",
+        "phrases": [
+          "蚂蚁",
+          "蚂蝗(\"蛭\"的俗称)"
+        ]
+      },
+      {
+        "pinyin": "ma1",
+        "display": "mā",
+        "phrases": [
+          "蚂螂(蜻蜓)"
+        ]
+      },
+      {
+        "pinyin": "ma4",
+        "display": "mà",
+        "phrases": [
+          "蚂蚱(蝗虫)"
+        ]
+      }
+    ],
+    "哪": [
+      {
+        "pinyin": "na3",
+        "display": "nǎ",
+        "phrases": [
+          "(代词.表示疑问；反问)哪里",
+          "哪怕",
+          "哪样"
+        ]
+      },
+      {
+        "pinyin": "nei3",
+        "display": "něi",
+        "phrases": [
+          "哪个",
+          "哪些",
+          "哪年"
+        ]
+      },
+      {
+        "pinyin": "na5",
+        "display": "na",
+        "phrases": [
+          "谢谢您哪"
+        ],
+        "note": "(助词)加油干哪 谢谢您哪"
+      },
+      {
+        "pinyin": "ne2",
+        "display": "né",
+        "phrases": [
+          "哪吒"
+        ]
+      }
+    ],
+    "埋": [
+      {
+        "pinyin": "mai2",
+        "display": "mái",
+        "phrases": [
+          "掩埋",
+          "埋伏",
+          "埋没",
+          "埋藏",
+          "埋头"
+        ]
+      },
+      {
+        "pinyin": "man2",
+        "display": "mán",
+        "phrases": [
+          "埋怨"
+        ]
+      }
+    ],
+    "脉": [
+      {
+        "pinyin": "mai4",
+        "display": "mài",
+        "phrases": [
+          "脉络",
+          "脉冲",
+          "动脉",
+          "静脉",
+          "诊脉",
+          "山脉",
+          "矿脉"
+        ]
+      },
+      {
+        "pinyin": "mo4",
+        "display": "mò",
+        "phrases": [
+          "脉脉含情"
+        ]
+      }
+    ],
+    "那": [
+      {
+        "pinyin": "na4",
+        "display": "nà",
+        "phrases": [
+          "那里",
+          "那时",
+          "那么",
+          "那样"
+        ]
+      },
+      {
+        "pinyin": "nei4",
+        "display": "nèi",
+        "phrases": [
+          "那个",
+          "那年"
+        ]
+      },
+      {
+        "pinyin": "na1",
+        "display": "nā",
+        "phrases": [
+          "姓那"
+        ]
+      }
+    ],
+    "谩": [
+      {
+        "pinyin": "man4",
+        "display": "màn",
+        "phrases": [
+          "谩骂"
+        ]
+      },
+      {
+        "pinyin": "man2",
+        "display": "mán",
+        "phrases": [
+          "(欺骗,蒙蔽)"
+        ]
+      }
+    ],
+    "娜": [
+      {
+        "pinyin": "na4",
+        "display": "nà",
+        "phrases": [
+          "(用于人名)"
+        ]
+      },
+      {
+        "pinyin": "nuo2",
+        "display": "nuó",
+        "phrases": [
+          "婀娜",
+          "袅娜"
+        ]
+      }
+    ],
+    "猫": [
+      {
+        "pinyin": "mao1",
+        "display": "māo",
+        "phrases": [
+          "熊猫"
+        ]
+      },
+      {
+        "pinyin": "mao2",
+        "display": "máo",
+        "phrases": [
+          "猫腰"
+        ]
+      }
+    ],
+    "难": [
+      {
+        "pinyin": "nan2",
+        "display": "nán",
+        "phrases": [
+          "难题",
+          "难得",
+          "难免",
+          "难道",
+          "难为",
+          "难能可贵"
+        ]
+      },
+      {
+        "pinyin": "nan4",
+        "display": "nàn",
+        "phrases": [
+          "难民",
+          "难友",
+          "遭难",
+          "责难",
+          "非难",
+          "多难兴邦"
+        ]
+      }
+    ],
+    "冒": [
+      {
+        "pinyin": "mao4",
+        "display": "mào",
+        "phrases": [
+          "冒泡",
+          "冒火",
+          "冒险",
+          "冒昧",
+          "冒犯",
+          "冒牌",
+          "姓冒"
+        ]
+      },
+      {
+        "pinyin": "mo4",
+        "display": "mò",
+        "phrases": [
+          "冒顿(mòdú,初汉匈奴的一个首领)"
+        ]
+      }
+    ],
+    "囊": [
+      {
+        "pinyin": "nang1",
+        "display": "nānɡ",
+        "phrases": [
+          "囊膪",
+          "囊揣"
+        ]
+      },
+      {
+        "pinyin": "nang2",
+        "display": "nánɡ",
+        "phrases": [
+          "囊括",
+          "囊虫",
+          "胆囊",
+          "皮囊",
+          "药囊",
+          "探囊取物"
+        ]
+      }
+    ],
+    "么": [
+      {
+        "pinyin": "me4",
+        "display": "mè",
+        "phrases": [
+          "怎么",
+          "什么",
+          "多么"
+        ]
+      },
+      {
+        "pinyin": "ma5",
+        "display": "ma",
+        "phrases": [
+          "(同\"吗\")"
+        ]
+      },
+      {
+        "pinyin": "yao1",
+        "display": "yāo",
+        "phrases": [
+          "(同\"幺\")"
+        ]
+      }
+    ],
+    "泥": [
+      {
+        "pinyin": "ni2",
+        "display": "ní",
+        "phrases": [
+          "印泥",
+          "枣泥",
+          "蒜泥",
+          "泥泞",
+          "泥淖",
+          "泥塑",
+          "泥潭"
+        ]
+      },
+      {
+        "pinyin": "ni4",
+        "display": "nì",
+        "phrases": [
+          "泥墙",
+          "泥古",
+          "拘泥",
+          "泥子"
+        ]
+      }
+    ],
+    "尿": [
+      {
+        "pinyin": "niao4",
+        "display": "niào",
+        "phrases": [
+          "撒尿",
+          "尿布",
+          "尿床",
+          "尿道",
+          "尿素",
+          "糖尿病"
+        ]
+      },
+      {
+        "pinyin": "sui1",
+        "display": "suī",
+        "phrases": [
+          "尿脬",
+          "尿泡",
+          "尿（niào)了一泡尿"
+        ]
+      }
+    ],
+    "屏": [
+      {
+        "pinyin": "bing3",
+        "display": "bǐnɡ",
+        "phrases": [
+          "屏除",
+          "屏气",
+          "屏息",
+          "屏退"
+        ]
+      },
+      {
+        "pinyin": "ping2",
+        "display": "pínɡ",
+        "phrases": [
+          "屏风",
+          "屏蔽",
+          "屏幕",
+          "屏障",
+          "四扇屏"
+        ]
+      }
+    ],
+    "朴": [
+      {
+        "pinyin": "po4",
+        "display": "pò",
+        "phrases": [
+          "朴树",
+          "厚朴"
+        ]
+      },
+      {
+        "pinyin": "pu3",
+        "display": "pǔ",
+        "phrases": [
+          "朴实",
+          "朴素",
+          "文笔朴直",
+          "心地朴厚"
+        ]
+      },
+      {
+        "pinyin": "po1",
+        "display": "pō",
+        "phrases": [
+          "朴刀"
+        ]
+      },
+      {
+        "pinyin": "piao2",
+        "display": "piáo",
+        "phrases": [
+          "姓朴"
+        ]
+      }
+    ],
+    "乜": [
+      {
+        "pinyin": "nie4",
+        "display": "niè",
+        "phrases": [
+          "姓乜"
+        ]
+      },
+      {
+        "pinyin": "mie1",
+        "display": "miē",
+        "phrases": [
+          "乜斜"
+        ]
+      }
+    ],
+    "宁": [
+      {
+        "pinyin": "ning2",
+        "display": "nínɡ",
+        "phrases": [
+          "宁静",
+          "宁日",
+          "宁帖",
+          "安宁",
+          "宁（南京的别称）"
+        ]
+      },
+      {
+        "pinyin": "ning4",
+        "display": "nìnɡ",
+        "phrases": [
+          "宁可",
+          "宁肯",
+          "宁愿",
+          "宁缺毋滥",
+          "宁有逾此",
+          "姓宁"
+        ]
+      }
+    ],
+    "迫": [
+      {
+        "pinyin": "po4",
+        "display": "pò",
+        "phrases": [
+          "强迫",
+          "急迫",
+          "迫害",
+          "迫近",
+          "迫切",
+          "迫在眉睫"
+        ]
+      },
+      {
+        "pinyin": "pai3",
+        "display": "pǎi",
+        "phrases": [
+          "迫机炮"
+        ]
+      }
+    ],
+    "拧": [
+      {
+        "pinyin": "ning3",
+        "display": "nǐnɡ",
+        "phrases": [
+          "拧螺丝",
+          "拧开瓶盖",
+          "说拧了",
+          "两人闹拧了"
+        ]
+      },
+      {
+        "pinyin": "ning2",
+        "display": "nínɡ",
+        "phrases": [
+          "拧手巾",
+          "拧绳子",
+          "拧了他一把"
+        ]
+      },
+      {
+        "pinyin": "ning4",
+        "display": "nìnɡ",
+        "phrases": [
+          "拧脾气"
+        ]
+      }
+    ],
+    "仆": [
+      {
+        "pinyin": "pu1",
+        "display": "pū",
+        "phrases": [
+          "前仆后继"
+        ]
+      },
+      {
+        "pinyin": "pu2",
+        "display": "pú",
+        "phrases": [
+          "仆从",
+          "仆人",
+          "仆役"
+        ]
+      }
+    ],
+    "弄": [
+      {
+        "pinyin": "nong4",
+        "display": "nònɡ",
+        "phrases": [
+          "玩弄",
+          "戏弄",
+          "弄权",
+          "弄点饭吃",
+          "弄巧成拙"
+        ]
+      },
+      {
+        "pinyin": "long4",
+        "display": "lònɡ",
+        "phrases": [
+          "弄堂",
+          "弄口",
+          "里弄"
+        ]
+      }
+    ],
+    "铺": [
+      {
+        "pinyin": "pu1",
+        "display": "pū",
+        "phrases": [
+          "铺路",
+          "铺张",
+          "铺设",
+          "铺盖",
+          "铺叙",
+          "铺天盖地"
+        ]
+      },
+      {
+        "pinyin": "pu4",
+        "display": "pù",
+        "phrases": [
+          "铺子",
+          "店铺",
+          "铺面",
+          "铺位"
+        ]
+      }
+    ],
+    "疟": [
+      {
+        "pinyin": "nue4",
+        "display": "nuè",
+        "phrases": [
+          "疟疾"
+        ]
+      },
+      {
+        "pinyin": "yao4",
+        "display": "yào",
+        "phrases": [
+          "疟子"
+        ]
+      }
+    ],
+    "埔": [
+      {
+        "pinyin": "pu3",
+        "display": "pǔ",
+        "phrases": [
+          "（地名）黄埔"
+        ]
+      },
+      {
+        "pinyin": "bu4",
+        "display": "bù",
+        "phrases": [
+          "（地名）大埔"
+        ]
+      }
+    ],
+    "沤": [
+      {
+        "pinyin": "ou4",
+        "display": "òu",
+        "phrases": [
+          "沤麻",
+          "沤肥"
+        ]
+      },
+      {
+        "pinyin": "ou1",
+        "display": "ōu",
+        "phrases": [
+          "浮沤"
+        ]
+      }
+    ],
+    "瀑": [
+      {
+        "pinyin": "pu4",
+        "display": "pù",
+        "phrases": [
+          "瀑布"
+        ]
+      },
+      {
+        "pinyin": "bao4",
+        "display": "bào",
+        "phrases": [
+          "瀑河"
+        ]
+      }
+    ],
+    "排": [
+      {
+        "pinyin": "pai2",
+        "display": "pái",
+        "phrases": [
+          "排队",
+          "排斥",
+          "排水",
+          "派遣",
+          "排比",
+          "排解",
+          "排练"
+        ]
+      },
+      {
+        "pinyin": "pai3",
+        "display": "pǎi",
+        "phrases": [
+          "排子车",
+          "把鞋排一排"
+        ]
+      }
+    ],
+    "彷": [
+      {
+        "pinyin": "pang2",
+        "display": "pánɡ",
+        "phrases": [
+          "彷徨"
+        ]
+      },
+      {
+        "pinyin": "fang3",
+        "display": "fǎnɡ",
+        "phrases": [
+          "彷彿（旧同“仿佛”）"
+        ]
+      }
+    ],
+    "栖": [
+      {
+        "pinyin": "qi1",
+        "display": "qī",
+        "phrases": [
+          "栖息",
+          "栖身",
+          "栖霞",
+          "两栖"
+        ]
+      },
+      {
+        "pinyin": "xi1",
+        "display": "xī",
+        "phrases": [
+          "栖栖"
+        ]
+      }
+    ],
+    "胖": [
+      {
+        "pinyin": "pang4",
+        "display": "pànɡ",
+        "phrases": [
+          "胖子",
+          "肥胖"
+        ]
+      },
+      {
+        "pinyin": "pan2",
+        "display": "pán",
+        "phrases": [
+          "心广体胖"
+        ]
+      }
+    ],
+    "期": [
+      {
+        "pinyin": "qi1",
+        "display": "qī",
+        "phrases": [
+          "如期",
+          "过期",
+          "期待",
+          "期望",
+          "期货",
+          "不期而遇"
+        ]
+      },
+      {
+        "pinyin": "ji1",
+        "display": "jī",
+        "phrases": [
+          "（一整年﹑一整月）期年",
+          "期月"
+        ]
+      }
+    ],
+    "刨": [
+      {
+        "pinyin": "pao2",
+        "display": "páo",
+        "phrases": [
+          "刨土",
+          "刨坑",
+          "刨去",
+          "刨除"
+        ]
+      },
+      {
+        "pinyin": "bao4",
+        "display": "bào",
+        "phrases": [
+          "刨床",
+          "刨刀",
+          "刨平"
+        ]
+      }
+    ],
+    "奇": [
+      {
+        "pinyin": "qi2",
+        "display": "qí",
+        "phrases": [
+          "奇怪",
+          "奇观",
+          "奇迹",
+          "奇兵",
+          "奇遇",
+          "奇闻",
+          "姓奇"
+        ]
+      },
+      {
+        "pinyin": "ji1",
+        "display": "jī",
+        "phrases": [
+          "奇数",
+          "五十有奇"
+        ]
+      }
+    ],
+    "炮": [
+      {
+        "pinyin": "pao2",
+        "display": "páo",
+        "phrases": [
+          "炮制",
+          "炮烙（炮格）"
+        ]
+      },
+      {
+        "pinyin": "bao1",
+        "display": "bāo",
+        "phrases": [
+          "炮干（烘干）（在旺火上炒）炮羊肉"
+        ]
+      },
+      {
+        "pinyin": "pao4",
+        "display": "pào",
+        "phrases": [
+          "炮火",
+          "炮楼",
+          "炮艇",
+          "炮台",
+          "炮灰",
+          "炮筒子",
+          "鞭炮"
+        ]
+      }
+    ],
+    "卡": [
+      {
+        "pinyin": "qia3",
+        "display": "qiǎ",
+        "phrases": [
+          "卡子",
+          "卡住",
+          "发卡",
+          "关卡"
+        ]
+      },
+      {
+        "pinyin": "ka3",
+        "display": "kǎ",
+        "phrases": [
+          "卡车",
+          "卡片",
+          "卡通",
+          "绿卡",
+          "卡路里"
+        ]
+      }
+    ],
+    "铅": [
+      {
+        "pinyin": "qian1",
+        "display": "qiān",
+        "phrases": [
+          "铅字",
+          "铅笔",
+          "铅印",
+          "铅球"
+        ]
+      },
+      {
+        "pinyin": "yan2",
+        "display": "yán",
+        "phrases": [
+          "铅山（县名）"
+        ]
+      }
+    ],
+    "跑": [
+      {
+        "pinyin": "pao3",
+        "display": "pǎo",
+        "phrases": [
+          "跑步",
+          "跑赛",
+          "逃跑",
+          "跑外",
+          "跑龙套",
+          "跑马卖解"
+        ]
+      },
+      {
+        "pinyin": "pao2",
+        "display": "páo",
+        "phrases": [
+          "跑槽",
+          "杭州虎跑泉"
+        ]
+      }
+    ],
+    "荨": [
+      {
+        "pinyin": "qian2",
+        "display": "qián",
+        "phrases": [
+          "荨麻"
+        ]
+      },
+      {
+        "pinyin": "xun2",
+        "display": "xún",
+        "phrases": [
+          "荨麻疹"
+        ]
+      }
+    ],
+    "泡": [
+      {
+        "pinyin": "pao4",
+        "display": "pào",
+        "phrases": [
+          "气泡",
+          "冒泡",
+          "泡茶",
+          "泡菜",
+          "泡沫",
+          "泡影",
+          "泡蘑菇"
+        ]
+      },
+      {
+        "pinyin": "pao1",
+        "display": "pāo",
+        "phrases": [
+          "肿眼泡",
+          "豆腐泡",
+          "这块木料发泡"
+        ]
+      }
+    ],
+    "浅": [
+      {
+        "pinyin": "qian3",
+        "display": "qiǎn",
+        "phrases": [
+          "浅见",
+          "浅薄",
+          "浅显",
+          "浅陋",
+          "浅露",
+          "浅绿",
+          "浅红"
+        ]
+      },
+      {
+        "pinyin": "jian1",
+        "display": "jiān",
+        "phrases": [],
+        "note": "(拟声词，形容流水声）浅浅"
+      }
+    ],
+    "喷": [
+      {
+        "pinyin": "pen1",
+        "display": "pēn",
+        "phrases": [
+          "喷壶",
+          "喷泉",
+          "喷薄",
+          "喷射",
+          "喷嚏",
+          "喷涂",
+          "喷饭"
+        ]
+      },
+      {
+        "pinyin": "pen4",
+        "display": "pèn",
+        "phrases": [
+          "喷香",
+          "头喷棉花",
+          "对虾正在喷上"
+        ]
+      }
+    ],
+    "纤": [
+      {
+        "pinyin": "qian4",
+        "display": "qiàn",
+        "phrases": [
+          "纤夫",
+          "纤手",
+          "拉纤"
+        ]
+      },
+      {
+        "pinyin": "xian1",
+        "display": "xiān",
+        "phrases": [
+          "纤尘",
+          "纤维",
+          "纤细",
+          "纤弱",
+          "纤巧",
+          "纤悉"
+        ]
+      }
+    ],
+    "澎": [
+      {
+        "pinyin": "peng2",
+        "display": "pénɡ",
+        "phrases": [
+          "澎湃",
+          "澎湖群岛"
+        ]
+      },
+      {
+        "pinyin": "peng1",
+        "display": "pēnɡ",
+        "phrases": [
+          "澎了一身水"
+        ]
+      }
+    ],
+    "茜": [
+      {
+        "pinyin": "qian4",
+        "display": "qiàn",
+        "phrases": [
+          "茜草",
+          "茜纱"
+        ]
+      },
+      {
+        "pinyin": "xi1",
+        "display": "xī",
+        "phrases": [
+          "（多用于人名）"
+        ]
+      }
+    ],
+    "劈": [
+      {
+        "pinyin": "pi1",
+        "display": "pī",
+        "phrases": [
+          "劈头",
+          "劈啪",
+          "劈木头",
+          "劈风斩浪"
+        ]
+      },
+      {
+        "pinyin": "pi3",
+        "display": "pǐ",
+        "phrases": [
+          "劈柴",
+          "劈叉",
+          "劈成两半"
+        ]
+      }
+    ],
+    "呛": [
+      {
+        "pinyin": "qiang1",
+        "display": "qiānɡ",
+        "phrases": [
+          "喝水呛着了",
+          "吃饭吃呛了"
+        ]
+      },
+      {
+        "pinyin": "qiang4",
+        "display": "qiànɡ",
+        "phrases": [
+          "烟呛嗓子",
+          "辣椒味呛得难受"
+        ]
+      }
+    ],
+    "片": [
+      {
+        "pinyin": "pian4",
+        "display": "piàn",
+        "phrases": [
+          "片段",
+          "片刻",
+          "片面"
+        ]
+      },
+      {
+        "pinyin": "pian1",
+        "display": "piān",
+        "phrases": [
+          "相片儿",
+          "画片儿",
+          "电影片儿"
+        ]
+      }
+    ],
+    "戗": [
+      {
+        "pinyin": "qiang1",
+        "display": "qiānɡ",
+        "phrases": [
+          "戗风",
+          "戗水",
+          "说戗了"
+        ]
+      },
+      {
+        "pinyin": "qiang4",
+        "display": "qiànɡ",
+        "phrases": [
+          "够戗",
+          "戗住"
+        ]
+      }
+    ],
+    "漂": [
+      {
+        "pinyin": "piao1",
+        "display": "piāo",
+        "phrases": [
+          "漂浮",
+          "漂泊",
+          "漂流",
+          "漂移"
+        ]
+      },
+      {
+        "pinyin": "piao3",
+        "display": "piǎo",
+        "phrases": [
+          "漂白",
+          "漂染",
+          "漂朱砂"
+        ]
+      },
+      {
+        "pinyin": "piao4",
+        "display": "piào",
+        "phrases": [
+          "漂亮"
+        ]
+      }
+    ],
+    "强": [
+      {
+        "pinyin": "qiang2",
+        "display": "qiánɡ",
+        "phrases": [
+          "强壮",
+          "强调",
+          "强悍",
+          "强劲",
+          "强盛",
+          "强弩之末"
+        ]
+      },
+      {
+        "pinyin": "qiang3",
+        "display": "qiǎnɡ",
+        "phrases": [
+          "强迫",
+          "牵强",
+          "强辩",
+          "强颜",
+          "强笑",
+          "强词夺理"
+        ]
+      },
+      {
+        "pinyin": "jiang4",
+        "display": "jiànɡ",
+        "phrases": [
+          "倔强",
+          "强嘴"
+        ]
+      }
+    ],
+    "缥": [
+      {
+        "pinyin": "piao1",
+        "display": "piāo",
+        "phrases": [
+          "缥缈"
+        ]
+      },
+      {
+        "pinyin": "piao3",
+        "display": "piǎo",
+        "phrases": [
+          "（青白色；青白色丝织品）"
+        ]
+      }
+    ],
+    "抢": [
+      {
+        "pinyin": "qiang3",
+        "display": "qiǎnɡ",
+        "phrases": [
+          "抢劫",
+          "抢救",
+          "抢白",
+          "抢掠",
+          "抢险",
+          "抢步上前"
+        ]
+      },
+      {
+        "pinyin": "qiang1",
+        "display": "qiānɡ",
+        "phrases": [
+          "呼天抢地",
+          "（同“戗”qiānɡ)"
+        ]
+      }
+    ],
+    "骠": [
+      {
+        "pinyin": "piao4",
+        "display": "piào",
+        "phrases": [
+          "骠勇",
+          "骠骑"
+        ]
+      },
+      {
+        "pinyin": "biao1",
+        "display": "biāo",
+        "phrases": [
+          "黄骠马"
+        ]
+      }
+    ],
+    "镪": [
+      {
+        "pinyin": "qiang3",
+        "display": "qiǎnɡ",
+        "phrases": [
+          "白镪（银子）"
+        ]
+      },
+      {
+        "pinyin": "qiang1",
+        "display": "qiānɡ",
+        "phrases": [
+          "镪水（强酸）"
+        ]
+      }
+    ],
+    "撇": [
+      {
+        "pinyin": "pie1",
+        "display": "piē",
+        "phrases": [
+          "撇开",
+          "撇弃",
+          "撇油"
+        ]
+      },
+      {
+        "pinyin": "pie3",
+        "display": "piě",
+        "phrases": [
+          "撇嘴",
+          "撇手榴弹",
+          "两撇胡"
+        ]
+      }
+    ],
+    "翘": [
+      {
+        "pinyin": "qiao2",
+        "display": "qiáo",
+        "phrases": [
+          "翘首",
+          "翘望",
+          "翘楚",
+          "不胜翘企",
+          "桌面晒翘棱了"
+        ]
+      },
+      {
+        "pinyin": "qiao4",
+        "display": "qiào",
+        "phrases": [
+          "翘尾巴",
+          "翘辫子"
+        ]
+      }
+    ],
+    "悄": [
+      {
+        "pinyin": "qiao3",
+        "display": "qiǎo",
+        "phrases": [
+          "忧心悄悄",
+          "悄然无声",
+          "低声悄语"
+        ]
+      },
+      {
+        "pinyin": "qiao1",
+        "display": "qiāo",
+        "phrases": [
+          "悄悄",
+          "静悄悄"
+        ]
+      }
+    ],
+    "扫": [
+      {
+        "pinyin": "sao3",
+        "display": "sǎo",
+        "phrases": [
+          "扫雪",
+          "扫雷",
+          "扫除",
+          "扫荡",
+          "扫兴",
+          "扫尾",
+          "扫视"
+        ]
+      },
+      {
+        "pinyin": "sao4",
+        "display": "sào",
+        "phrases": [
+          "扫帚",
+          "扫帚星"
+        ]
+      }
+    ],
+    "鞘": [
+      {
+        "pinyin": "qiao4",
+        "display": "qiào",
+        "phrases": [
+          "剑鞘",
+          "鞘翅"
+        ]
+      },
+      {
+        "pinyin": "shao1",
+        "display": "shāo",
+        "phrases": [
+          "鞭鞘"
+        ]
+      }
+    ],
+    "色": [
+      {
+        "pinyin": "se4",
+        "display": "sè",
+        "phrases": [
+          "色彩",
+          "色调",
+          "色泽",
+          "色盲",
+          "色厉内荏"
+        ]
+      },
+      {
+        "pinyin": "shai3",
+        "display": "shǎi",
+        "phrases": [
+          "掉色",
+          "套色",
+          "色子",
+          "不变色儿"
+        ]
+      }
+    ],
+    "切": [
+      {
+        "pinyin": "qie1",
+        "display": "qiē",
+        "phrases": [
+          "切磋",
+          "切削",
+          "切线",
+          "切菜",
+          "切断"
+        ]
+      },
+      {
+        "pinyin": "qie4",
+        "display": "qiè",
+        "phrases": [
+          "切口",
+          "切实",
+          "切身",
+          "切忌",
+          "切齿",
+          "切脉",
+          "切题"
+        ]
+      }
+    ],
+    "沙": [
+      {
+        "pinyin": "sha1",
+        "display": "shā",
+        "phrases": [
+          "沙土",
+          "沙滩",
+          "沙哑",
+          "沙龙",
+          "沙瓤",
+          "沙眼",
+          "豆沙"
+        ]
+      },
+      {
+        "pinyin": "sha4",
+        "display": "shà",
+        "phrases": [
+          "把米里的沙（shā)子沙（shà)一沙（shà)"
+        ]
+      }
+    ],
+    "伽": [
+      {
+        "pinyin": "qie2",
+        "display": "qié",
+        "phrases": [
+          "伽蓝",
+          "伽南香"
+        ]
+      },
+      {
+        "pinyin": "jia1",
+        "display": "jiā",
+        "phrases": [
+          "伽倻琴"
+        ]
+      },
+      {
+        "pinyin": "ga1",
+        "display": "ɡā",
+        "phrases": [
+          "伽马",
+          "伽马射线"
+        ]
+      }
+    ],
+    "厦": [
+      {
+        "pinyin": "sha4",
+        "display": "shà",
+        "phrases": [
+          "大厦",
+          "广厦",
+          "前楼后厦"
+        ]
+      },
+      {
+        "pinyin": "xia4",
+        "display": "xià",
+        "phrases": [
+          "厦门"
+        ]
+      }
+    ],
+    "煞": [
+      {
+        "pinyin": "sha4",
+        "display": "shà",
+        "phrases": [
+          "煞气",
+          "煞白",
+          "煞费苦心",
+          "煞有介事"
+        ]
+      },
+      {
+        "pinyin": "sha1",
+        "display": "shā",
+        "phrases": [
+          "煞车",
+          "煞尾",
+          "煞笔",
+          "煞风景"
+        ]
+      }
+    ],
+    "茄": [
+      {
+        "pinyin": "qie2",
+        "display": "qié",
+        "phrases": [
+          "茄子",
+          "番茄"
+        ]
+      },
+      {
+        "pinyin": "jia1",
+        "display": "jiā",
+        "phrases": [
+          "雪茄"
+        ]
+      }
+    ],
+    "杉": [
+      {
+        "pinyin": "shan1",
+        "display": "shān",
+        "phrases": [
+          "红杉",
+          "水杉"
+        ]
+      },
+      {
+        "pinyin": "sha1",
+        "display": "shā",
+        "phrases": [
+          "杉篙",
+          "杉木"
+        ]
+      }
+    ],
+    "且": [
+      {
+        "pinyin": "qie4",
+        "display": "qiè",
+        "phrases": [
+          "且慢",
+          "且住",
+          "且走且说",
+          "姓且"
+        ]
+      },
+      {
+        "pinyin": "ju1",
+        "display": "jū",
+        "phrases": [],
+        "note": "（文言助词，相当于“啊”）"
+      }
+    ],
+    "苫": [
+      {
+        "pinyin": "shan1",
+        "display": "shān",
+        "phrases": [
+          "草苫子"
+        ]
+      },
+      {
+        "pinyin": "shan4",
+        "display": "shàn",
+        "phrases": [
+          "苫布",
+          "苫屋草"
+        ]
+      }
+    ],
+    "趄": [
+      {
+        "pinyin": "qie4",
+        "display": "qiè",
+        "phrases": [
+          "趄坡儿",
+          "趄着身子"
+        ]
+      },
+      {
+        "pinyin": "ju1",
+        "display": "jū",
+        "phrases": [
+          "趑趄"
+        ]
+      }
+    ],
+    "扇": [
+      {
+        "pinyin": "shan4",
+        "display": "shàn",
+        "phrases": [
+          "蒲扇",
+          "电扇",
+          "门扇",
+          "隔扇",
+          "两扇窗子"
+        ]
+      },
+      {
+        "pinyin": "shan1",
+        "display": "shān",
+        "phrases": [
+          "扇动",
+          "扇他一耳光"
+        ]
+      }
+    ],
+    "亲": [
+      {
+        "pinyin": "qin1",
+        "display": "qīn",
+        "phrases": [
+          "双亲",
+          "定亲",
+          "表亲",
+          "亲密",
+          "亲眷",
+          "亲信",
+          "亲昵"
+        ]
+      },
+      {
+        "pinyin": "qing4",
+        "display": "qìnɡ",
+        "phrases": [
+          "亲家公",
+          "亲家母"
+        ]
+      }
+    ],
+    "稍": [
+      {
+        "pinyin": "shao1",
+        "display": "shāo",
+        "phrases": [
+          "稍稍",
+          "稍许",
+          "稍微",
+          "稍等"
+        ]
+      },
+      {
+        "pinyin": "shao4",
+        "display": "shào",
+        "phrases": [
+          "稍息"
+        ]
+      }
+    ],
+    "湫": [
+      {
+        "pinyin": "qiu1",
+        "display": "qiū",
+        "phrases": [
+          "大龙湫（瀑布名）"
+        ]
+      },
+      {
+        "pinyin": "jiao3",
+        "display": "jiǎo",
+        "phrases": [
+          "湫隘（低湿狭小）"
+        ]
+      }
+    ],
+    "少": [
+      {
+        "pinyin": "shao3",
+        "display": "shǎo",
+        "phrases": [
+          "少数",
+          "少许",
+          "少陪",
+          "少量",
+          "少时"
+        ]
+      },
+      {
+        "pinyin": "shao4",
+        "display": "shào",
+        "phrases": [
+          "少年",
+          "少女",
+          "少妇",
+          "少壮",
+          "少相",
+          "少不更事"
+        ]
+      }
+    ],
+    "区": [
+      {
+        "pinyin": "qu1",
+        "display": "qū",
+        "phrases": [
+          "区别",
+          "区域",
+          "山区",
+          "区划",
+          "区区"
+        ]
+      },
+      {
+        "pinyin": "ou1",
+        "display": "ōu",
+        "phrases": [
+          "姓区"
+        ]
+      }
+    ],
+    "蛇": [
+      {
+        "pinyin": "she2",
+        "display": "shé",
+        "phrases": [
+          "蛇形",
+          "蛇蝎",
+          "画蛇添足"
+        ]
+      },
+      {
+        "pinyin": "yi2",
+        "display": "yí",
+        "phrases": [
+          "委蛇"
+        ]
+      }
+    ],
+    "曲": [
+      {
+        "pinyin": "qu1",
+        "display": "qū",
+        "phrases": [
+          "曲线",
+          "曲解",
+          "曲折",
+          "曲直",
+          "曲径",
+          "曲肱而枕"
+        ]
+      },
+      {
+        "pinyin": "qu3",
+        "display": "qǔ",
+        "phrases": [
+          "戏曲",
+          "曲艺",
+          "曲子",
+          "曲牌",
+          "曲调",
+          "曲高和寡"
+        ]
+      }
+    ],
+    "舍": [
+      {
+        "pinyin": "she4",
+        "display": "shè",
+        "phrases": [
+          "舍间",
+          "舍亲",
+          "舍利",
+          "宿舍",
+          "退避三舍",
+          "姓舍"
+        ]
+      },
+      {
+        "pinyin": "she3",
+        "display": "shě",
+        "phrases": [
+          "舍弃",
+          "舍身",
+          "舍粥",
+          "施舍",
+          "舍近求远",
+          "舍本逐末"
+        ]
+      }
+    ],
+    "圈": [
+      {
+        "pinyin": "quan1",
+        "display": "quān",
+        "phrases": [
+          "圈子",
+          "圈套",
+          "圈点"
+        ]
+      },
+      {
+        "pinyin": "juan4",
+        "display": "juàn",
+        "phrases": [
+          "圈猪",
+          "圈羊"
+        ]
+      },
+      {
+        "pinyin": "juan1",
+        "display": "juān",
+        "phrases": [
+          "把鸡圈起来"
+        ]
+      }
+    ],
+    "莘": [
+      {
+        "pinyin": "shen1",
+        "display": "shēn",
+        "phrases": [
+          "莘莘学子",
+          "莘县",
+          "姓莘"
+        ]
+      },
+      {
+        "pinyin": "xin1",
+        "display": "xīn",
+        "phrases": [
+          "莘庄（地名）"
+        ]
+      }
+    ],
+    "券": [
+      {
+        "pinyin": "quan4",
+        "display": "quàn",
+        "phrases": [
+          "公债券"
+        ]
+      },
+      {
+        "pinyin": "xuan4",
+        "display": "xuàn",
+        "phrases": [
+          "拱券"
+        ]
+      }
+    ],
+    "省": [
+      {
+        "pinyin": "sheng3",
+        "display": "shěnɡ",
+        "phrases": [
+          "省份",
+          "省会",
+          "省心",
+          "省事",
+          "省钱",
+          "省略"
+        ]
+      },
+      {
+        "pinyin": "xing3",
+        "display": "xǐnɡ",
+        "phrases": [
+          "反省",
+          "猛省",
+          "省悟",
+          "省亲"
+        ]
+      }
+    ],
+    "雀": [
+      {
+        "pinyin": "que4",
+        "display": "què",
+        "phrases": [
+          "麻雀",
+          "雀斑",
+          "雀盲",
+          "欢欣雀跃"
+        ]
+      },
+      {
+        "pinyin": "qiao1",
+        "display": "qiāo",
+        "phrases": [
+          "雀子"
+        ]
+      },
+      {
+        "pinyin": "qiao3",
+        "display": "qiǎo",
+        "phrases": [
+          "雀盲眼",
+          "（口语）家雀儿"
+        ]
+      }
+    ],
+    "盛": [
+      {
+        "pinyin": "sheng4",
+        "display": "shènɡ",
+        "phrases": [
+          "旺盛",
+          "茂盛",
+          "盛典",
+          "盛况",
+          "盛情",
+          "盛行",
+          "盛意"
+        ]
+      },
+      {
+        "pinyin": "cheng2",
+        "display": "chénɡ",
+        "phrases": [
+          "盛饭"
+        ]
+      }
+    ],
+    "什": [
+      {
+        "pinyin": "shi2",
+        "display": "shí",
+        "phrases": [
+          "什物",
+          "什锦"
+        ]
+      },
+      {
+        "pinyin": "shen2",
+        "display": "shén",
+        "phrases": [
+          "什么"
+        ]
+      }
+    ],
+    "阙": [
+      {
+        "pinyin": "que4",
+        "display": "què",
+        "phrases": [
+          "宫阙"
+        ]
+      },
+      {
+        "pinyin": "que1",
+        "display": "quē",
+        "phrases": [
+          "阙如",
+          "阙疑",
+          "姓阙"
+        ]
+      }
+    ],
+    "石": [
+      {
+        "pinyin": "shi2",
+        "display": "shí",
+        "phrases": [
+          "石头",
+          "石砚",
+          "石刻",
+          "石破天惊",
+          "石沉大海"
+        ]
+      },
+      {
+        "pinyin": "dan4",
+        "display": "dàn",
+        "phrases": [
+          "1石是10斗"
+        ]
+      }
+    ],
+    "嚷": [
+      {
+        "pinyin": "rang3",
+        "display": "rǎnɡ",
+        "phrases": [
+          "（大声喊叫）大嚷大叫"
+        ]
+      },
+      {
+        "pinyin": "rang1",
+        "display": "rānɡ",
+        "phrases": [
+          "（吵闹；声张）嚷嚷"
+        ]
+      }
+    ],
+    "识": [
+      {
+        "pinyin": "shi2",
+        "display": "shí",
+        "phrases": [
+          "识货",
+          "识别",
+          "识荆",
+          "识趣",
+          "识相",
+          "常识",
+          "卓识"
+        ]
+      },
+      {
+        "pinyin": "zhi4",
+        "display": "zhì",
+        "phrases": [
+          "款识",
+          "博闻强识"
+        ]
+      }
+    ],
+    "任": [
+      {
+        "pinyin": "ren4",
+        "display": "rèn",
+        "phrases": [
+          "委任",
+          "放任",
+          "任何",
+          "任命",
+          "任凭",
+          "任重道远"
+        ]
+      },
+      {
+        "pinyin": "ren2",
+        "display": "rén",
+        "phrases": [
+          "任县",
+          "任丘",
+          "姓任"
+        ]
+      }
+    ],
+    "食": [
+      {
+        "pinyin": "shi2",
+        "display": "shí",
+        "phrases": [
+          "食物",
+          "食言",
+          "食指",
+          "日食",
+          "食欲",
+          "食古不化"
+        ]
+      },
+      {
+        "pinyin": "si4",
+        "display": "sì",
+        "phrases": [
+          "（拿东西给人吃）"
+        ]
+      }
+    ],
+    "撒": [
+      {
+        "pinyin": "sa1",
+        "display": "sā",
+        "phrases": [
+          "撒谎",
+          "撒欢",
+          "撒娇",
+          "撒泼",
+          "撒气",
+          "撒赖",
+          "撒手锏"
+        ]
+      },
+      {
+        "pinyin": "sa3",
+        "display": "sǎ",
+        "phrases": [
+          "撒种",
+          "撒落",
+          "撒播",
+          "姓撒"
+        ]
+      }
+    ],
+    "熟": [
+      {
+        "pinyin": "shu2",
+        "display": "shú",
+        "phrases": [
+          "熟练",
+          "熟稔",
+          "熟睡",
+          "熟视无睹",
+          "深思熟虑"
+        ]
+      },
+      {
+        "pinyin": "shou2",
+        "display": "shóu",
+        "phrases": [],
+        "note": "（义同上，用于口语）"
+      }
+    ],
+    "塞": [
+      {
+        "pinyin": "sai1",
+        "display": "sāi",
+        "phrases": [
+          "塞子",
+          "塞住",
+          "瓶塞"
+        ]
+      },
+      {
+        "pinyin": "se4",
+        "display": "sè",
+        "phrases": [
+          "闭塞",
+          "堵塞",
+          "阻塞",
+          "塞责",
+          "闭目塞听"
+        ]
+      },
+      {
+        "pinyin": "sai4",
+        "display": "sài",
+        "phrases": [
+          "边塞",
+          "要塞",
+          "塞外",
+          "塞翁失马"
+        ]
+      }
+    ],
+    "属": [
+      {
+        "pinyin": "shu3",
+        "display": "shǔ",
+        "phrases": [
+          "金属",
+          "隶属",
+          "亲属",
+          "属相",
+          "属性",
+          "属于",
+          "属实"
+        ]
+      },
+      {
+        "pinyin": "zhu3",
+        "display": "zhǔ",
+        "phrases": [
+          "属意",
+          "属望",
+          "属文",
+          "前后相属"
+        ]
+      }
+    ],
+    "散": [
+      {
+        "pinyin": "san4",
+        "display": "sàn",
+        "phrases": [
+          "散步",
+          "散布",
+          "散闷",
+          "散失",
+          "散发",
+          "散心",
+          "散伙"
+        ]
+      },
+      {
+        "pinyin": "san3",
+        "display": "sǎn",
+        "phrases": [
+          "散文",
+          "散曲",
+          "散漫",
+          "散体",
+          "散套",
+          "散兵游勇"
+        ]
+      }
+    ],
+    "术": [
+      {
+        "pinyin": "shu4",
+        "display": "shù",
+        "phrases": [
+          "术语",
+          "艺术",
+          "医术",
+          "武术",
+          "技术",
+          "战术",
+          "学术"
+        ]
+      },
+      {
+        "pinyin": "zhu2",
+        "display": "zhú",
+        "phrases": [
+          "白术",
+          "苍术"
+        ]
+      }
+    ],
+    "丧": [
+      {
+        "pinyin": "sang1",
+        "display": "sānɡ",
+        "phrases": [
+          "丧葬",
+          "丧服",
+          "丧钟",
+          "治丧"
+        ]
+      },
+      {
+        "pinyin": "sang4",
+        "display": "sànɡ",
+        "phrases": [
+          "丧失",
+          "丧气",
+          "丧权",
+          "丧魂落魄",
+          "丧心病狂"
+        ]
+      }
+    ],
+    "数": [
+      {
+        "pinyin": "shu4",
+        "display": "shù",
+        "phrases": [
+          "数词",
+          "数额",
+          "数码",
+          "数据",
+          "序数",
+          "基数",
+          "次数"
+        ]
+      },
+      {
+        "pinyin": "shu3",
+        "display": "shǔ",
+        "phrases": [
+          "数伏",
+          "数九",
+          "数落",
+          "数说",
+          "数典忘祖"
+        ]
+      },
+      {
+        "pinyin": "shuo4",
+        "display": "shuò",
+        "phrases": [
+          "频数",
+          "数见不鲜"
+        ]
+      }
+    ],
+    "臊": [
+      {
+        "pinyin": "sao1",
+        "display": "sāo",
+        "phrases": [
+          "臊气",
+          "腥臊",
+          "狐臊"
+        ]
+      },
+      {
+        "pinyin": "sao4",
+        "display": "sào",
+        "phrases": [
+          "害臊",
+          "臊子"
+        ]
+      }
+    ],
+    "刷": [
+      {
+        "pinyin": "shua1",
+        "display": "shuā",
+        "phrases": [
+          "刷新",
+          "刷洗",
+          "刷牙",
+          "刷鞋"
+        ]
+      },
+      {
+        "pinyin": "shua4",
+        "display": "shuà",
+        "phrases": [
+          "脸色刷白"
+        ]
+      }
+    ],
+    "挑": [
+      {
+        "pinyin": "tiao3",
+        "display": "tiǎo",
+        "phrases": [
+          "挑拨",
+          "挑逗",
+          "挑动",
+          "挑唆",
+          "挑战",
+          "挑衅"
+        ]
+      },
+      {
+        "pinyin": "tiao1",
+        "display": "tiāo",
+        "phrases": [
+          "挑水",
+          "挑剔",
+          "挑选",
+          "挑刺儿"
+        ]
+      }
+    ],
+    "率": [
+      {
+        "pinyin": "shuai4",
+        "display": "shuài",
+        "phrases": [
+          "轻率",
+          "表率",
+          "坦率",
+          "率先",
+          "率真",
+          "率由旧章"
+        ]
+      },
+      {
+        "pinyin": "lv4",
+        "display": "lǜ",
+        "phrases": [
+          "效率",
+          "速率",
+          "税率",
+          "出勤率"
+        ]
+      }
+    ],
+    "调": [
+      {
+        "pinyin": "tiao2",
+        "display": "tiáo",
+        "phrases": [
+          "调配",
+          "调味",
+          "调解",
+          "调皮",
+          "调侃",
+          "调戏",
+          "调养"
+        ]
+      },
+      {
+        "pinyin": "diao4",
+        "display": "diào",
+        "phrases": [
+          "调配",
+          "调换",
+          "调遣",
+          "调度",
+          "调集",
+          "调拨",
+          "曲调"
+        ]
+      }
+    ],
+    "说": [
+      {
+        "pinyin": "shuo1",
+        "display": "shuō",
+        "phrases": [
+          "说法",
+          "说服",
+          "说辞",
+          "说教",
+          "说情",
+          "说合",
+          "说项"
+        ]
+      },
+      {
+        "pinyin": "shui4",
+        "display": "shuì",
+        "phrases": [
+          "游说"
+        ]
+      },
+      {
+        "pinyin": "yue4",
+        "display": "yuè",
+        "phrases": [
+          "(古同“悦”）"
+        ]
+      }
+    ],
+    "帖": [
+      {
+        "pinyin": "tie4",
+        "display": "tiè",
+        "phrases": [
+          "碑帖",
+          "字帖",
+          "法帖"
+        ]
+      },
+      {
+        "pinyin": "tie3",
+        "display": "tiě",
+        "phrases": [
+          "请帖",
+          "喜帖",
+          "庚帖",
+          "换帖",
+          "帖子"
+        ]
+      },
+      {
+        "pinyin": "tie1",
+        "display": "tiē",
+        "phrases": [
+          "妥帖",
+          "安帖",
+          "帖伏",
+          "俯首帖耳"
+        ]
+      }
+    ],
+    "似": [
+      {
+        "pinyin": "si4",
+        "display": "sì",
+        "phrases": [
+          "相似",
+          "类似",
+          "似乎",
+          "似懂非懂",
+          "一天好似一天"
+        ]
+      },
+      {
+        "pinyin": "shi4",
+        "display": "shì",
+        "phrases": [
+          "似的",
+          "瓢泼似的大雨"
+        ]
+      }
+    ],
+    "通": [
+      {
+        "pinyin": "tong1",
+        "display": "tōnɡ",
+        "phrases": [
+          "通行",
+          "通告",
+          "通商",
+          "通窍",
+          "通融",
+          "通宵",
+          "姓通"
+        ]
+      },
+      {
+        "pinyin": "tong4",
+        "display": "tònɡ",
+        "phrases": [
+          "（量词）说了一通",
+          "打了三通鼓"
+        ]
+      }
+    ],
+    "伺": [
+      {
+        "pinyin": "si4",
+        "display": "sì",
+        "phrases": [
+          "窥伺",
+          "伺机",
+          "伺隙"
+        ]
+      },
+      {
+        "pinyin": "ci4",
+        "display": "cì",
+        "phrases": [
+          "伺候"
+        ]
+      }
+    ],
+    "同": [
+      {
+        "pinyin": "tong2",
+        "display": "tónɡ",
+        "phrases": [
+          "同等",
+          "同感",
+          "同侪",
+          "同道",
+          "同窗",
+          "同盟",
+          "同喜"
+        ]
+      },
+      {
+        "pinyin": "tong4",
+        "display": "tònɡ",
+        "phrases": [
+          "胡同"
+        ]
+      }
+    ],
+    "俟": [
+      {
+        "pinyin": "si4",
+        "display": "sì",
+        "phrases": [
+          "俟机",
+          "俟机进攻"
+        ]
+      },
+      {
+        "pinyin": "qi2",
+        "display": "qí",
+        "phrases": [
+          "万（mò)俟"
+        ]
+      }
+    ],
+    "吐": [
+      {
+        "pinyin": "tu3",
+        "display": "tǔ",
+        "phrases": [
+          "吐痰",
+          "吐露",
+          "吐口",
+          "吐气",
+          "谈吐",
+          "坚不吐实"
+        ]
+      },
+      {
+        "pinyin": "tu4",
+        "display": "tù",
+        "phrases": [
+          "吐沫",
+          "吐血",
+          "呕吐"
+        ]
+      }
+    ],
+    "忪": [
+      {
+        "pinyin": "song1",
+        "display": "sōnɡ",
+        "phrases": [
+          "惺忪"
+        ]
+      },
+      {
+        "pinyin": "zhong1",
+        "display": "zhōnɡ",
+        "phrases": [
+          "怔忪"
+        ]
+      }
+    ],
+    "屯": [
+      {
+        "pinyin": "tun2",
+        "display": "tún",
+        "phrases": [
+          "屯兵",
+          "屯粮",
+          "屯垦",
+          "屯聚",
+          "屯落"
+        ]
+      },
+      {
+        "pinyin": "zhun1",
+        "display": "zhūn",
+        "phrases": [
+          "屯邅（同“迍邅”）"
+        ]
+      }
+    ],
+    "宿": [
+      {
+        "pinyin": "su4",
+        "display": "sù",
+        "phrases": [
+          "住宿",
+          "露宿",
+          "宿舍",
+          "宿营",
+          "宿怨",
+          "宿弊",
+          "姓宿"
+        ]
+      },
+      {
+        "pinyin": "xiu3",
+        "display": "xiǔ",
+        "phrases": [
+          "住了一宿",
+          "三天两宿"
+        ]
+      },
+      {
+        "pinyin": "xiu4",
+        "display": "xiù",
+        "phrases": [
+          "星宿",
+          "二十八宿"
+        ]
+      }
+    ],
+    "褪": [
+      {
+        "pinyin": "tun4",
+        "display": "tùn",
+        "phrases": [
+          "褪去",
+          "褪套儿",
+          "褪着手"
+        ]
+      },
+      {
+        "pinyin": "tui4",
+        "display": "tùi",
+        "phrases": [
+          "褪色",
+          "褪毛"
+        ]
+      }
+    ],
+    "驮": [
+      {
+        "pinyin": "tuo2",
+        "display": "tuó",
+        "phrases": [
+          "驮运"
+        ]
+      },
+      {
+        "pinyin": "duo4",
+        "display": "duò",
+        "phrases": [
+          "（牲口驮着的货物）驮子",
+          "一驮货"
+        ]
+      }
+    ],
+    "遂": [
+      {
+        "pinyin": "sui2",
+        "display": "suí",
+        "phrases": [
+          "半身不遂"
+        ]
+      },
+      {
+        "pinyin": "sui4",
+        "display": "suì",
+        "phrases": [
+          "遂心",
+          "遂意",
+          "遂愿",
+          "遂止",
+          "未遂",
+          "所谋不遂"
+        ]
+      }
+    ],
+    "拓": [
+      {
+        "pinyin": "tuo4",
+        "display": "tuò",
+        "phrases": [
+          "拓荒",
+          "拓宽",
+          "开拓",
+          "落拓"
+        ]
+      },
+      {
+        "pinyin": "ta4",
+        "display": "tà",
+        "phrases": [
+          "拓片",
+          "拓本",
+          "拓印"
+        ]
+      }
+    ],
+    "莎": [
+      {
+        "pinyin": "suo1",
+        "display": "suō",
+        "phrases": [],
+        "note": "莎草（地下的块茎叫香附子，可入药）"
+      },
+      {
+        "pinyin": "sha1",
+        "display": "shā",
+        "phrases": [
+          "（多用于人名）莎车（新疆一地名）"
+        ]
+      }
+    ],
+    "瓦": [
+      {
+        "pinyin": "wa3",
+        "display": "wǎ",
+        "phrases": [
+          "瓦解",
+          "瓦砾",
+          "瓦楞",
+          "瓦斯",
+          "瓦特",
+          "瓦盆",
+          "瓦当"
+        ]
+      },
+      {
+        "pinyin": "wa4",
+        "display": "wà",
+        "phrases": [
+          "瓦刀",
+          "瓦匠"
+        ]
+      }
+    ],
+    "缩": [
+      {
+        "pinyin": "suo1",
+        "display": "suō",
+        "phrases": [
+          "紧缩",
+          "萎缩",
+          "畏缩",
+          "缩影",
+          "缩水",
+          "缩写"
+        ]
+      },
+      {
+        "pinyin": "su4",
+        "display": "sù",
+        "phrases": [],
+        "note": "缩砂密（种子可入药，即砂仁）"
+      }
+    ],
+    "崴": [
+      {
+        "pinyin": "wai3",
+        "display": "wǎi",
+        "phrases": [
+          "崴子",
+          "海参崴",
+          "脚崴了"
+        ]
+      },
+      {
+        "pinyin": "wei1",
+        "display": "wēi",
+        "phrases": [
+          "崴嵬"
+        ]
+      }
+    ],
+    "踏": [
+      {
+        "pinyin": "ta4",
+        "display": "tà",
+        "phrases": [
+          "踏勘",
+          "踏青",
+          "踏步",
+          "践踏",
+          "脚踏实地"
+        ]
+      },
+      {
+        "pinyin": "ta1",
+        "display": "tā",
+        "phrases": [
+          "踏实"
+        ]
+      }
+    ],
+    "万": [
+      {
+        "pinyin": "wan4",
+        "display": "wàn",
+        "phrases": [
+          "万物",
+          "万全",
+          "万般",
+          "万籁",
+          "万象",
+          "万千",
+          "姓万"
+        ]
+      },
+      {
+        "pinyin": "mo4",
+        "display": "mò",
+        "phrases": [
+          "万俟(mòqí）"
+        ]
+      }
+    ],
+    "沓": [
+      {
+        "pinyin": "ta4",
+        "display": "tà",
+        "phrases": [
+          "沓杂",
+          "纷至沓来"
+        ]
+      },
+      {
+        "pinyin": "da2",
+        "display": "dá",
+        "phrases": [
+          "一沓子"
+        ]
+      }
+    ],
+    "王": [
+      {
+        "pinyin": "wang2",
+        "display": "wánɡ",
+        "phrases": [
+          "帝王",
+          "蜂王",
+          "王牌",
+          "王国",
+          "王道",
+          "王朝",
+          "姓王"
+        ]
+      },
+      {
+        "pinyin": "wang4",
+        "display": "wànɡ",
+        "phrases": [
+          "王此大邦",
+          "以德行仁者王"
+        ]
+      }
+    ],
+    "嗒": [
+      {
+        "pinyin": "ta4",
+        "display": "tà",
+        "phrases": [
+          "嗒丧",
+          "嗒然若失"
+        ]
+      },
+      {
+        "pinyin": "da1",
+        "display": "dā",
+        "phrases": [
+          "（拟声词）嗒嗒"
+        ]
+      }
+    ],
+    "为": [
+      {
+        "pinyin": "wei2",
+        "display": "wéi",
+        "phrases": [
+          "为人",
+          "为难",
+          "为止",
+          "为期",
+          "为数",
+          "为富不仁"
+        ]
+      },
+      {
+        "pinyin": "wei4",
+        "display": "wèi",
+        "phrases": [
+          "为了",
+          "为着",
+          "为何",
+          "为虎傅翼",
+          "为渊驱鱼"
+        ]
+      }
+    ],
+    "苔": [
+      {
+        "pinyin": "tai2",
+        "display": "tái",
+        "phrases": [
+          "苍苔",
+          "苔藓"
+        ]
+      },
+      {
+        "pinyin": "tai1",
+        "display": "tāi",
+        "phrases": [
+          "舌苔"
+        ]
+      }
+    ],
+    "圩": [
+      {
+        "pinyin": "wei2",
+        "display": "wéi",
+        "phrases": [
+          "圩田",
+          "圩子",
+          "圩垸"
+        ]
+      },
+      {
+        "pinyin": "xu1",
+        "display": "xū",
+        "phrases": [
+          "（湘赣闽粤等地区称集市）圩市",
+          "赶圩"
+        ]
+      }
+    ],
+    "覃": [
+      {
+        "pinyin": "tan2",
+        "display": "tán",
+        "phrases": [
+          "覃思",
+          "葛之覃兮",
+          "姓覃"
+        ]
+      },
+      {
+        "pinyin": "qin2",
+        "display": "qín",
+        "phrases": [
+          "姓覃"
+        ]
+      }
+    ],
+    "尾": [
+      {
+        "pinyin": "wei3",
+        "display": "wěi",
+        "phrases": [
+          "尾巴",
+          "尾声",
+          "尾随",
+          "尾数",
+          "一尾鱼",
+          "尾大不掉"
+        ]
+      },
+      {
+        "pinyin": "yi3",
+        "display": "yǐ",
+        "phrases": [
+          "马尾罗",
+          "三尾儿"
+        ]
+      }
+    ],
+    "汤": [
+      {
+        "pinyin": "tang1",
+        "display": "tānɡ",
+        "phrases": [
+          "菜汤",
+          "米汤",
+          "鸡汤",
+          "汤池",
+          "汤泉",
+          "赴汤蹈火"
+        ]
+      },
+      {
+        "pinyin": "shang1",
+        "display": "shānɡ",
+        "phrases": [
+          "（水流大而急）浩浩汤汤"
+        ]
+      }
+    ],
+    "委": [
+      {
+        "pinyin": "wei3",
+        "display": "wěi",
+        "phrases": [
+          "委派",
+          "委靡",
+          "委屈",
+          "委任",
+          "委琐",
+          "委实",
+          "委婉"
+        ]
+      },
+      {
+        "pinyin": "wei1",
+        "display": "wēi",
+        "phrases": [
+          "委蛇（同“逶迤”）虚与委蛇"
+        ]
+      }
+    ],
+    "趟": [
+      {
+        "pinyin": "tang1",
+        "display": "tānɡ",
+        "phrases": [
+          "趟地",
+          "趟水过河"
+        ]
+      },
+      {
+        "pinyin": "tang4",
+        "display": "tànɡ",
+        "phrases": [
+          "走一趟",
+          "半趟街",
+          "不跟趟"
+        ]
+      }
+    ],
+    "尉": [
+      {
+        "pinyin": "wei4",
+        "display": "wèi",
+        "phrases": [
+          "上尉",
+          "太尉",
+          "尉氏"
+        ]
+      },
+      {
+        "pinyin": "yu4",
+        "display": "yù",
+        "phrases": [
+          "尉迟（复姓）尉犁（新疆一地名）"
+        ]
+      }
+    ],
+    "倘": [
+      {
+        "pinyin": "tang3",
+        "display": "tǎnɡ",
+        "phrases": [
+          "倘若",
+          "倘然",
+          "倘使",
+          "倘来之物"
+        ]
+      },
+      {
+        "pinyin": "chang2",
+        "display": "chánɡ",
+        "phrases": [
+          "倘佯（旧同“徜徉”）"
+        ]
+      }
+    ],
+    "蔚": [
+      {
+        "pinyin": "wei4",
+        "display": "wèi",
+        "phrases": [
+          "蔚蓝",
+          "蔚然",
+          "蔚为大观",
+          "云蒸霞蔚"
+        ]
+      },
+      {
+        "pinyin": "yu4",
+        "display": "yù",
+        "phrases": [
+          "蔚县",
+          "姓蔚"
+        ]
+      }
+    ],
+    "叨": [
+      {
+        "pinyin": "tao1",
+        "display": "tāo",
+        "phrases": [
+          "叨光",
+          "叨教",
+          "叨扰"
+        ]
+      },
+      {
+        "pinyin": "dao1",
+        "display": "dāo",
+        "phrases": [
+          "叨叨",
+          "叨唠",
+          "叨登"
+        ]
+      }
+    ],
+    "纹": [
+      {
+        "pinyin": "wen2",
+        "display": "wén",
+        "phrases": [
+          "纹理",
+          "花纹",
+          "指纹",
+          "水纹",
+          "纹丝不动"
+        ]
+      },
+      {
+        "pinyin": "wen4",
+        "display": "wèn",
+        "phrases": [
+          "裂纹",
+          "（同“璺”）"
+        ]
+      }
+    ],
+    "忒": [
+      {
+        "pinyin": "te4",
+        "display": "tè",
+        "phrases": [
+          "差忒"
+        ]
+      },
+      {
+        "pinyin": "tui1",
+        "display": "tuī",
+        "phrases": [
+          "风忒大",
+          "路忒滑"
+        ]
+      }
+    ],
+    "涡": [
+      {
+        "pinyin": "wo1",
+        "display": "wō",
+        "phrases": [
+          "涡流",
+          "漩涡",
+          "水涡"
+        ]
+      },
+      {
+        "pinyin": "guo1",
+        "display": "ɡuō",
+        "phrases": [
+          "涡河（水名）涡阳（地名）"
+        ]
+      }
+    ],
+    "提": [
+      {
+        "pinyin": "ti2",
+        "display": "tí",
+        "phrases": [
+          "提倡",
+          "提高",
+          "提前",
+          "提审",
+          "提货",
+          "提醒",
+          "姓提"
+        ]
+      },
+      {
+        "pinyin": "di1",
+        "display": "dī",
+        "phrases": [
+          "提防",
+          "提溜"
+        ]
+      }
+    ],
+    "乌": [
+      {
+        "pinyin": "wu1",
+        "display": "wū",
+        "phrases": [
+          "乌鸦",
+          "乌黑",
+          "乌云",
+          "乌有",
+          "乌托邦",
+          "乌纱帽"
+        ]
+      },
+      {
+        "pinyin": "wu4",
+        "display": "wù",
+        "phrases": [
+          "乌拉（同“靰鞡”）乌拉草"
+        ]
+      }
+    ],
+    "体": [
+      {
+        "pinyin": "ti3",
+        "display": "tǐ",
+        "phrases": [
+          "肢体",
+          "液体",
+          "得体",
+          "文体",
+          "体察",
+          "体裁",
+          "体恤"
+        ]
+      },
+      {
+        "pinyin": "ti1",
+        "display": "tī",
+        "phrases": [
+          "体己",
+          "体己话",
+          "体己钱"
+        ]
+      }
+    ],
+    "吓": [
+      {
+        "pinyin": "xia4",
+        "display": "xià",
+        "phrases": [
+          "吓唬",
+          "吓了一跳"
+        ]
+      },
+      {
+        "pinyin": "he4",
+        "display": "hè",
+        "phrases": [
+          "恐吓",
+          "恫吓",
+          "威吓"
+        ]
+      }
+    ],
+    "鲜": [
+      {
+        "pinyin": "xian1",
+        "display": "xiān",
+        "phrases": [
+          "鲜明",
+          "鲜艳",
+          "鲜美",
+          "鲜货",
+          "鲜活",
+          "鲜卑",
+          "姓鲜于"
+        ]
+      },
+      {
+        "pinyin": "xian3",
+        "display": "xiǎn",
+        "phrases": [
+          "鲜见",
+          "鲜有",
+          "鲜为人知"
+        ]
+      }
+    ],
+    "要": [
+      {
+        "pinyin": "yao4",
+        "display": "yào",
+        "phrases": [
+          "主要",
+          "紧要",
+          "要点",
+          "要害",
+          "要冲",
+          "要领",
+          "要素"
+        ]
+      },
+      {
+        "pinyin": "yao1",
+        "display": "yāo",
+        "phrases": [
+          "要求",
+          "要挟",
+          "姓要"
+        ]
+      }
+    ],
+    "相": [
+      {
+        "pinyin": "xiang1",
+        "display": "xiānɡ",
+        "phrases": [
+          "相助",
+          "相识",
+          "相中",
+          "相称",
+          "相持",
+          "相对",
+          "相映"
+        ]
+      },
+      {
+        "pinyin": "xiang4",
+        "display": "xiànɡ",
+        "phrases": [
+          "相公",
+          "相貌",
+          "相机",
+          "相声",
+          "相面",
+          "姓相"
+        ]
+      }
+    ],
+    "掖": [
+      {
+        "pinyin": "ye4",
+        "display": "yè",
+        "phrases": [
+          "扶掖",
+          "奖掖",
+          "掖县"
+        ]
+      },
+      {
+        "pinyin": "ye1",
+        "display": "yē",
+        "phrases": [
+          "掖塞",
+          "掖进去"
+        ]
+      }
+    ],
+    "巷": [
+      {
+        "pinyin": "xiang4",
+        "display": "xiànɡ",
+        "phrases": [
+          "街头巷尾",
+          "大街小巷"
+        ]
+      },
+      {
+        "pinyin": "hang4",
+        "display": "hànɡ",
+        "phrases": [
+          "巷道"
+        ]
+      }
+    ],
+    "衣": [
+      {
+        "pinyin": "yi1",
+        "display": "yī",
+        "phrases": [
+          "衣服",
+          "衣钵",
+          "衣着",
+          "糖衣炮弹",
+          "衣冠禽兽",
+          "姓衣"
+        ]
+      },
+      {
+        "pinyin": "yi4",
+        "display": "yì",
+        "phrases": [],
+        "note": "衣（yì,动词，即穿）布衣"
+      }
+    ],
+    "削": [
+      {
+        "pinyin": "xiao1",
+        "display": "xiāo",
+        "phrases": [
+          "削皮",
+          "削铅笔"
+        ]
+      },
+      {
+        "pinyin": "xue1",
+        "display": "xuē",
+        "phrases": [
+          "削减",
+          "削弱",
+          "削壁",
+          "削发",
+          "削足适履"
+        ]
+      }
+    ],
+    "遗憾": [
+      {
+        "pinyin": "yi2",
+        "display": "yí",
+        "phrases": [
+          "遗传",
+          "遗憾",
+          "遗迹",
+          "遗失",
+          "遗弃",
+          "遗老遗少"
+        ]
+      },
+      {
+        "pinyin": "wei4",
+        "display": "wèi",
+        "phrases": [
+          "遗赠",
+          "遗之千金"
+        ]
+      }
+    ],
+    "肖": [
+      {
+        "pinyin": "xiao4",
+        "display": "xiào",
+        "phrases": [
+          "肖像",
+          "惟妙惟肖",
+          "神情毕肖",
+          "子肖其父"
+        ]
+      },
+      {
+        "pinyin": "xiao1",
+        "display": "xiāo",
+        "phrases": [
+          "“萧”俗作肖"
+        ]
+      }
+    ],
+    "迤": [
+      {
+        "pinyin": "yi3",
+        "display": "yǐ",
+        "phrases": [
+          "迤逦而行"
+        ]
+      },
+      {
+        "pinyin": "yi2",
+        "display": "yí",
+        "phrases": [
+          "逶迤"
+        ]
+      }
+    ],
+    "校": [
+      {
+        "pinyin": "xiao4",
+        "display": "xiào",
+        "phrases": [
+          "校友",
+          "校官"
+        ]
+      },
+      {
+        "pinyin": "jiao4",
+        "display": "jiào",
+        "phrases": [
+          "校对",
+          "校订",
+          "校勘",
+          "校正",
+          "校准",
+          "校阅"
+        ]
+      }
+    ],
+    "殷": [
+      {
+        "pinyin": "yin1",
+        "display": "yīn",
+        "phrases": [
+          "殷勤",
+          "殷切",
+          "殷实",
+          "殷忧",
+          "情意甚殷",
+          "姓殷"
+        ]
+      },
+      {
+        "pinyin": "yan1",
+        "display": "yān",
+        "phrases": [
+          "殷红",
+          "朱殷"
+        ]
+      }
+    ],
+    "邪": [
+      {
+        "pinyin": "xie2",
+        "display": "xié",
+        "phrases": [
+          "邪恶",
+          "邪路",
+          "邪道",
+          "邪说",
+          "邪祟",
+          "邪风",
+          "邪寒"
+        ]
+      },
+      {
+        "pinyin": "ye2",
+        "display": "yé",
+        "phrases": [
+          "莫邪"
+        ]
+      }
+    ],
+    "饮": [
+      {
+        "pinyin": "yin3",
+        "display": "yǐn",
+        "phrases": [
+          "饮食",
+          "饮恨",
+          "饮弹",
+          "饮泣",
+          "饮片",
+          "饮鸩止渴"
+        ]
+      },
+      {
+        "pinyin": "yin4",
+        "display": "yìn",
+        "phrases": [
+          "饮马",
+          "饮牲口"
+        ]
+      }
+    ],
+    "兴": [
+      {
+        "pinyin": "xing1",
+        "display": "xīnɡ",
+        "phrases": [
+          "兴奋",
+          "兴盛",
+          "兴起",
+          "兴师",
+          "兴许",
+          "兴旺",
+          "兴叹"
+        ]
+      },
+      {
+        "pinyin": "xing4",
+        "display": "xìnɡ",
+        "phrases": [
+          "兴趣",
+          "兴致",
+          "兴会",
+          "兴味",
+          "豪兴",
+          "助兴",
+          "败兴"
+        ]
+      }
+    ],
+    "应": [
+      {
+        "pinyin": "ying1",
+        "display": "yīnɡ",
+        "phrases": [
+          "应该",
+          "应声",
+          "应许",
+          "应允",
+          "应有尽有",
+          "姓应"
+        ]
+      },
+      {
+        "pinyin": "ying4",
+        "display": "yìnɡ",
+        "phrases": [
+          "答应",
+          "呼应",
+          "应变",
+          "应承",
+          "应付",
+          "应酬",
+          "应验"
+        ]
+      }
+    ],
+    "行": [
+      {
+        "pinyin": "xing2",
+        "display": "xínɡ",
+        "phrases": [
+          "行程",
+          "行迹",
+          "行将",
+          "行径",
+          "行囊",
+          "行头",
+          "行踪"
+        ]
+      },
+      {
+        "pinyin": "hang2",
+        "display": "hánɡ",
+        "phrases": [
+          "行当",
+          "行话",
+          "行家",
+          "行市",
+          "行列",
+          "行情",
+          "同行"
+        ]
+      }
+    ],
+    "佣": [
+      {
+        "pinyin": "yong1",
+        "display": "yōnɡ",
+        "phrases": [
+          "雇佣",
+          "女佣",
+          "佣工"
+        ]
+      },
+      {
+        "pinyin": "yong4",
+        "display": "yònɡ",
+        "phrases": [
+          "佣钱",
+          "佣金"
+        ]
+      }
+    ],
+    "荥": [
+      {
+        "pinyin": "xing2",
+        "display": "xínɡ",
+        "phrases": [
+          "荥阳（地名）"
+        ]
+      },
+      {
+        "pinyin": "ying2",
+        "display": "yínɡ",
+        "phrases": [
+          "荥经（地名）"
+        ]
+      }
+    ],
+    "喁": [
+      {
+        "pinyin": "yong2",
+        "display": "yónɡ",
+        "phrases": [
+          "喁喁（众人景仰归向的样子）"
+        ]
+      },
+      {
+        "pinyin": "yu2",
+        "display": "yú",
+        "phrases": [
+          "喁喁私语"
+        ]
+      }
+    ],
+    "吁": [
+      {
+        "pinyin": "xu1",
+        "display": "xū",
+        "phrases": [
+          "长吁短叹",
+          "气喘吁吁"
+        ]
+      },
+      {
+        "pinyin": "yu4",
+        "display": "yù",
+        "phrases": [
+          "呼吁",
+          "吁请"
+        ]
+      }
+    ],
+    "柚": [
+      {
+        "pinyin": "you2",
+        "display": "yóu",
+        "phrases": [
+          "柚木"
+        ]
+      },
+      {
+        "pinyin": "you4",
+        "display": "yòu",
+        "phrases": [
+          "柚子"
+        ]
+      }
+    ],
+    "畜": [
+      {
+        "pinyin": "xu4",
+        "display": "xù",
+        "phrases": [
+          "畜产",
+          "畜牧",
+          "畜养"
+        ]
+      },
+      {
+        "pinyin": "chu4",
+        "display": "chù",
+        "phrases": [
+          "牲畜",
+          "六畜"
+        ]
+      }
+    ],
+    "予": [
+      {
+        "pinyin": "yu2",
+        "display": "yú",
+        "phrases": [],
+        "note": "（文言代词，我）予取予求"
+      },
+      {
+        "pinyin": "yu3",
+        "display": "yǔ",
+        "phrases": [
+          "予以",
+          "授予",
+          "免予",
+          "给予",
+          "予人口实"
+        ]
+      }
+    ],
+    "旋": [
+      {
+        "pinyin": "xuan2",
+        "display": "xuán",
+        "phrases": [
+          "旋律",
+          "旋转",
+          "旋里",
+          "螺旋",
+          "回旋",
+          "凯旋",
+          "姓旋"
+        ]
+      },
+      {
+        "pinyin": "xuan4",
+        "display": "xuàn",
+        "phrases": [
+          "旋风",
+          "旋子",
+          "旋床"
+        ]
+      }
+    ],
+    "与": [
+      {
+        "pinyin": "yu3",
+        "display": "yǔ",
+        "phrases": [
+          "赠与",
+          "相与",
+          "与其",
+          "与虎谋皮",
+          "与人为善"
+        ]
+      },
+      {
+        "pinyin": "yu4",
+        "display": "yù",
+        "phrases": [
+          "与会",
+          "与闻",
+          "参与"
+        ]
+      },
+      {
+        "pinyin": "yu2",
+        "display": "yú",
+        "phrases": [
+          "（同“欤”）"
+        ]
+      }
+    ],
+    "血": [
+      {
+        "pinyin": "xue4",
+        "display": "xuè",
+        "phrases": [
+          "血液",
+          "血本",
+          "血汗",
+          "血肉",
+          "血性",
+          "血缘",
+          "血债"
+        ]
+      },
+      {
+        "pinyin": "xie3",
+        "display": "xiě",
+        "phrases": [
+          "（口语常用）鸡血",
+          "血淋淋"
+        ]
+      }
+    ],
+    "雨": [
+      {
+        "pinyin": "yu3",
+        "display": "yǔ",
+        "phrases": [
+          "雨露",
+          "雨水",
+          "雨量",
+          "雨幕",
+          "雨后春笋"
+        ]
+      },
+      {
+        "pinyin": "yu4",
+        "display": "yù",
+        "phrases": [],
+        "note": "（动词，下）雨雪"
+      }
+    ],
+    "熏": [
+      {
+        "pinyin": "xun1",
+        "display": "xūn",
+        "phrases": [
+          "熏风",
+          "熏染",
+          "熏陶",
+          "熏沐",
+          "熏肉",
+          "熏鱼",
+          "熏蒸"
+        ]
+      },
+      {
+        "pinyin": "xun4",
+        "display": "xùn",
+        "phrases": [
+          "被煤气熏着了"
+        ]
+      }
+    ],
+    "语": [
+      {
+        "pinyin": "yu3",
+        "display": "yǔ",
+        "phrases": [
+          "成语",
+          "旗语",
+          "手语",
+          "语病",
+          "语法",
+          "语重心长"
+        ]
+      },
+      {
+        "pinyin": "yu4",
+        "display": "yù",
+        "phrases": [
+          "不以语人"
+        ]
+      }
+    ],
+    "压": [
+      {
+        "pinyin": "ya1",
+        "display": "yā",
+        "phrases": [
+          "压宝",
+          "压迫",
+          "压强",
+          "压缩",
+          "压榨",
+          "压制",
+          "压境"
+        ]
+      },
+      {
+        "pinyin": "ya4",
+        "display": "yà",
+        "phrases": [
+          "压根儿"
+        ]
+      }
+    ],
+    "芫": [
+      {
+        "pinyin": "yuan2",
+        "display": "yuán",
+        "phrases": [
+          "芫花"
+        ]
+      },
+      {
+        "pinyin": "yan2",
+        "display": "yán",
+        "phrases": [],
+        "note": "芫荽（俗称“香菜”，又叫“胡荽”）"
+      }
+    ],
+    "哑": [
+      {
+        "pinyin": "ya3",
+        "display": "yǎ",
+        "phrases": [
+          "哑然",
+          "哑巴",
+          "哑铃",
+          "哑剧",
+          "哑谜",
+          "沙哑",
+          "聋哑"
+        ]
+      },
+      {
+        "pinyin": "ya1",
+        "display": "yā",
+        "phrases": [
+          "哑哑学语"
+        ]
+      }
+    ],
+    "员": [
+      {
+        "pinyin": "yuan2",
+        "display": "yuán",
+        "phrases": [
+          "学员",
+          "演员",
+          "职员",
+          "会员"
+        ]
+      },
+      {
+        "pinyin": "yun2",
+        "display": "yún",
+        "phrases": [
+          "伍员（伍子胥）"
+        ]
+      },
+      {
+        "pinyin": "yun4",
+        "display": "yùn",
+        "phrases": [
+          "姓员"
+        ]
+      }
+    ],
+    "轧": [
+      {
+        "pinyin": "ya4",
+        "display": "yà",
+        "phrases": [
+          "倾轧",
+          "轧路基",
+          "轧棉花",
+          "姓轧"
+        ]
+      },
+      {
+        "pinyin": "zha2",
+        "display": "zhá",
+        "phrases": [
+          "轧钢",
+          "轧辊"
+        ]
+      },
+      {
+        "pinyin": "ga2",
+        "display": "ɡá",
+        "phrases": [
+          "轧帐",
+          "轧朋友"
+        ]
+      }
+    ],
+    "媛": [
+      {
+        "pinyin": "yuan4",
+        "display": "yuàn",
+        "phrases": [
+          "（美女）"
+        ]
+      },
+      {
+        "pinyin": "yuan2",
+        "display": "yuán",
+        "phrases": [
+          "婵媛"
+        ]
+      }
+    ],
+    "咽": [
+      {
+        "pinyin": "yan1",
+        "display": "yān",
+        "phrases": [
+          "咽喉",
+          "咽喉要地"
+        ]
+      },
+      {
+        "pinyin": "yan4",
+        "display": "yàn",
+        "phrases": [
+          "吞咽",
+          "咽下",
+          "咽气",
+          "咽吐沫",
+          "细嚼慢咽"
+        ]
+      },
+      {
+        "pinyin": "ye4",
+        "display": "yè",
+        "phrases": [
+          "哽咽",
+          "呜咽"
+        ]
+      }
+    ],
+    "约": [
+      {
+        "pinyin": "yue1",
+        "display": "yuē",
+        "phrases": [
+          "约束",
+          "约定",
+          "约数",
+          "条约",
+          "立约",
+          "节约",
+          "约计"
+        ]
+      },
+      {
+        "pinyin": "yao1",
+        "display": "yāo",
+        "phrases": [
+          "约一约有多重"
+        ]
+      }
+    ],
+    "腌": [
+      {
+        "pinyin": "yan1",
+        "display": "yān",
+        "phrases": [
+          "腌菜",
+          "腌肉"
+        ]
+      },
+      {
+        "pinyin": "a1",
+        "display": "ā",
+        "phrases": [
+          "腌臜"
+        ]
+      }
+    ],
+    "钥": [
+      {
+        "pinyin": "yue4",
+        "display": "yuè",
+        "phrases": [
+          "北门锁钥"
+        ]
+      },
+      {
+        "pinyin": "yao4",
+        "display": "yào",
+        "phrases": [
+          "钥匙"
+        ]
+      }
+    ],
+    "湮": [
+      {
+        "pinyin": "yan1",
+        "display": "yān",
+        "phrases": [
+          "湮没",
+          "湮灭"
+        ]
+      },
+      {
+        "pinyin": "yin1",
+        "display": "yīn",
+        "phrases": [
+          "（同“洇”）"
+        ]
+      }
+    ],
+    "晕": [
+      {
+        "pinyin": "yun4",
+        "display": "yùn",
+        "phrases": [
+          "眼晕",
+          "晕车",
+          "晕船",
+          "日晕",
+          "月晕而风"
+        ]
+      },
+      {
+        "pinyin": "yun1",
+        "display": "yūn",
+        "phrases": [
+          "晕倒",
+          "晕厥",
+          "晕头转向"
+        ]
+      }
+    ],
+    "燕": [
+      {
+        "pinyin": "yan4",
+        "display": "yàn",
+        "phrases": [
+          "燕子",
+          "燕雀",
+          "燕窝",
+          "燕尔"
+        ]
+      },
+      {
+        "pinyin": "yan1",
+        "display": "yān",
+        "phrases": [
+          "燕京",
+          "燕国",
+          "姓燕"
+        ]
+      }
+    ],
+    "熨": [
+      {
+        "pinyin": "yun4",
+        "display": "yùn",
+        "phrases": [
+          "熨斗",
+          "熨衣服"
+        ]
+      },
+      {
+        "pinyin": "yu4",
+        "display": "yù",
+        "phrases": [
+          "熨帖"
+        ]
+      }
+    ],
+    "烊": [
+      {
+        "pinyin": "yang2",
+        "display": "yánɡ",
+        "phrases": [
+          "（熔化；溶化）糖烊了"
+        ]
+      },
+      {
+        "pinyin": "yang4",
+        "display": "yànɡ",
+        "phrases": [
+          "打烊"
+        ]
+      }
+    ],
+    "载": [
+      {
+        "pinyin": "zai4",
+        "display": "zài",
+        "phrases": [
+          "载体",
+          "载客",
+          "载货",
+          "风雨载途",
+          "怨声载道",
+          "姓载"
+        ]
+      },
+      {
+        "pinyin": "zai3",
+        "display": "zǎi",
+        "phrases": [
+          "记载",
+          "刊载",
+          "登载",
+          "转载",
+          "千载难逢"
+        ]
+      }
+    ],
+    "攒": [
+      {
+        "pinyin": "zan3",
+        "display": "zǎn",
+        "phrases": [
+          "积攒",
+          "攒钱"
+        ]
+      },
+      {
+        "pinyin": "cuan2",
+        "display": "cuán",
+        "phrases": [
+          "攒钱",
+          "攒电视机"
+        ]
+      }
+    ],
+    "中": [
+      {
+        "pinyin": "zhong4",
+        "display": "zhònɡ",
+        "phrases": [
+          "中的",
+          "中肯",
+          "中暑",
+          "中毒",
+          "中意",
+          "中伤",
+          "中弹"
+        ]
+      },
+      {
+        "pinyin": "zhong1",
+        "display": "zhōnɡ",
+        "phrases": [
+          "中心",
+          "中等",
+          "中文",
+          "中听",
+          "中庸"
+        ]
+      }
+    ],
+    "种": [
+      {
+        "pinyin": "zhong3",
+        "display": "zhǒnɡ",
+        "phrases": [
+          "种类",
+          "种族",
+          "种子",
+          "兵种",
+          "剧种",
+          "各种"
+        ]
+      },
+      {
+        "pinyin": "zhong4",
+        "display": "zhònɡ",
+        "phrases": [
+          "种田",
+          "种痘"
+        ]
+      },
+      {
+        "pinyin": "chong2",
+        "display": "chónɡ",
+        "phrases": [
+          "姓种"
+        ]
+      }
+    ],
+    "脏": [
+      {
+        "pinyin": "zang4",
+        "display": "zànɡ",
+        "phrases": [
+          "内脏",
+          "五脏六腑"
+        ]
+      },
+      {
+        "pinyin": "zang1",
+        "display": "zānɡ",
+        "phrases": [
+          "脏话",
+          "脏字",
+          "脏衣服"
+        ]
+      }
+    ],
+    "咋": [
+      {
+        "pinyin": "ze1",
+        "display": "zē",
+        "phrases": [],
+        "note": "咋舌（吃惊，害怕，说不出话）"
+      },
+      {
+        "pinyin": "za3",
+        "display": "zǎ",
+        "phrases": [
+          "咋好",
+          "咋样"
+        ]
+      },
+      {
+        "pinyin": "zha1",
+        "display": "zhā",
+        "phrases": [
+          "咋呼"
+        ]
+      }
+    ],
+    "重": [
+      {
+        "pinyin": "zhong4",
+        "display": "zhònɡ",
+        "phrases": [
+          "重心",
+          "重力",
+          "重病",
+          "重金",
+          "重任",
+          "慎重",
+          "器重"
+        ]
+      },
+      {
+        "pinyin": "chong2",
+        "display": "chónɡ",
+        "phrases": [
+          "重唱",
+          "重温",
+          "重围",
+          "重新",
+          "重霄",
+          "重阳",
+          "重逢"
+        ]
+      }
+    ],
+    "轴": [
+      {
+        "pinyin": "zhou2",
+        "display": "zhóu",
+        "phrases": [
+          "轴承",
+          "车轴",
+          "画轴",
+          "中轴",
+          "两轴丝线"
+        ]
+      },
+      {
+        "pinyin": "zhou4",
+        "display": "zhòu",
+        "phrases": [
+          "大轴",
+          "压轴"
+        ]
+      }
+    ],
+    "择": [
+      {
+        "pinyin": "ze2",
+        "display": "zé",
+        "phrases": [
+          "选择",
+          "择业",
+          "择友",
+          "饥不择食",
+          "择善而从"
+        ]
+      },
+      {
+        "pinyin": "zhai2",
+        "display": "zhái",
+        "phrases": [
+          "择席"
+        ]
+      }
+    ],
+    "拽": [
+      {
+        "pinyin": "zhuai4",
+        "display": "zhuài",
+        "phrases": [
+          "拽住",
+          "拽不动",
+          "生拉硬拽"
+        ]
+      },
+      {
+        "pinyin": "zhuai1",
+        "display": "zhuāi",
+        "phrases": [
+          "拽东西",
+          "拽胳膊"
+        ]
+      },
+      {
+        "pinyin": "ye4",
+        "display": "yè",
+        "phrases": [
+          "（同“曳”）"
+        ]
+      }
+    ],
+    "曾": [
+      {
+        "pinyin": "zeng1",
+        "display": "zēnɡ",
+        "phrases": [
+          "曾祖",
+          "曾孙"
+        ]
+      },
+      {
+        "pinyin": "ceng2",
+        "display": "cénɡ",
+        "phrases": [
+          "曾经",
+          "何曾",
+          "未曾"
+        ]
+      }
+    ],
+    "扎": [
+      {
+        "pinyin": "zha1",
+        "display": "zhā",
+        "phrases": [
+          "扎根",
+          "扎实",
+          "扎眼",
+          "扎啤",
+          "扎营",
+          "扎煞（挓挲）"
+        ]
+      },
+      {
+        "pinyin": "zha2",
+        "display": "zhá",
+        "phrases": [
+          "挣扎"
+        ]
+      },
+      {
+        "pinyin": "za1",
+        "display": "zā",
+        "phrases": [
+          "扎彩",
+          "扎辫子",
+          "扎裤脚"
+        ]
+      }
+    ],
+    "转": [
+      {
+        "pinyin": "zhuan3",
+        "display": "zhuǎn",
+        "phrases": [
+          "转变",
+          "转播",
+          "转达",
+          "转化",
+          "转机",
+          "转折",
+          "转瞬"
+        ]
+      },
+      {
+        "pinyin": "zhuan4",
+        "display": "zhuàn",
+        "phrases": [
+          "转向",
+          "转悠",
+          "转盘",
+          "转速",
+          "转圈"
+        ]
+      }
+    ],
+    "赚": [
+      {
+        "pinyin": "zhuan4",
+        "display": "zhuàn",
+        "phrases": [
+          "赚钱",
+          "赚头"
+        ]
+      },
+      {
+        "pinyin": "zuan4",
+        "display": "zuàn",
+        "phrases": [
+          "（骗）赚人"
+        ]
+      }
+    ],
+    "炸": [
+      {
+        "pinyin": "zha4",
+        "display": "zhà",
+        "phrases": [
+          "炸弹",
+          "炸药",
+          "炸窝",
+          "炸市",
+          "他一听就气炸了"
+        ]
+      },
+      {
+        "pinyin": "zha2",
+        "display": "zhá",
+        "phrases": [
+          "炸糕",
+          "炸鱼",
+          "炸麻花",
+          "把菠菜炸一下"
+        ]
+      }
+    ],
+    "奘": [
+      {
+        "pinyin": "zhuang3",
+        "display": "zhuǎnɡ",
+        "phrases": [
+          "身高腰奘",
+          "这棵树很奘"
+        ]
+      },
+      {
+        "pinyin": "zuang4",
+        "display": "zuànɡ",
+        "phrases": [
+          "玄奘"
+        ]
+      }
+    ],
+    "栅": [
+      {
+        "pinyin": "zha4",
+        "display": "zhà",
+        "phrases": [
+          "栅栏",
+          "栅门",
+          "木栅",
+          "铁栅"
+        ]
+      },
+      {
+        "pinyin": "shan1",
+        "display": "shān",
+        "phrases": [
+          "栅极（电子管的一个电极）"
+        ]
+      }
+    ],
+    "戆": [
+      {
+        "pinyin": "zhuang4",
+        "display": "zhuànɡ",
+        "phrases": [
+          "性情戆直（刚直）"
+        ]
+      },
+      {
+        "pinyin": "gang4",
+        "display": "ɡànɡ",
+        "phrases": [
+          "戆头戆脑（鲁莽）"
+        ]
+      }
+    ],
+    "粘": [
+      {
+        "pinyin": "zhan1",
+        "display": "zhān",
+        "phrases": [
+          "粘连",
+          "粘贴",
+          "不粘锅"
+        ]
+      },
+      {
+        "pinyin": "nian2",
+        "display": "nián",
+        "phrases": [
+          "（同“黏）姓粘"
+        ]
+      }
+    ],
+    "椎": [
+      {
+        "pinyin": "zhui1",
+        "display": "zhuī",
+        "phrases": [
+          "颈椎",
+          "脊椎",
+          "胸椎"
+        ]
+      },
+      {
+        "pinyin": "chui2",
+        "display": "chuí",
+        "phrases": [
+          "椎心泣血"
+        ]
+      }
+    ],
+    "占": [
+      {
+        "pinyin": "zhan1",
+        "display": "zhān",
+        "phrases": [
+          "占卜",
+          "占卦",
+          "占星",
+          "占课",
+          "占梦"
+        ]
+      },
+      {
+        "pinyin": "zhan4",
+        "display": "zhàn",
+        "phrases": [
+          "占据",
+          "占领",
+          "攻占",
+          "霸占",
+          "占优势",
+          "占上风"
+        ]
+      }
+    ],
+    "琢": [
+      {
+        "pinyin": "zhuo2",
+        "display": "zhuó",
+        "phrases": [
+          "雕琢",
+          "精雕细琢",
+          "琢磨（加工）"
+        ]
+      },
+      {
+        "pinyin": "zuo2",
+        "display": "zuó",
+        "phrases": [],
+        "note": "琢磨（思索，考虑）"
+      }
+    ],
+    "涨": [
+      {
+        "pinyin": "zhang3",
+        "display": "zhǎnɡ",
+        "phrases": [
+          "涨水",
+          "涨潮",
+          "涨价"
+        ]
+      },
+      {
+        "pinyin": "zhang4",
+        "display": "zhànɡ",
+        "phrases": [
+          "涨红",
+          "泡涨了",
+          "烟尘涨天",
+          "头昏脑涨"
+        ]
+      }
+    ],
+    "着": [
+      {
+        "pinyin": "zhuo2",
+        "display": "zhuó",
+        "phrases": [
+          "穿着",
+          "附着",
+          "着力",
+          "着陆",
+          "着落",
+          "着实",
+          "着意"
+        ]
+      },
+      {
+        "pinyin": "zhao2",
+        "display": "zháo",
+        "phrases": [
+          "着急",
+          "着凉",
+          "着火",
+          "着慌",
+          "睡着了",
+          "灯点着了"
+        ]
+      },
+      {
+        "pinyin": "zhao1",
+        "display": "zhāo",
+        "phrases": [
+          "着数",
+          "高着儿",
+          "着点盐"
+        ]
+      },
+      {
+        "pinyin": "zhe5",
+        "display": "zhe",
+        "phrases": [
+          "走着",
+          "听着",
+          "等着",
+          "沿着",
+          "朝着"
+        ]
+      }
+    ],
+    "爪": [
+      {
+        "pinyin": "zhao3",
+        "display": "zhǎo",
+        "phrases": [
+          "爪牙",
+          "鹰爪",
+          "前爪"
+        ]
+      },
+      {
+        "pinyin": "zhua3",
+        "display": "zhuǎ",
+        "phrases": [
+          "爪子",
+          "爪儿",
+          "鸡爪子"
+        ]
+      }
+    ],
+    "召": [
+      {
+        "pinyin": "zhao4",
+        "display": "zhào",
+        "phrases": [
+          "召开",
+          "召集",
+          "召见",
+          "召唤",
+          "召（傣族姓）"
+        ]
+      },
+      {
+        "pinyin": "shao4",
+        "display": "shào",
+        "phrases": [
+          "姓召"
+        ]
+      }
+    ],
+    "兹": [
+      {
+        "pinyin": "zi1",
+        "display": "zī",
+        "phrases": [
+          "今兹",
+          "来兹",
+          "兹事体大",
+          "兹理易明",
+          "念兹在兹"
+        ]
+      },
+      {
+        "pinyin": "ci2",
+        "display": "cí",
+        "phrases": [
+          "龟兹（汉代西域国名）"
+        ]
+      }
+    ],
+    "折": [
+      {
+        "pinyin": "zhe2",
+        "display": "zhé",
+        "phrases": [
+          "折磨",
+          "折服",
+          "折扣",
+          "折射",
+          "折中",
+          "折腰",
+          "折扇"
+        ]
+      },
+      {
+        "pinyin": "she2",
+        "display": "shé",
+        "phrases": [
+          "折断",
+          "折本",
+          "折秤",
+          "折耗",
+          "姓折"
+        ]
+      },
+      {
+        "pinyin": "zhe1",
+        "display": "zhē",
+        "phrases": [
+          "折腾",
+          "折跟头",
+          "折一折"
+        ]
+      }
+    ],
+    "仔": [
+      {
+        "pinyin": "zi3",
+        "display": "zǐ",
+        "phrases": [
+          "仔细",
+          "仔密",
+          "仔猪",
+          "仔鸡"
+        ]
+      },
+      {
+        "pinyin": "zai3",
+        "display": "zǎi",
+        "phrases": [
+          "牛仔裤",
+          "打工仔",
+          "仔（同“崽”）"
+        ]
+      },
+      {
+        "pinyin": "zi1",
+        "display": "zī",
+        "phrases": [],
+        "note": "仔肩（责任，负担）"
+      }
+    ],
+    "蜇": [
+      {
+        "pinyin": "zhe2",
+        "display": "zhé",
+        "phrases": [
+          "海蜇"
+        ]
+      },
+      {
+        "pinyin": "zhe1",
+        "display": "zhē",
+        "phrases": [
+          "被蜂蜇了",
+          "洋葱蜇眼了"
+        ]
+      }
+    ],
+    "卒": [
+      {
+        "pinyin": "zu2",
+        "display": "zú",
+        "phrases": [
+          "士卒",
+          "走卒",
+          "卒业",
+          "生卒年月",
+          "卒底于成"
+        ]
+      },
+      {
+        "pinyin": "cu4",
+        "display": "cù",
+        "phrases": [
+          "（同“猝”）"
+        ]
+      }
+    ],
+    "这": [
+      {
+        "pinyin": "zhe4",
+        "display": "zhè",
+        "phrases": [
+          "这里",
+          "这些",
+          "这个",
+          "这么",
+          "这是",
+          "这样"
+        ]
+      },
+      {
+        "pinyin": "zhei4",
+        "display": "zhèi",
+        "phrases": [
+          "这个",
+          "这些",
+          "这年",
+          "这几年"
+        ]
+      }
+    ],
+    "钻": [
+      {
+        "pinyin": "zuan1",
+        "display": "zuān",
+        "phrases": [
+          "钻研",
+          "钻营",
+          "钻探",
+          "钻书本"
+        ]
+      },
+      {
+        "pinyin": "zuan4",
+        "display": "zuàn",
+        "phrases": [
+          "钻戒",
+          "钻石",
+          "钻床",
+          "电钻"
+        ]
+      }
+    ],
+    "正": [
+      {
+        "pinyin": "zheng4",
+        "display": "zhènɡ",
+        "phrases": [
+          "正午",
+          "正中",
+          "正好",
+          "正误",
+          "正极",
+          "正气",
+          "姓正"
+        ]
+      },
+      {
+        "pinyin": "zheng1",
+        "display": "zhēnɡ",
+        "phrases": [
+          "正月",
+          "正旦"
+        ]
+      }
+    ],
+    "作": [
+      {
+        "pinyin": "zuo4",
+        "display": "zuò",
+        "phrases": [
+          "作用",
+          "作品",
+          "作赋",
+          "作风",
+          "作乱",
+          "振作",
+          "佳作"
+        ]
+      },
+      {
+        "pinyin": "zuo1",
+        "display": "zuō",
+        "phrases": [
+          "作坊"
+        ]
+      }
+    ],
+    "症": [
+      {
+        "pinyin": "zheng4",
+        "display": "zhènɡ",
+        "phrases": [
+          "症状",
+          "症候",
+          "急症",
+          "对症下药",
+          "不治之症"
+        ]
+      },
+      {
+        "pinyin": "zheng1",
+        "display": "zhēnɡ",
+        "phrases": [
+          "症结"
+        ]
+      }
+    ],
+    "柞": [
+      {
+        "pinyin": "zuo4",
+        "display": "zuò",
+        "phrases": [
+          "柞树",
+          "柞蚕",
+          "柞丝"
+        ]
+      },
+      {
+        "pinyin": "zha4",
+        "display": "zhà",
+        "phrases": [
+          "柞水（地名）"
+        ]
+      }
+    ],
+    "挣": [
+      {
+        "pinyin": "zheng4",
+        "display": "zhènɡ",
+        "phrases": [
+          "挣脱",
+          "挣钱",
+          "挣命",
+          "挣揣"
+        ]
+      },
+      {
+        "pinyin": "zheng1",
+        "display": "zhēnɡ",
+        "phrases": [
+          "垂死挣扎"
+        ]
+      }
+    ],
+    "酢": [
+      {
+        "pinyin": "zuo4",
+        "display": "zuò",
+        "phrases": [
+          "酬酢（客人用酒回敬主人）"
+        ]
+      },
+      {
+        "pinyin": "cu4",
+        "display": "cù",
+        "phrases": [
+          "酢浆草（全草可入药）"
+        ]
+      }
+    ],
+    "殖": [
+      {
+        "pinyin": "zhi2",
+        "display": "zhí",
+        "phrases": [
+          "生殖",
+          "繁殖",
+          "殖民地"
+        ]
+      },
+      {
+        "pinyin": "shi5",
+        "display": "shi",
+        "phrases": [
+          "骨殖"
+        ]
+      }
+    ],
+    "只": [
+      {
+        "pinyin": "zhi3",
+        "display": "zhǐ",
+        "phrases": [
+          "只知",
+          "只是",
+          "只管",
+          "只顾",
+          "只消",
+          "只有",
+          "只许"
+        ]
+      },
+      {
+        "pinyin": "zhi1",
+        "display": "zhī",
+        "phrases": [
+          "只身",
+          "独具只眼",
+          "片纸只字",
+          "只言片语"
+        ]
+      }
+    ],
+    "峙": [
+      {
+        "pinyin": "zhi4",
+        "display": "zhì",
+        "phrases": [
+          "对峙",
+          "两峰相峙"
+        ]
+      },
+      {
+        "pinyin": "shi4",
+        "display": "shì",
+        "phrases": [
+          "繁峙（地名）"
+        ]
+      }
+    ]
+  }
+}

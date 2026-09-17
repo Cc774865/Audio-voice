@@ -14,7 +14,7 @@
 ```bash
 py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
-.\.venv\Scripts\python.exe -m pip install -U "funasr==1.4.1" modelscope soundfile
+.\.venv\Scripts\python.exe -m pip install -U "funasr==1.4.1" modelscope soundfile pypinyin
 .\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/asr_local.py --warmup
 ```
 
@@ -34,7 +34,7 @@ py -3.11 -m venv .venv
 
 对照正确稿打分。每句一对同名文件：`foo.mp3` + 正确稿。正确稿优先级：`.json`（带字级时间戳）> `.txt` > `.md`。txt/md 只提供对照文本，停顿/拖音改用 FunASR 时间戳。没有正确稿的 mp3 列入跳过，不会自动改去转写。
 
-默认只输出**一个课件综合分 + 错误列表 + 6 个典型例**。桶 A 错误句全部列出，不占这 6 例。
+默认只输出**一个课件综合分 + 错误列表 + 6 个典型例**。桶 A 错误句全部列出，不占这 6 例。多音字按《最全多音字总汇》组词核对读音（例如「地」在「一个一个地数」里应读 de）。
 
 ```bash
 .\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/qa_course.py .

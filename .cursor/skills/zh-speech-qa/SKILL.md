@@ -61,7 +61,7 @@ description: >-
 
 ### 分桶（一条句子只进最高优先级）
 
-1. **A 发音错误**：CER≥8%，或缺拉丁字母/课件关键词，或 gate=fail。**全部列出，不占 6 例。**
+1. **A 发音错误**：CER≥8%，或缺拉丁字母/课件关键词，或多音字读音不对，或 gate=fail。**全部列出，不占 6 例。**
 2. **B 不流畅**：停顿/拖音/吞音/语速出带。最多取 4 条进典型例。
 3. **C 综合分低**：单句分 < 76。
 
@@ -81,3 +81,4 @@ description: >-
 - 单句与整课打分：[rules/scoring.md](rules/scoring.md)
 - 标注入库：[rules/memory.md](rules/memory.md)
 - 阈值校准：[scripts/calibrate.py](scripts/calibrate.py)（只出建议，确认后才改文件）
+- 多音字知识库：[rules/polyphones.json](rules/polyphones.json)（由 [rules/最全多音字总汇.xls](rules/最全多音字总汇.xls) 编译）

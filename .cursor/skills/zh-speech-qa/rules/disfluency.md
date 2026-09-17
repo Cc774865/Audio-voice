@@ -22,9 +22,18 @@
 - CER ≥ 8%
 - 原稿里的拉丁字母/英文词在识别结果中缺失（如 D → 既）
 - 课件词缺失：函数、变量、坐标、图像、定义域等
+- 多音字读音与语境不符（如「一个一个地数」的「地」应读 de / 三声轻声，读成 dì 则报错）
 - 或一期 `gate=fail`（残句、多处重复）
 
 错误句**全部列出**，**不计入** 6 个典型例；每条都要写入不合格记忆库（见 [memory.md](memory.md)）。
+
+多音字：先查知识库 [polyphones.json](polyphones.json)（529 字组词，来源《最全多音字总汇》）。组词命中则用该读音，例如「地质」→ `dì`，「一个一个地数」没有名词组词则按结构助词 → `de`。再按字级时间戳裁音频估声调。FunASR 只出汉字，看不出「地」读 de 还是 dì。同调不同声母（「行」xíng/háng）不强判。
+
+更新 Excel 后重新编译：
+
+```bash
+.\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/compile_polyphones.py
+```
 
 ## 桶 B / C
 
