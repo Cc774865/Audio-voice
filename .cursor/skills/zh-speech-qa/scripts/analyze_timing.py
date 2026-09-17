@@ -19,6 +19,8 @@ SHORT_COMMA_MS = 120.0
 LONG_COMMA_MS = 500.0
 LONG_END_MS = 800.0
 SWALLOW_MS = 70.0
+DEAD_PUNCT_MS = 60.0
+LIAISON_PUNCT = set("，。；？！,.;?!")
 PROLONG_MS = 550.0
 SPEED_MEAN = 243.0
 SPEED_MARGIN = 60.0
@@ -33,10 +35,35 @@ def is_speech(token: str) -> bool:
     return bool(token) and not is_punct(token)
 
 
+def merge_sliced_words(words: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Collapse consecutive timestamp slices of the same script word.
+
+    Some courseware JSON splits one token across several time bins but repeats
+    the full word string with the same ``offset`` (e.g. 要求 / 应合并). That is
+    duration, not a spoken repeat. Different offsets stay separate.
+    """
+    merged: list[dict[str, Any]] = []
+    for raw in words or []:
+        word = str(raw.get("word") or "")
+        offset = raw.get("offset")
+        if (
+            merged
+            and offset is not None
+            and merged[-1].get("offset") == offset
+            and str(merged[-1].get("word") or "") == word
+            and word
+        ):
+            prev = merged[-1]
+            prev["end"] = raw.get("end", prev.get("end"))
+            continue
+        merged.append(dict(raw))
+    return merged
+
+
 def load_clip(path: str | Path) -> dict[str, Any]:
     p = Path(path)
     data = json.loads(p.read_text(encoding="utf-8"))
-    words = data.get("words") or []
+    words = merge_sliced_words(data.get("words") or [])
     duration = float(data.get("duration") or 0)
     if duration <= 0 and words:
         duration = max(float(w.get("end") or 0) for w in words) / 1000.0
@@ -53,6 +80,84 @@ def speech_tokens(words: list[dict[str, Any]]) -> list[str]:
 
 def _dur(w: dict[str, Any]) -> float:
     return max(0.0, float(w.get("end") or 0) - float(w.get("begin") or 0))
+
+
+def _edge_char(token: str, *, last: bool) -> str:
+    chars = [ch for ch in token if ch.isalnum() or ("\u4e00" <= ch <= "\u9fff")]
+    if not chars:
+        return ""
+    return chars[-1] if last else chars[0]
+
+
+def asr_chars_glued(hyp: str, left: str, right: str) -> bool:
+    """True if ASR puts left immediately before right, with no punctuation in between."""
+    if not hyp or not left or not right:
+        return False
+    text = hyp.lower()
+    a, b = left.lower(), right.lower()
+    start = 0
+    while True:
+        i = text.find(a, start)
+        if i < 0:
+            return False
+        j = i + len(a)
+        while j < len(text) and text[j].isspace():
+            j += 1
+        if j < len(text) and text.startswith(b, j):
+            return True
+        start = i + 1
+
+
+def _neighbor_speech(words: list[dict[str, Any]], index: int) -> tuple[dict[str, Any] | None, dict[str, Any] | None]:
+    prev = nxt = None
+    for j in range(index - 1, -1, -1):
+        if is_speech(str(words[j].get("word") or "")):
+            prev = words[j]
+            break
+    for j in range(index + 1, len(words)):
+        if is_speech(str(words[j].get("word") or "")):
+            nxt = words[j]
+            break
+    return prev, nxt
+
+
+def find_punct_liaisons(words: list[dict[str, Any]], hyp: str | None) -> list[dict[str, Any]]:
+    """Punctuation that did not create a pause: tiny gap and ASR glued the two sides.
+
+    顿号 between A/B/G is skipped. Need ASR text; no hyp means no flag.
+    """
+    if not hyp:
+        return []
+    found: list[dict[str, Any]] = []
+    for i, w in enumerate(words or []):
+        token = str(w.get("word") or "")
+        if token not in LIAISON_PUNCT:
+            continue
+        prev, nxt = _neighbor_speech(words, i)
+        if not prev or not nxt:
+            continue
+        span = float(nxt.get("begin") or 0) - float(prev.get("end") or 0)
+        if span > DEAD_PUNCT_MS:
+            continue
+        left_tok = str(prev.get("word") or "")
+        right_tok = str(nxt.get("word") or "")
+        left = _edge_char(left_tok, last=True)
+        right = _edge_char(right_tok, last=False)
+        if not asr_chars_glued(hyp, left, right):
+            continue
+        kind = "句号" if token in SENT_END else "逗号"
+        found.append(
+            {
+                "index": i,
+                "punct": token,
+                "span_ms": round(span, 1),
+                "left": left_tok,
+                "right": right_tok,
+                "at_ms": round(float(w.get("begin") or 0), 2),
+                "detail": f"{kind}连读「{left_tok}{token}{right_tok}」空隙 {span:.0f}ms，ASR 粘成「{left}{right}」",
+            }
+        )
+    return found
 
 
 _TOKEN_RE = re.compile(r"[A-Za-z0-9]+|[\u4e00-\u9fff]|[^\s]")
@@ -118,6 +223,7 @@ def analyze_words(
     path: str = "",
     timing_source: str = "json",
     transcript_ref: str | None = None,
+    transcript_asr: str | None = None,
 ) -> dict[str, Any]:
     transcript = transcript_ref if transcript_ref is not None else transcript_of(words)
     speech = speech_tokens(words)
@@ -133,6 +239,8 @@ def analyze_words(
     filler_n = 0
     repeat_n = 0
     fragment_n = 0
+    liaisons = find_punct_liaisons(words, transcript_asr)
+    liaison_indexes = {int(item["index"]) for item in liaisons}
 
     for i, w in enumerate(words):
         token = str(w.get("word") or "")
@@ -155,7 +263,9 @@ def analyze_words(
                 )
 
         if token in COMMA:
-            if timing_source != "asr" and dur <= SHORT_COMMA_MS:
+            if i in liaison_indexes:
+                pass
+            elif timing_source != "asr" and dur <= SHORT_COMMA_MS:
                 pause_events += 1
                 issues.append(
                     {
@@ -224,6 +334,15 @@ def analyze_words(
                 }
             )
 
+    for item in liaisons:
+        issues.append(
+            {
+                "type": "liaison",
+                "at_ms": item.get("at_ms"),
+                "detail": item["detail"],
+            }
+        )
+
     joined = speech
     for phrase in FILLER_PHRASES:
         n = len(phrase)
@@ -288,6 +407,8 @@ def analyze_words(
         "filler_n": filler_n,
         "repeat_n": repeat_n,
         "fragment_n": fragment_n,
+        "liaison_n": len(liaisons),
+        "liaison_errors": liaisons,
         "has_question": has_question,
         "weak_question": weak_question,
         "gate_fail_reasons": gate_fail_reasons,

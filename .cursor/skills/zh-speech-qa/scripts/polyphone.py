@@ -18,6 +18,11 @@ LEXICON_PATH = Path(__file__).resolve().parent.parent / "rules" / "polyphones.js
 _LEXICON: dict[str, list[dict[str, Any]]] | None = None
 
 # 结构助词「地」应读 de（轻声/三声）；名词「地」读 di4。
+# 轻声 de→di4：要足够长且去声很稳。结构助词「的」只看语境，不用 F0。
+DE_TO_DI4_MS = 200.0
+DE_TO_DI4_CONF = 0.75
+PARTICLE_INSET_MS = 20.0
+MIN_CROP_MS = 80.0
 DI4_WORDS = {
     "土地", "大地", "地面", "地球", "地点", "地方", "基地", "场地",
     "墓地", "湿地", "陆地", "境地", "阵地", "盆地", "内地", "外地",
@@ -181,6 +186,11 @@ def expected_readings(text: str) -> list[dict[str, Any]]:
             cand_py = [py, *cand_py]
         tones = {parse_pinyin(c)[1] for c in cand_py if c}
         check_audio = ch in {"地", "的", "得"} or (hit is not None and len(tones) > 1)
+        # 结构助词「的」只看语境；疑问「哪」允许 nǎ/něi，不把阳平误配成「哪吒」。
+        if ch == "的" and base == "de" and tone in {3, 5}:
+            check_audio = False
+        elif ch == "哪" and (not hit or "哪吒" not in (hit.get("phrases") or [])):
+            check_audio = False
         out.append(
             {
                 "index": idx,
@@ -231,12 +241,22 @@ def _load_wav(mp3: Path) -> tuple[np.ndarray, int]:
 
 
 def _slice(y: np.ndarray, sr: int, begin_ms: float, end_ms: float) -> np.ndarray:
-    pad = 0.02
-    lo = max(0, int((begin_ms / 1000.0 - pad) * sr))
-    hi = min(len(y), int((end_ms / 1000.0 + pad) * sr))
+    lo = max(0, int((begin_ms / 1000.0) * sr))
+    hi = min(len(y), int((end_ms / 1000.0) * sr))
     if hi <= lo:
         return np.zeros(0, dtype=np.float32)
     return y[lo:hi]
+
+
+def _crop_span(begin_ms: float, end_ms: float, char: str) -> tuple[float, float]:
+    """Inset particle timestamps so F0 is not taken from 前/数 etc."""
+    if char not in {"地", "的", "得"}:
+        return begin_ms, end_ms
+    span = max(0.0, end_ms - begin_ms)
+    inset = PARTICLE_INSET_MS
+    if span - 2 * inset < MIN_CROP_MS:
+        inset = max(0.0, (span - MIN_CROP_MS) / 2.0)
+    return begin_ms + inset, end_ms - inset
 
 
 def _f0_series(y: np.ndarray, sr: int) -> np.ndarray:
@@ -304,7 +324,10 @@ def guess_reading(char: str, expected: dict[str, Any], tone: int | None, duratio
     exp_py = expected["pinyin"]
     if char in {"地", "的", "得"}:
         if expected["base"] == "de" and expected["tone"] in {3, 5}:
-            if tone == 4 and duration_ms >= 170:
+            # 结构助词「的」只能是 de；轻声下滑很容易被看成去声。
+            if char == "的":
+                return exp_py
+            if tone == 4 and duration_ms >= DE_TO_DI4_MS:
                 return "di4"
             return exp_py
         if expected["pinyin"] == "di4":
@@ -316,7 +339,7 @@ def guess_reading(char: str, expected: dict[str, Any], tone: int | None, duratio
         if expected["pinyin"] == "di2":
             if tone == 2:
                 return "di2"
-            if tone == 4 and duration_ms >= 170:
+            if tone == 4 and duration_ms >= DE_TO_DI4_MS:
                 return "di4"
             if tone in {3, 5} and duration_ms < 140:
                 return "de5"
@@ -359,15 +382,23 @@ def check_polyphones(mp3: Path, transcript: str, words: list[dict[str, Any]]) ->
         if span is None:
             continue
         n_checked += 1
-        duration_ms = max(0.0, float(span["end"]) - float(span["begin"]))
+        crop_begin, crop_end = _crop_span(float(span["begin"]), float(span["end"]), row["char"])
+        duration_ms = max(0.0, crop_end - crop_begin)
         if audio is None:
             audio, sr = _load_wav(mp3)
-        crop = _slice(audio, sr, span["begin"], span["end"])
+        crop = _slice(audio, sr, crop_begin, crop_end)
         tone, conf = estimate_tone(crop, sr, duration_ms)
         heard = guess_reading(row["char"], row, tone, duration_ms)
         if not heard or pinyin_match(row, heard):
             continue
-        if conf < 0.5 and row["char"] not in {"地", "的", "得"}:
+        if (
+            row["char"] in {"地", "得"}
+            and row.get("base") == "de"
+            and heard == "di4"
+            and conf < DE_TO_DI4_CONF
+        ):
+            continue
+        if conf < DE_TO_DI4_CONF:
             continue
         want = row["pinyin"]
         if row["char"] == "地" and row["base"] == "de":

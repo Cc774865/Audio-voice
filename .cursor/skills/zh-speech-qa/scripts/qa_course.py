@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Course-level QA: FunASR bucket A + fluency B + low-score C, one score, 6 examples."""
+"""Course-level QA: FunASR bucket A + polyphone P + fluency B + low-score C."""
 
 from __future__ import annotations
 
@@ -59,6 +59,8 @@ def is_disfluent(rep: dict) -> bool:
 def bucket_of(rep: dict) -> str:
     if rep.get("bucket_a"):
         return "A"
+    if rep.get("polyphone_errors"):
+        return "P"
     if is_disfluent(rep):
         return "B"
     if int(rep.get("score") or 100) < LOW_SCORE:
@@ -67,7 +69,7 @@ def bucket_of(rep: dict) -> str:
 
 
 def pick_typical(items: list[dict]) -> list[dict]:
-    rest = [x for x in items if x["bucket"] != "A"]
+    rest = [x for x in items if x["bucket"] not in {"A", "P"}]
     picked: list[dict] = []
     seen: set[str] = set()
 
@@ -129,6 +131,7 @@ def compact(row: dict) -> dict:
         "cpm": row.get("cpm"),
         "ref_kind": row.get("ref_kind"),
         "polyphone_errors": row.get("polyphone_errors") or [],
+        "liaison_errors": row.get("liaison_errors") or [],
     }
 
 
@@ -175,6 +178,7 @@ def evaluate_pair(mp3: Path, ref: ScriptRef, model, force: bool) -> dict:
             clip["duration"],
             clip_id=clip["id"],
             path=clip["path"],
+            transcript_asr=hyp,
         )
         words = clip["words"]
     else:
@@ -186,6 +190,7 @@ def evaluate_pair(mp3: Path, ref: ScriptRef, model, force: bool) -> dict:
             clip_id=mp3.stem,
             path=str(mp3),
             timing_source="asr",
+            transcript_asr=hyp,
         )
         metrics["transcript_ref"] = ref.transcript
     pron = pronunciation_report(metrics["transcript_ref"], hyp)
@@ -226,8 +231,14 @@ def evaluate_pair(mp3: Path, ref: ScriptRef, model, force: bool) -> dict:
         "missing_keywords": pron["missing_keywords"],
         "polyphone_errors": poly["errors"],
         "gate_fail_reasons": metrics["gate_fail_reasons"],
+        "liaison_n": metrics.get("liaison_n") or 0,
+        "liaison_errors": metrics.get("liaison_errors") or [],
         "issues": metrics["issues"],
-        "bucket_a": bool(pron["is_error"] or metrics["gate_fail_reasons"] or poly["errors"]),
+        "bucket_a": bool(
+            pron["is_error"]
+            or metrics["gate_fail_reasons"]
+            or metrics.get("liaison_n")
+        ),
         "ref_kind": ref.kind,
         "_metrics": metrics,
     }
@@ -245,6 +256,8 @@ def _reason(row: dict) -> str:
             reasons.append("缺 " + "、".join(row["missing_keywords"]))
     for err in row.get("polyphone_errors") or []:
         reasons.append(err.get("detail") or "多音字读音错误")
+    for err in row.get("liaison_errors") or []:
+        reasons.append(err.get("detail") or "标点连读")
     if row.get("gate_fail_reasons"):
         reasons.extend(row["gate_fail_reasons"])
     if row.get("bucket") == "B":
@@ -271,7 +284,7 @@ def render_markdown(payload: dict) -> str:
     lines = [
         f"**课件综合分**：{s['score']} / 100",
         f"**目录**：`{s.get('folder', '—')}`",
-        f"**句数**：{s['n']}（错误 {s['n_error']} / 不流畅 {s['n_disfluent']} / 其余 {s['n_ok']}）",
+        f"**句数**：{s['n']}（错误 {s['n_error']} / 多音字 {s.get('n_poly', 0)} / 不流畅 {s['n_disfluent']} / 其余 {s['n_ok']}）",
         f"**FunASR**：{s['asr']}",
         f"**语速合格带**：{s.get('speed_band', '—')}（当课均值±{SPEED_MARGIN}）",
         f"**单句中位数**：{s['median']}",
@@ -296,12 +309,22 @@ def render_markdown(payload: dict) -> str:
                 f"{i}. `{row['id']}` {row['reason']}  "
                 f"原稿「{row['transcript_ref']}」 ASR「{row['transcript_asr']}」"
             )
+    lines += ["", "### 多音字（桶 P，待审，不计入 6 例、不扣整课错误惩罚）"]
+    poly_rows = payload.get("polyphones") or []
+    if not poly_rows:
+        lines.append("无")
+    else:
+        for i, row in enumerate(poly_rows, 1):
+            lines.append(
+                f"{i}. `{row['id']}` {row['reason']}  "
+                f"原稿「{row['transcript_ref']}」 ASR「{row['transcript_asr']}」"
+            )
     lines += ["", "### 6 个典型例"]
     typical = payload["typical"]
     if not typical:
         lines.append("无（非错误句不足）")
     else:
-        labels = {"B": "不流畅", "C": "分低", "ok": "合格对照"}
+        labels = {"B": "不流畅", "C": "分低", "ok": "合格对照", "P": "多音字"}
         for i, row in enumerate(typical, 1):
             tag = labels.get(row["bucket"], row["bucket"])
             extra = f" CER {row['cer_pct']}%" if row.get("cer_pct") is not None else ""
@@ -364,12 +387,14 @@ def main() -> int:
         (x for x in items if x["bucket"] == "A"),
         key=lambda x: (-float(x.get("cer") or 0), x["score"]),
     )
+    polyphones = [x for x in items if x["bucket"] == "P"]
     typical = pick_typical(items)
     stores = {"pass": [], "fail": []} if args.no_memory else load_all()
     typical_out = attach_typical_neighbors(typical, stores)
     agg = course_score(items)
     n_b = sum(1 for x in items if x["bucket"] == "B")
-    n_ok = sum(1 for x in items if x["bucket"] == "ok")
+    n_p = len(polyphones)
+    n_rest = sum(1 for x in items if x["bucket"] in {"C", "ok"})
     payload = {
         "summary": {
             "folder": folder.name,
@@ -378,8 +403,9 @@ def main() -> int:
             "penalty": agg["penalty"],
             "n": len(items),
             "n_error": len(errors),
+            "n_poly": n_p,
             "n_disfluent": n_b,
-            "n_ok": n_ok,
+            "n_ok": n_rest,
             "median": agg["median"],
             "asr": f"funasr-paraformer-{args.lang}",
             "speed_mean": round(mean_cpm, 1),
@@ -389,6 +415,7 @@ def main() -> int:
             "n_md": sum(1 for x in items if x.get("ref_kind") == "md"),
         },
         "errors": [compact(x) for x in errors],
+        "polyphones": [compact(x) for x in polyphones],
         "typical": typical_out,
         "skipped": skipped,
     }
