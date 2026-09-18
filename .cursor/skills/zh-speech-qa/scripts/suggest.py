@@ -49,6 +49,34 @@ TEXT_KEYS = {
     "plain_text",
 }
 AT_NOTE = "不要加停顿标记，用重做 TTS 拉开或收紧间隔。"
+# `<#x#>` 的 x 是秒：0.3=0.3s，1=1s。按当前空隙选，不要一律 0.4，且不超过 1。
+PAUSE_HEADER = (
+    "请只改下列口播节点，不要动其它页。"
+    "停顿标记的数字是秒：<#0.3#> 就是 0.3 秒，<#1#> 就是 1 秒；最长 1 秒，禁止 <#2#>、<#3#>。"
+    "每条里的秒数已按当前间隔选好，不要改成同一个数。"
+    "有 at 的不要加 <#x#>。不要把「图象」拆开。"
+)
+
+
+def pause_seconds(span_ms: float | None, *, purpose: str = "comma") -> float:
+    """Seconds for `<#x#>`. x is seconds (0.3 = 0.3s, 1 = 1s), capped at 1."""
+    if purpose == "letter":
+        return 0.2
+    if span_ms is None:
+        return 0.3
+    gap = float(span_ms)
+    if gap <= 80:
+        return 0.25
+    if gap <= 160:
+        return 0.3
+    if gap <= 250:
+        return 0.4
+    return 0.5
+
+
+def pause_mark(span_ms: float | None, *, purpose: str = "comma") -> str:
+    sec = min(pause_seconds(span_ms, purpose=purpose), 1.0)
+    return f"<#{sec:g}#>"
 
 
 def _clip(text: str | None, n: int = 12) -> str:
@@ -216,7 +244,7 @@ def render_agent_message(course_id: str, suggestions: list[dict[str, Any]]) -> s
     ready = suggestions
     lines = [
         f"课件ID: {course_id}",
-        "请只改下列口播节点，不要动其它页。无 at 的节点如需拉开间隔，停顿标记只用约 0.4 秒（<#0.4#>），最长不超过 1 秒；禁止 <#2#>、<#3#> 这种超过 1 秒的。有 at 的不要加 <#x#>。不要把「图象」拆开。具体怎么改口播由你决定。",
+        PAUSE_HEADER,
         "",
     ]
     for i, item in enumerate(ready, 1):
