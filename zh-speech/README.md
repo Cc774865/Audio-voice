@@ -32,6 +32,7 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe cli.py qa . --lang en --force-asr --json
 .\.venv\Scripts\python.exe cli.py qa . --courseware courseware.json
 .\.venv\Scripts\python.exe cli.py calibrate
+.\.venv\Scripts\python.exe cli.py selftest --limit 100
 .\.venv\Scripts\python.exe cli.py memory list
 ```
 

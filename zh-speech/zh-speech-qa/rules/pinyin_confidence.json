@@ -1,0 +1,7 @@
+{
+  "min_cosine": 0.12,
+  "base_margin": 0.02,
+  "tone_conf": 0.75,
+  "tone_f0_min": 0.3,
+  "tone_margin": 0.15
+}

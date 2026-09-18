@@ -125,7 +125,9 @@ def compact(row: dict) -> dict:
         "course": row.get("course"),
         "score": row["score"],
         "bucket": row["bucket"],
+        "bucket_a_kind": row.get("bucket_a_kind"),
         "cer_pct": row.get("cer_pct"),
+        "char_cer_pct": row.get("char_cer_pct"),
         "pause_events": row.get("pause_events"),
         "reason": row.get("reason"),
         "transcript_ref": row.get("transcript_ref"),
@@ -153,9 +155,12 @@ def _compact_review(review: dict | None) -> dict | None:
         "cer_orig_ref_pct": review.get("cer_orig_ref_pct"),
         "cer_ref_script_pct": review.get("cer_ref_script_pct"),
         "transcript_tts": review.get("transcript_tts"),
+        "tts_text": review.get("tts_text"),
         "pinyin_compared": review.get("pinyin_compared"),
         "pinyin_skipped": review.get("pinyin_skipped"),
+        "pinyin_forced": review.get("pinyin_forced"),
         "pinyin_disagree": review.get("pinyin_disagree") or review.get("tone_disagree") or [],
+        "pinyin_unresolved": review.get("pinyin_unresolved") or [],
         "ref_ok": review.get("ref_ok"),
     }
 
@@ -256,10 +261,12 @@ def evaluate_pair(
         )
     metrics["asr"] = "funasr-zh"
     metrics["cer"] = pron["cer"]
+    metrics["cer_pct"] = pron["cer_pct"]
+    metrics["char_cer_pct"] = pron["char_cer_pct"]
     metrics["missing_keywords"] = pron["missing_keywords"]
     metrics["polyphone_errors"] = poly["errors"]
     if pron["is_error"]:
-        detail = f"CER {pron['cer_pct']}%"
+        detail = f"拼音 CER {pron['cer_pct']}%（字面 {pron['char_cer_pct']}%）"
         if pron["missing_keywords"]:
             detail += " 缺：" + "、".join(pron["missing_keywords"])
         metrics["issues"] = list(metrics["issues"]) + [
@@ -270,6 +277,18 @@ def evaluate_pair(
             {"type": "polyphone", "at_ms": err.get("at_ms"), "detail": err["detail"]}
         ]
     scored = score_metrics(metrics)
+    if any(e.get("source") == "pronunciations" for e in poly["errors"]):
+        bucket_a_kind = "pronunciation"
+    elif pron["missing_keywords"]:
+        bucket_a_kind = "keyword"
+    elif metrics["gate_fail_reasons"]:
+        bucket_a_kind = "gate"
+    elif metrics.get("liaison_n"):
+        bucket_a_kind = "liaison"
+    elif pron["is_error"]:
+        bucket_a_kind = "cer"
+    else:
+        bucket_a_kind = ""
     row = {
         "id": metrics["id"],
         "score": scored["score"],
@@ -285,12 +304,14 @@ def evaluate_pair(
         "transcript_asr": hyp,
         "cer": pron["cer"],
         "cer_pct": pron["cer_pct"],
+        "char_cer_pct": pron["char_cer_pct"],
         "missing_keywords": pron["missing_keywords"],
         "polyphone_errors": poly["errors"],
         "gate_fail_reasons": metrics["gate_fail_reasons"],
         "liaison_n": metrics.get("liaison_n") or 0,
         "liaison_errors": metrics.get("liaison_errors") or [],
         "issues": metrics["issues"],
+        "bucket_a_kind": bucket_a_kind,
         "bucket_a": bool(
             pron["is_error"]
             or metrics["gate_fail_reasons"]
@@ -331,11 +352,15 @@ def attach_review(items: list[dict], model, folder: Path, args) -> None:
     from ref_tts import DEFAULT_VOICE
 
     skip = bool(getattr(args, "no_review", False) or args.lang != "zh")
+    strict = bool(getattr(args, "strict", False))
     if skip:
         why = "复审已跳过" if getattr(args, "no_review", False) else "英文不跑复审"
         for row in items:
             dummy = {"skipped": True}
-            extra = combine_verdict(row["bucket"], dummy, row.get("polyphone_errors"))
+            extra = combine_verdict(
+                row["bucket"], dummy, row.get("polyphone_errors"),
+                bucket_a_kind=row.get("bucket_a_kind") or "", strict=strict,
+            )
             extra["verdict_reason"] = extra["verdict_reason"].replace("复审未跑", why)
             row.update(extra)
             row["review"] = {**dummy, "skip_reason": why}
@@ -358,7 +383,12 @@ def attach_review(items: list[dict], model, folder: Path, args) -> None:
             poly_errors=row.get("polyphone_errors"),
         )
         row["review"] = rev
-        row.update(combine_verdict(row["bucket"], rev, row.get("polyphone_errors")))
+        row.update(
+            combine_verdict(
+                row["bucket"], rev, row.get("polyphone_errors"),
+                bucket_a_kind=row.get("bucket_a_kind") or "", strict=strict,
+            )
+        )
 
 
 def _review_line(row: dict) -> str:
@@ -374,8 +404,13 @@ def _review_line(row: dict) -> str:
         compared = rev.get("pinyin_compared")
         if compared is not None:
             bits.append(f"拼音对照 {compared} 字")
+        forced = rev.get("pinyin_forced")
+        if forced:
+            bits.append(f"强制读音 {forced} 字")
         for hit in rev.get("pinyin_disagree") or rev.get("tone_disagree") or []:
             bits.append(hit.get("detail") or "")
+        for hit in rev.get("pinyin_unresolved") or []:
+            bits.append("待定：" + (hit.get("detail") or ""))
     return "  ".join(x for x in bits if x)
 
 
@@ -490,6 +525,7 @@ def main() -> int:
     parser.add_argument("--no-review", action="store_true", help="skip reference-TTS review stage")
     parser.add_argument("--force-tts", action="store_true", help="regenerate reference mp3")
     parser.add_argument("--tts-voice", default="zh-CN-XiaoxiaoNeural", help="edge-tts voice for review")
+    parser.add_argument("--strict", action="store_true", help="keep 待审 instead of auto-resolving by source")
     args = parser.parse_args()
     folder = Path(args.path).resolve()
     if not folder.is_dir():

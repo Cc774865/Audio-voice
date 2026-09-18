@@ -19,6 +19,7 @@ COMMANDS = {
     "calibrate": (QA_SCRIPTS, "calibrate"),
     "memory": (QA_SCRIPTS, "memory"),
     "compile-polyphones": (QA_SCRIPTS, "compile_polyphones"),
+    "selftest": (QA_SCRIPTS, "pinyin_selftest"),
     "warmup": (QA_SCRIPTS, "asr_local"),
 }
 

@@ -102,13 +102,47 @@ def missing_keywords(ref: str, hyp: str) -> list[str]:
     return out
 
 
+def _base_seq(text: str, *, context: bool) -> list[str]:
+    """Initial+final (tone ignored) per hanzi; context=True uses the lexicon reading."""
+    from polyphone import expected_readings, is_hanzi, parse_pinyin
+
+    if context:
+        return [parse_pinyin(row["pinyin"])[0] for row in expected_readings(text or "")]
+
+    from pypinyin import Style, lazy_pinyin
+
+    chars = [ch for ch in (text or "") if is_hanzi(ch)]
+    if not chars:
+        return []
+    pys = lazy_pinyin("".join(chars), style=Style.TONE3, strict=False)
+    return [parse_pinyin(py)[0] for py in pys]
+
+
+def pinyin_cer(ref: str, hyp: str) -> float:
+    """CER over initial+final, so ASR homophones (作/做, 图象/图像) do not count."""
+    a = _base_seq(ref, context=True)
+    b = _base_seq(hyp, context=False)
+    if not a:
+        return 0.0 if not b else 1.0
+    try:
+        from rapidfuzz.distance import Levenshtein
+
+        dist = Levenshtein.distance(a, b)
+    except Exception:
+        dist = _edit_distance(" ".join(a), " ".join(b))
+    return dist / len(a)
+
+
 def pronunciation_report(ref: str, hyp: str) -> dict[str, Any]:
-    rate = cer(ref, hyp)
+    char_rate = cer(ref, hyp)
+    rate = pinyin_cer(ref, hyp)
     missed = missing_keywords(ref, hyp)
     is_error = rate >= CER_ERROR or bool(missed)
     return {
         "cer": round(rate, 4),
         "cer_pct": round(rate * 100, 1),
+        "char_cer": round(char_rate, 4),
+        "char_cer_pct": round(char_rate * 100, 1),
         "missing_keywords": missed,
         "is_error": is_error,
     }

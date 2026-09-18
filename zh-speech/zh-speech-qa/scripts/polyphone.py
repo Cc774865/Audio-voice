@@ -138,8 +138,45 @@ def tones_compatible(expected: int, heard: int) -> bool:
     return {expected, heard} <= {3, 5}
 
 
+_TOKENS: dict[str, list[tuple[str, int, int]]] = {}
+_WORD_FREQ: dict[str, int] = {}
+
+
+def _tokenize(text: str) -> list[tuple[str, int, int]] | None:
+    """jieba word tokens with offsets."""
+    if text in _TOKENS:
+        return _TOKENS[text]
+    try:
+        import jieba
+
+        jieba.initialize()
+        toks = [(w, a, b) for w, a, b in jieba.tokenize(text)]
+    except Exception:
+        return None
+    if len(_TOKENS) > 256:
+        _TOKENS.clear()
+    _TOKENS[text] = toks
+    return toks
+
+
+def _is_word(phrase: str) -> bool:
+    """True when jieba knows the phrase as a real word (blocks fragments like 中的)."""
+    if phrase in _WORD_FREQ:
+        return _WORD_FREQ[phrase] > 0
+    try:
+        import jieba
+
+        jieba.initialize()
+        freq = int(jieba.dt.FREQ.get(phrase, 0))
+    except Exception:
+        return True
+    _WORD_FREQ[phrase] = freq
+    return freq > 0
+
+
 def lexicon_match(text: str, i: int, ch: str) -> dict[str, Any] | None:
     best: tuple[int, dict[str, Any]] | None = None
+    tokens = _tokenize(text)
     for ent in load_lexicon().get(ch) or []:
         for phrase in ent.get("phrases") or []:
             if ch not in phrase:
@@ -149,10 +186,14 @@ def lexicon_match(text: str, i: int, ch: str) -> dict[str, Any] | None:
                 pos = text.find(phrase, start)
                 if pos < 0:
                     break
-                if pos <= i < pos + len(phrase):
-                    if best is None or len(phrase) > best[0]:
-                        best = (len(phrase), ent)
                 start = pos + 1
+                if not (pos <= i < pos + len(phrase)):
+                    continue
+                aligned = bool(tokens) and any(w == phrase and a == pos for w, a, _b in tokens)
+                if len(phrase) > 1 and not aligned and not _is_word(phrase):
+                    continue
+                if best is None or len(phrase) > best[0]:
+                    best = (len(phrase), ent)
     return None if best is None else best[1]
 
 
@@ -186,9 +227,27 @@ def expected_dei(text: str, i: int) -> str:
     return "de2"
 
 
+def dict_readings(ch: str) -> list[str]:
+    """All readings of a char as tone3 pinyin (e.g. xing2), most common first."""
+    from pypinyin import Style, pinyin as _pinyin
+    from pypinyin.contrib.tone_convert import to_tone3
+
+    try:
+        rows = _pinyin(ch, style=Style.TONE3, heteronym=True)
+    except Exception:
+        return []
+    if not rows:
+        return []
+    out: list[str] = []
+    for item in rows[0]:
+        t3 = to_tone3(item, v_to_u=False)
+        if t3 and t3 not in out:
+            out.append(t3)
+    return out
+
+
 def expected_readings(text: str) -> list[dict[str, Any]]:
     from pypinyin import Style, lazy_pinyin
-    from pypinyin.constants import PINYIN_DICT
 
     lex = load_lexicon()
     chars = [(i, ch) for i, ch in enumerate(text or "") if is_hanzi(ch)]
@@ -196,8 +255,8 @@ def expected_readings(text: str) -> list[dict[str, Any]]:
     pys = lazy_pinyin(only, style=Style.TONE3, strict=False) if only else []
     out: list[dict[str, Any]] = []
     for k, (idx, ch) in enumerate(chars):
-        raw_dict = str(PINYIN_DICT.get(ord(ch), "") or "")
-        pinyin_cands = [parse_pinyin(x) for x in raw_dict.split(",") if x.strip()]
+        raw_readings = dict_readings(ch)
+        pinyin_cands = [parse_pinyin(x) for x in raw_readings]
         pinyin_cands = [(a, b) for a, b in pinyin_cands if a]
         lex_entries = lex.get(ch) or []
         lex_cands = [str(e.get("pinyin") or "") for e in lex_entries if e.get("pinyin")]

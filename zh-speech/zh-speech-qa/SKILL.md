@@ -75,9 +75,18 @@ python cli.py calibrate
 
 检查阶段之后，用 `edge-tts` 按原稿语境生成参考 mp3（不带课件 `pronunciations`），再和原音频逐字比拼音。FunASR 只出汉字，`shuai4` vs `lv4` 这种同调异读靠这一步。报告字段是 `pinyin_disagree`，不要当成只比调值。综合判定不改课件综合分。`--no-review` 可关。细节见 [rules/review.md](rules/review.md)。
 
-- 每个字都估原音频拼音和参考 TTS 拼音，看两边是否相同
-- 多种声韵（组词命中）用模板比声母韵母；声调只在组词命中、发音修正、或本来就要听音高的字上比
+- 参考读音受控：edge-tts 不支持 SSML `<phoneme>`，语境确定的字用**同音同调常见字**替换后合成（可逆，sidecar 记 `subs`），保证参考读成应读
+- 被强制的字参考读音已知，只用原音频识别去比应读；声调用归一化 F0 轮廓模板比，base 用 MFCC 比
+- 证据不足的字进 `pinyin_unresolved`，**不再阻断**：桶 P 仍不合格，其余合格放行
+- 阈值在 `rules/pinyin_confidence.json`，跑 `cli.py selftest` 实测（base ~93%、tone ~85%），不要在没实测前改
 - 参考音频写在 `<口播目录>/.ref-tts/`，不要写进课件
+
+### 全自动判定（默认，不留待审）
+
+- 发音检查用**拼音级 CER**（只比声母韵母）：ASR 同音字（作/做、图象/图像）不再误报为桶 A；真改读（shuài/lǜ）照样抓到
+- 桶 A 按 `bucket_a_kind` 分来源：连读/gate/漏词/发音修正是确定性检查，直接给结论；只有字面 CER 类才交复审判「ASR 误报 vs 真读错」
+- 分来源收敛：参考/ASR 不可信 → 合格；检查阶段已有存疑（桶 P）→ 不合格。`--strict` 才保留待审供人工
+
 
 ### 回复与标注
 
@@ -110,6 +119,8 @@ python cli.py memory append pass --json-file record.json
 - 打分：[rules/scoring.md](rules/scoring.md)
 - 复审对照：[rules/review.md](rules/review.md)
 - 逐字拼音：[scripts/pinyin_audio.py](scripts/pinyin_audio.py)
+- 同音替换：[scripts/homophones.py](scripts/homophones.py)
+- 识别自检：[scripts/pinyin_selftest.py](scripts/pinyin_selftest.py)
 - 参考 TTS：[scripts/ref_tts.py](scripts/ref_tts.py)
 - 复审脚本：[scripts/review.py](scripts/review.py)
 - 标注入库：[rules/memory.md](rules/memory.md)
