@@ -5,7 +5,7 @@
 | 你要做的事 | 命令 |
 |---|---|
 | 转写、语音转文字、只要 mp3 | `python cli.py stt <目录或mp3>` |
-| 质检、打分、对照原稿、标注入库 | `python cli.py qa <目录>` |
+| 质检、打分、对照原稿、标注入库、复审拼音 | `python cli.py qa <目录>` |
 
 本目录可整夹拷到别的项目。需要 **Python 3.11** 虚拟环境、ffmpeg，以及 FunASR 模型。
 
@@ -30,6 +30,7 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe cli.py stt .
 .\.venv\Scripts\python.exe cli.py qa .
 .\.venv\Scripts\python.exe cli.py qa . --lang en --force-asr --json
+.\.venv\Scripts\python.exe cli.py qa . --courseware courseware.json
 .\.venv\Scripts\python.exe cli.py calibrate
 .\.venv\Scripts\python.exe cli.py memory list
 ```
