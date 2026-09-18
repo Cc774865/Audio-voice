@@ -39,7 +39,7 @@ description: >-
 
 ```
 - [ ] 1. 确认目录里是成对的 mp3 + 正确稿（json / txt / md，同名；json 优先）
-- [ ] 2. 跑 qa_course.py（检查阶段 FunASR 进桶 A/P；默认再跑复审：参考 TTS vs 原 mp3 逐字拼音，出综合判定。`--no-review` 可关）
+- [ ] 2. 跑 qa_course.py（检查阶段 FunASR 进桶 A/P；默认再跑复审：参考 TTS vs 原 mp3 逐字拼音，出综合判定。`--no-review` 可关；`--strict` 才留待审）
 - [ ] 3. 按脚本输出回复；逻辑对照近邻锚点，只评这几条例子，不改综合分或单句分
 - [ ] 4. 把报告中每条桶 A 错误写入 fail 库（source=script，必填 script_reason 与 agent_reason）。桶 P 不自动写。
 - [ ] 5. 对 6 个典型例逐条标注入库（见 rules/memory.md）；用户说先不标则跳过
@@ -59,7 +59,7 @@ description: >-
 .\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/qa_course.py .
 ```
 
-英文口播加 `--lang en`。强制重识别加 `--force-asr`。JSON 调试加 `--json`。不读记忆库加 `--no-memory`。发给课件 Agent 时用 `--course-id` 指定**测试环境课件 ID**。对照课件发音修正加 `--courseware courseware.json`（有 token 时 `--course-id` 也会自行拉取）。默认会做复审（`edge-tts` 按语境生成参考 mp3）；`--no-review` 关掉，`--force-tts` 强制重生成参考音频。
+英文口播加 `--lang en`。强制重识别加 `--force-asr`。JSON 调试加 `--json`。不读记忆库加 `--no-memory`。发给课件 Agent 时用 `--course-id` 指定**测试环境课件 ID**。对照课件发音修正加 `--courseware courseware.json`（有 token 时 `--course-id` 也会自行拉取）。默认会做复审（`edge-tts` 按语境生成参考 mp3）；`--no-review` 关掉，`--force-tts` 强制重生成参考音频。默认全自动判定、不留待审；`--strict` 才保留待审供人工。
 
 **禁止**访问生产环境 [https://jx-admin.zmexing.com/mymath](https://jx-admin.zmexing.com/mymath)，一步也不要调。对节点 / 发送走测试环境 [https://test-jx-admin.zmexing.com/mymath](https://test-jx-admin.zmexing.com/mymath)（可用环境变量 `JX_BASE` 覆盖）。
 
@@ -82,13 +82,19 @@ description: >-
 .\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/calibrate.py
 ```
 
+拼音识别自检（测 base/tone 阈值，不要手改 `pinyin_confidence.json`）：
+
+```bash
+.\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/pinyin_selftest.py --limit 100
+```
+
 正确稿优先级：同名 `.json`（带字级时间戳）> `.txt` > `.md`。txt/md 只提供对照文本，停顿/拖音改用 FunASR 时间戳，精度低于 json。
 
 单句仍可用 `qa_one.py`（仅 json 时间戳，无 FunASR）。
 
 ### 分桶（一条句子只进最高优先级）
 
-1. **A 发音错误**：CER≥8%，或缺拉丁字母/课件关键词，或标点连读（句读标点未停顿且 ASR 粘字），或 gate=fail。**全部列出，不占 6 例。**
+1. **A 发音错误**：拼音 CER≥8%（只比声母韵母；作/做、图象/图像不算），或缺拉丁字母/课件关键词，或标点连读（句读标点未停顿且 ASR 粘字），或 gate=fail。**全部列出，不占 6 例。**
 2. **P 多音字 / 读音**：高证据读音不符，或课件节点 `pronunciations` 与语境应读不一致。**全部列出，不占 6 例，不扣整课错误惩罚，不自动入库。** 规则见 [rules/polyphone.md](rules/polyphone.md)。
 3. **B 不流畅**：停顿/拖音/吞音/语速出带。最多取 4 条进典型例。
 4. **C 综合分低**：单句分 < 76。
@@ -99,9 +105,17 @@ description: >-
 
 检查阶段之后，用 `edge-tts` 按原稿语境生成参考 mp3（不带课件 `pronunciations`），再和原音频逐字比拼音。FunASR 只出汉字，`shuai4` vs `lv4` 这种同调异读靠这一步。报告字段是 `pinyin_disagree`，不要当成只比调值。综合判定不改课件综合分。`--no-review` 可关。细节见 [rules/review.md](rules/review.md)。
 
-- 每个字都估原音频拼音和参考 TTS 拼音，看两边是否相同
-- 多种声韵（组词命中）用模板比声母韵母；声调只在组词命中、发音修正、或本来就要听音高的字上比
+- 参考读音受控：edge-tts 不支持 SSML `<phoneme>`，语境确定的字用**同音同调常见字**替换后合成（可逆，sidecar 记 `subs`），保证参考读成应读
+- 被强制的字参考读音已知，只用原音频识别去比应读；声调用归一化 F0 轮廓模板比，base 用 MFCC 比
+- 证据不足的字进 `pinyin_unresolved`，**不再阻断**：桶 P 仍不合格，其余合格放行
+- 阈值在 `rules/pinyin_confidence.json`，跑 `pinyin_selftest.py` 实测（base ~93%、tone ~85%），不要在没实测前改
 - 参考音频写在 `<口播目录>/.ref-tts/`，不要 PUT 课件、不要跑工作室 `tts-batch`
+
+### 全自动判定（默认，不留待审）
+
+- 发音检查用**拼音级 CER**（只比声母韵母）：ASR 同音字（作/做、图象/图像）不再误报为桶 A；真改读（shuài/lǜ）照样抓到
+- 桶 A 按 `bucket_a_kind` 分来源：连读/gate/漏词/发音修正是确定性检查，直接给结论；只有字面 CER 类才交复审判「ASR 误报 vs 真读错」
+- 分来源收敛：参考/ASR 不可信 → 合格；检查阶段已有存疑（桶 P）→ 不合格。`--strict` 才保留待审供人工
 
 ### 回复模板
 
@@ -116,8 +130,9 @@ description: >-
 脚本只出事实（`suggestions[]`，`advice` 为空）。你按当条错误现写方向，写入 `advice` 后再问是否发给课件 Agent。
 
 - 只写方向，不写整句替换，不写 `<#x#>`
-- 连读：指出哪两个字间隔太短，让对方适当加间隔
-- 多音字 / 发音修正：指出哪个字读音不对，让对方按语境改口播读音（可带应读/听成；修正栏写错的让对方改掉错误拼音）
+- 连读：指出哪两个字间隔太短，让对方适当加间隔。发给 Agent 时写明：停顿约 0.4 秒，最长不超过 1 秒，禁止 2～3 秒
+- 不要把「图象 / 图像」拆开加停顿；同音词漏检先当 ASR 误报，不要改原稿
+- 多音字 / 发音修正：用**同音常用字**写应读，不要写 bian4 / jiao3。例如「便」应读「遍」，不要读成「便宜」；「角」应读「脚」。同音字只表示读音，不要让对方改汉字。修正栏写错的让对方改掉错误拼音
 - 缺词 / CER / gate：指出漏词、和原稿差太多、或不完整/重复，让对方核对后重出口播
 - 节点 `has_at`：补一句「不要加停顿标记，用重做 TTS 拉开或收紧间隔」
 - 发给课件 Agent 的消息抬头用 **课件ID**（不是课节ID）
@@ -133,6 +148,8 @@ description: >-
 - 单句与整课打分：[rules/scoring.md](rules/scoring.md)
 - 复审对照：[rules/review.md](rules/review.md)
 - 逐字拼音：[scripts/pinyin_audio.py](scripts/pinyin_audio.py)
+- 同音替换：[scripts/homophones.py](scripts/homophones.py)
+- 识别自检：[scripts/pinyin_selftest.py](scripts/pinyin_selftest.py)
 - 参考 TTS：[scripts/ref_tts.py](scripts/ref_tts.py)
 - 复审脚本：[scripts/review.py](scripts/review.py)
 - 标注入库：[rules/memory.md](rules/memory.md)

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 
@@ -21,12 +22,35 @@ from polyphone import (
 )
 from ref_tts import DEFAULT_VOICE, synthesize_plain
 
-BASE_MARGIN = 0.03
-MIN_COSINE = 0.05
+BASE_MARGIN = 0.02
+MIN_COSINE = 0.12
 MIN_CROP_MS = 60.0
 TONE_CONF = 0.75
+CONF_PATH = Path(__file__).resolve().parent.parent / "rules" / "pinyin_confidence.json"
+CONF_DEFAULTS = {
+    "min_cosine": MIN_COSINE,
+    "base_margin": BASE_MARGIN,
+    "tone_conf": TONE_CONF,
+    "tone_f0_min": 0.30,
+    "tone_margin": 0.15,
+}
+_CONF: dict[str, float] | None = None
 PARTICLE_DE = {"地", "的", "得"}
-_TPL: dict[str, np.ndarray] = {}
+_TPL: dict[str, tuple[np.ndarray | None, np.ndarray | None]] = {}
+
+
+def confidence() -> dict[str, float]:
+    global _CONF
+    if _CONF is None:
+        data = dict(CONF_DEFAULTS)
+        if CONF_PATH.is_file():
+            try:
+                loaded = json.loads(CONF_PATH.read_text(encoding="utf-8"))
+                data.update({k: float(v) for k, v in loaded.items() if isinstance(v, (int, float))})
+            except Exception:
+                pass
+        _CONF = data
+    return _CONF
 
 
 def candidate_pinyins(ch: str) -> list[str]:
@@ -90,19 +114,6 @@ def template_phrase(ch: str, pinyin: str) -> str:
     return phrases[0]
 
 
-def _ssml_phoneme(ch: str, pinyin: str, voice: str) -> str:
-    base, tone = parse_pinyin(pinyin)
-    ph = "lyu" if base == "lv" else base
-    if tone != 5:
-        ph = f"{ph}{tone}"
-    return (
-        f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN">'
-        f'<voice name="{voice}">'
-        f'<phoneme alphabet="sapi" ph="{ph}">{ch}</phoneme>'
-        f"</voice></speak>"
-    )
-
-
 def _trim(y: np.ndarray, sr: int) -> np.ndarray:
     if y.size < int(sr * 0.02):
         return y
@@ -140,6 +151,29 @@ def _cosine(a: np.ndarray | None, b: np.ndarray | None) -> float:
     return float(np.dot(a, b))
 
 
+def _f0_contour(y: np.ndarray, sr: int, n: int = 16) -> np.ndarray | None:
+    """Speaker-normalized pitch contour (semitones, fixed length, mean removed)."""
+    from polyphone import _f0_series
+
+    f0 = _f0_series(_trim(y, sr), sr)
+    voiced = f0[f0 > 0]
+    if voiced.size < 3:
+        return None
+    semi = 12.0 * np.log2(voiced / float(np.median(voiced)))
+    x = np.linspace(0.0, 1.0, semi.size)
+    xi = np.linspace(0.0, 1.0, n)
+    return np.interp(xi, x, semi)
+
+
+def _f0_sim(a: np.ndarray | None, b: np.ndarray | None) -> float | None:
+    if a is None or b is None:
+        return None
+    a = a - a.mean()
+    b = b - b.mean()
+    denom = float(np.linalg.norm(a) * np.linalg.norm(b)) or 1.0
+    return float(np.dot(a, b) / denom)
+
+
 def _crop_phrase_char(audio: np.ndarray, sr: int, phrase: str, ch: str) -> np.ndarray:
     y = _trim(audio, sr)
     han = [c for c in phrase if is_hanzi(c)]
@@ -163,33 +197,60 @@ def ensure_template(
     *,
     voice: str = DEFAULT_VOICE,
     force: bool = False,
-) -> np.ndarray | None:
+) -> tuple[np.ndarray | None, np.ndarray | None]:
+    """Per-reading audio template: (MFCC embedding, normalized F0 contour)."""
     from polyphone import _load_wav
 
     key = f"{ch}_{pinyin}_{voice}"
     if key in _TPL and not force:
         return _TPL[key]
     crop_path = tpl_dir / f"{key}.npy"
+    f0_path = tpl_dir / f"{key}.f0.npy"
     if crop_path.is_file() and not force:
         emb = np.load(crop_path)
-        _TPL[key] = emb
-        return emb
+        f0 = np.load(f0_path) if f0_path.is_file() else None
+        _TPL[key] = (emb, f0)
+        return emb, f0
     phrase = template_phrase(ch, pinyin)
+    if phrase != ch:
+        tts_text, crop_char = phrase, ch
+    else:
+        from homophones import replacement
+
+        repl = replacement(ch, pinyin, {ch})
+        if repl:
+            tts_text, crop_char = repl, repl
+        else:
+            tts_text, crop_char = ch, ch
     wav_path = tpl_dir / f"{key}.mp3"
-    text = phrase if phrase != ch else _ssml_phoneme(ch, pinyin, voice)
     try:
-        synthesize_plain(text, wav_path, voice=voice, force=force)
+        synthesize_plain(tts_text, wav_path, voice=voice, force=force)
     except Exception:
-        return None
+        return None, None
     audio, sr = _load_wav(wav_path)
-    crop = _crop_phrase_char(audio, sr, phrase, ch)
+    crop = _crop_phrase_char(audio, sr, tts_text, crop_char)
     emb = _embed(crop, sr)
+    f0 = _f0_contour(crop, sr)
     if emb is None:
-        return None
+        return None, f0
     tpl_dir.mkdir(parents=True, exist_ok=True)
     np.save(crop_path, emb)
-    _TPL[key] = emb
-    return emb
+    if f0 is not None:
+        np.save(f0_path, f0)
+    _TPL[key] = (emb, f0)
+    return emb, f0
+
+
+def _unique_readings(cands: list[str]) -> list[str]:
+    out: list[str] = []
+    for py in cands:
+        base, tone = parse_pinyin(py)
+        if not base:
+            continue
+        norm = format_pinyin(base, tone)
+        if norm not in out:
+            out.append(norm)
+    return out
 
 
 def guess_pinyin(
@@ -202,6 +263,7 @@ def guess_pinyin(
     force: bool = False,
     expected: dict[str, Any] | None = None,
 ) -> dict[str, Any] | None:
+    conf = confidence()
     if crop.size < int(sr * MIN_CROP_MS / 1000.0):
         return None
     if expected and not expected.get("lexicon_hit"):
@@ -211,45 +273,115 @@ def guess_pinyin(
         cands = [str(x) for x in expected["candidates"] if x]
     else:
         cands = candidate_pinyins(ch)
-    if not cands:
+    readings = _unique_readings(cands)
+    if not readings:
         return None
-    pairs = bases_of(cands)
+    multi = len(readings) > 1
     duration_ms = 1000.0 * len(crop) / sr
-    tone, tconf = estimate_tone(crop, sr, duration_ms)
-    multi = len(pairs) > 1
     if not multi:
-        base, best_py = pairs[0]
-        base_conf = 1.0
-        best_s = 1.0
-        score_map: dict[str, float] = {base: 1.0}
+        base, tone = parse_pinyin(readings[0])
+        return {
+            "char": ch,
+            "pinyin": readings[0],
+            "base": base,
+            "tone": tone,
+            "tone_conf": 1.0,
+            "base_conf": 1.0,
+            "best_s": 1.0,
+            "multi_base": False,
+            "scores": {base: 1.0},
+            "base_confident": True,
+            "tone_confident": True,
+            "confident": True,
+            "candidates": list(cands),
+        }
+
+    crop_emb = _embed(crop, sr)
+    crop_f0 = _f0_contour(crop, sr)
+    scored: list[dict[str, Any]] = []
+    for pinyin in readings:
+        base, tone = parse_pinyin(pinyin)
+        emb_t, f0_t = ensure_template(ch, pinyin, tpl_dir, voice=voice, force=force)
+        mfcc = _cosine(crop_emb, emb_t)
+        f0 = _f0_sim(crop_f0, f0_t)
+        scored.append(
+            {
+                "pinyin": pinyin,
+                "base": base,
+                "tone": tone,
+                "mfcc": mfcc,
+                "f0": f0,
+                "combined": mfcc + 0.5 * (f0 if f0 is not None else 0.0),
+            }
+        )
+    scored.sort(key=lambda r: r["combined"], reverse=True)
+    best = scored[0]
+    other_base = [r for r in scored if r["base"] != best["base"]]
+    second_base = max((r["mfcc"] for r in other_base), default=-1.0)
+    base_conf = best["mfcc"] - second_base
+    base_confident = (
+        best["mfcc"] >= float(conf["min_cosine"])
+        and base_conf >= float(conf.get("base_margin", BASE_MARGIN))
+    )
+    same_base = [r for r in scored if r["base"] == best["base"]]
+    same_base.sort(
+        key=lambda r: r["f0"] if r["f0"] is not None else -1.0,
+        reverse=True,
+    )
+    tone_pick = same_base[0]
+    tone = tone_pick["tone"]
+    f0_best = tone_pick["f0"]
+    if len(same_base) == 1:
+        tone_confident = True
+        f0_margin = 1.0
+    elif f0_best is None or same_base[1]["f0"] is None:
+        est, tconf = estimate_tone(crop, sr, duration_ms)
+        tone = est if est is not None else tone
+        tone_confident = est is not None and float(tconf or 0.0) >= float(conf["tone_conf"])
+        f0_margin = 0.0
     else:
-        crop_emb = _embed(crop, sr)
-        scores: list[tuple[float, str, str]] = []
-        for base, py in pairs:
-            tpl = ensure_template(ch, py, tpl_dir, voice=voice, force=force)
-            scores.append((_cosine(crop_emb, tpl), base, py))
-        scores.sort(reverse=True)
-        best_s, base, best_py = scores[0]
-        second = scores[1][0] if len(scores) > 1 else -1.0
-        if best_s < MIN_COSINE:
-            return None
-        base_conf = max(0.0, best_s - second)
-        score_map = {b: float(s) for s, b, _ in scores}
-    if tone is None or tconf < TONE_CONF:
-        _, used_tone = parse_pinyin(best_py)
-        tconf = min(float(tconf or 0.0), 0.4)
-    else:
-        used_tone = tone
+        f0_margin = float(f0_best) - float(same_base[1]["f0"])
+        tone_confident = float(f0_best) >= float(conf["tone_f0_min"]) and f0_margin >= float(
+            conf.get("tone_margin", 0.15)
+        )
+    tone_conf = float(f0_best) if f0_best is not None else 0.0
+    score_map: dict[str, float] = {}
+    for r in scored:
+        score_map[r["base"]] = max(float(r["mfcc"]), score_map.get(r["base"], -1.0))
     return {
         "char": ch,
-        "pinyin": format_pinyin(base, used_tone if used_tone is not None else 5),
-        "base": base,
-        "tone": used_tone,
-        "tone_conf": round(float(tconf), 2),
+        "pinyin": format_pinyin(best["base"], tone),
+        "base": best["base"],
+        "tone": tone,
+        "tone_conf": round(tone_conf, 2),
         "base_conf": round(float(base_conf), 3),
-        "best_s": round(float(best_s), 3),
+        "best_s": round(float(best["mfcc"]), 3),
         "multi_base": multi,
         "scores": {k: round(v, 3) for k, v in score_map.items()},
+        "base_confident": bool(base_confident),
+        "tone_confident": bool(tone_confident),
+        "confident": bool(base_confident and tone_confident),
+        "candidates": list(cands),
+    }
+
+
+def known_reading(ch: str, pinyin: str) -> dict[str, Any]:
+    """A reference reading we trust because the review TTS was forced to it."""
+    base, tone = parse_pinyin(pinyin)
+    return {
+        "char": ch,
+        "pinyin": format_pinyin(base, tone),
+        "base": base,
+        "tone": tone,
+        "tone_conf": 1.0,
+        "base_conf": 1.0,
+        "best_s": 1.0,
+        "multi_base": False,
+        "scores": {},
+        "base_confident": True,
+        "tone_confident": True,
+        "confident": True,
+        "known": True,
     }
 
 
@@ -260,24 +392,32 @@ def pinyin_mismatch(
     expected: dict[str, Any] | None = None,
     allow_tone: bool = False,
 ) -> dict[str, Any] | None:
-    """True when original-audio pinyin and review-TTS pinyin are not the same."""
+    """Compare original-audio pinyin with the (verified or known) reference reading.
+
+    Returns a hit dict with kind in {base, tone, unresolved}, or None when they agree.
+    """
     ob, rb = orig.get("base"), ref.get("base")
+    ch = orig.get("char") or ref.get("char")
     if not ob or not rb:
-        return None
-    ch = orig.get("char")
+        return {"kind": "unresolved", "char": ch, "detail": f"「{ch}」拼音识别失败"}
+    ref_known = bool(ref.get("known"))
     if ob != rb:
+        if not orig.get("base_confident", True):
+            return {"kind": "unresolved", "char": ch, "detail": f"「{ch}」原音频声母韵母证据不足"}
+        if not ref_known and not ref.get("base_confident", True):
+            return {"kind": "unresolved", "char": ch, "detail": f"「{ch}」参考 TTS 声母韵母证据不足"}
         oscores = orig.get("scores") or {}
         rscores = ref.get("scores") or {}
-        gap = 0.0
-        if ob in oscores and rb in oscores and ob in rscores and rb in rscores:
+        if ref_known:
+            sure = True
+        elif ob in oscores and rb in oscores and ob in rscores and rb in rscores:
             orig_gap = float(oscores[ob]) - float(oscores[rb])
             ref_gap = float(rscores[rb]) - float(rscores[ob])
-            gap = orig_gap + ref_gap
-            sure = orig_gap >= 0.02 and ref_gap >= 0.02 and gap >= 0.05
+            sure = orig_gap >= 0.02 and ref_gap >= 0.02 and (orig_gap + ref_gap) >= 0.05
         else:
             sure = (
-                (not orig.get("multi_base") or orig.get("base_conf", 0) >= BASE_MARGIN)
-                and (not ref.get("multi_base") or ref.get("base_conf", 0) >= BASE_MARGIN)
+                (not orig.get("multi_base") or orig.get("base_conf", 0) >= 0.02)
+                and (not ref.get("multi_base") or ref.get("base_conf", 0) >= 0.02)
             )
         if sure:
             return {
@@ -287,16 +427,16 @@ def pinyin_mismatch(
                 "ref": ref.get("pinyin"),
                 "detail": f"「{ch}」原音频 {orig.get('pinyin')}，参考 TTS {ref.get('pinyin')}",
             }
-        return None
+        return {"kind": "unresolved", "char": ch, "detail": f"「{ch}」声母韵母差异证据不足"}
     if not allow_tone:
         return None
     if ch in PARTICLE_DE and ob == "de":
         return None
-    if orig.get("tone_conf", 0) < TONE_CONF or ref.get("tone_conf", 0) < TONE_CONF:
-        return None
     ot, rt = orig.get("tone"), ref.get("tone")
     if ot is None or rt is None:
-        return None
+        return {"kind": "unresolved", "char": ch, "detail": f"「{ch}」声调识别失败"}
+    if not orig.get("tone_confident", False) or not (ref_known or ref.get("tone_confident", False)):
+        return {"kind": "unresolved", "char": ch, "detail": f"「{ch}」声调识别不可靠"}
     if tones_compatible(int(ot), int(rt)):
         return None
     if expected is not None:

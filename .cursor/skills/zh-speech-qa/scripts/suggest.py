@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from cer import CER_ERROR
+from homophones import format_reading
 from jx_agent import JxError, fetch_courseware, get_token
 
 DEFAULT_COURSE_ID = ""
@@ -107,23 +108,33 @@ def suggestions_from_row(row: dict, course_id: str) -> list[dict[str, Any]]:
         return out
     if bucket == "P":
         for err in row.get("polyphone_errors") or []:
-            out.append(
-                _item(
-                    row,
-                    course_id,
-                    "P",
-                    "polyphone",
-                    {
-                        "char": err.get("char"),
-                        "expected": err.get("expected"),
-                        "heard": err.get("heard"),
-                        "at_ms": err.get("at_ms"),
-                        "duration_ms": err.get("duration_ms"),
-                        "source": err.get("source"),
-                        "detail": err.get("detail"),
-                    },
-                )
+            char = str(err.get("char") or "")
+            expected = str(err.get("expected") or "")
+            heard = str(err.get("heard") or "")
+            want_zh = format_reading(expected, char or None)
+            heard_zh = format_reading(heard, char or None)
+            item = _item(
+                row,
+                course_id,
+                "P",
+                "polyphone",
+                {
+                    "char": char,
+                    "expected": expected,
+                    "heard": heard,
+                    "expected_zh": want_zh,
+                    "heard_zh": heard_zh,
+                    "at_ms": err.get("at_ms"),
+                    "duration_ms": err.get("duration_ms"),
+                    "source": err.get("source"),
+                    "detail": err.get("detail"),
+                },
             )
+            item["advice"] = (
+                f"「{char}」应读{want_zh}，不要读成{heard_zh}。"
+                "只改口播读音，不要改汉字。"
+            )
+            out.append(item)
     return out
 
 
@@ -152,11 +163,11 @@ def fact_line(item: dict[str, Any]) -> str:
         return f"「{left}{punct}{right}」空隙 {span_s}"
     if kind == "polyphone":
         char = facts.get("char") or ""
-        want = facts.get("expected") or "—"
-        heard = facts.get("heard") or "—"
+        want = format_reading(str(facts.get("expected") or ""), char or None)
+        heard = format_reading(str(facts.get("heard") or ""), char or None)
         if facts.get("source") == "pronunciations":
-            return f"「{char}」应读 {want}，发音修正写成 {heard}"
-        return f"「{char}」应读 {want}，听成 {heard}"
+            return f"「{char}」应读{want}，发音修正写成{heard}"
+        return f"「{char}」应读{want}，听成{heard}"
     if kind == "keyword":
         words = facts.get("missing_keywords") or []
         return "缺 " + "、".join(str(x) for x in words)
@@ -205,7 +216,7 @@ def render_agent_message(course_id: str, suggestions: list[dict[str, Any]]) -> s
     ready = suggestions
     lines = [
         f"课件ID: {course_id}",
-        "请只改下列口播节点，不要动其它页。无 at 的节点用停顿标记；有 at 的不要加 <#x#>。具体怎么改口播由你决定。",
+        "请只改下列口播节点，不要动其它页。无 at 的节点如需拉开间隔，停顿标记只用约 0.4 秒（<#0.4#>），最长不超过 1 秒；禁止 <#2#>、<#3#> 这种超过 1 秒的。有 at 的不要加 <#x#>。不要把「图象」拆开。具体怎么改口播由你决定。",
         "",
     ]
     for i, item in enumerate(ready, 1):
