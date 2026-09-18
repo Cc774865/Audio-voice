@@ -9,6 +9,7 @@ import os
 import statistics
 import sys
 from pathlib import Path
+from typing import Any
 
 from analyze_timing import SPEED_MARGIN, SPEED_OK, analyze_words, load_clip, words_from_asr
 from asr_local import CACHE_DIR, load_model, transcribe
@@ -17,6 +18,7 @@ from memory import load_all, neighbors_for
 from polyphone import check_polyphones
 from refs import ScriptRef, pair_clips
 from score import score_metrics
+from suggest import DEFAULT_COURSE_ID, build_suggestions, clip_pronunciations, render_suggestions_md
 
 TYPICAL_N = 6
 B_MAX = 4
@@ -132,6 +134,29 @@ def compact(row: dict) -> dict:
         "ref_kind": row.get("ref_kind"),
         "polyphone_errors": row.get("polyphone_errors") or [],
         "liaison_errors": row.get("liaison_errors") or [],
+        "missing_keywords": row.get("missing_keywords") or [],
+        "gate_fail_reasons": row.get("gate_fail_reasons") or [],
+        "verdict": row.get("verdict"),
+        "verdict_reason": row.get("verdict_reason"),
+        "review": _compact_review(row.get("review")),
+    }
+
+
+def _compact_review(review: dict | None) -> dict | None:
+    if not review:
+        return None
+    return {
+        "skipped": bool(review.get("skipped")),
+        "skip_reason": review.get("skip_reason"),
+        "engine": review.get("engine"),
+        "voice": review.get("voice"),
+        "cer_orig_ref_pct": review.get("cer_orig_ref_pct"),
+        "cer_ref_script_pct": review.get("cer_ref_script_pct"),
+        "transcript_tts": review.get("transcript_tts"),
+        "pinyin_compared": review.get("pinyin_compared"),
+        "pinyin_skipped": review.get("pinyin_skipped"),
+        "pinyin_disagree": review.get("pinyin_disagree") or review.get("tone_disagree") or [],
+        "ref_ok": review.get("ref_ok"),
     }
 
 
@@ -167,7 +192,34 @@ def _neighbor_md(kind: str, row: dict) -> str:
     )
 
 
-def evaluate_pair(mp3: Path, ref: ScriptRef, model, force: bool) -> dict:
+def load_courseware_payload(path: str | None, course_id: str, token: str | None = None) -> Any:
+    if path:
+        raw = json.loads(Path(path).read_text(encoding="utf-8"))
+        return raw
+    if not course_id:
+        return None
+    from jx_agent import JxError, fetch_courseware, get_token
+
+    try:
+        return fetch_courseware(course_id, get_token(token))
+    except (JxError, SystemExit) as exc:
+        print(f"courseware {course_id} unavailable: {exc}", file=sys.stderr)
+        return None
+
+
+def pronunciation_map(courseware: Any) -> dict[str, list[str]]:
+    if not courseware:
+        return {}
+    return clip_pronunciations(courseware)
+
+
+def evaluate_pair(
+    mp3: Path,
+    ref: ScriptRef,
+    model,
+    force: bool,
+    pronunciations: list[str] | None = None,
+) -> dict:
     need_ts = ref.kind != "json"
     asr = cached_asr(mp3, model, force, need_timestamp=need_ts)
     hyp = asr.get("text") or ""
@@ -196,7 +248,12 @@ def evaluate_pair(mp3: Path, ref: ScriptRef, model, force: bool) -> dict:
     pron = pronunciation_report(metrics["transcript_ref"], hyp)
     poly = {"n_checked": 0, "errors": []}
     if getattr(model, "_qa_lang", "zh") == "zh":
-        poly = check_polyphones(mp3, metrics["transcript_ref"], words)
+        poly = check_polyphones(
+            mp3,
+            metrics["transcript_ref"],
+            words,
+            pronunciations=pronunciations,
+        )
     metrics["asr"] = "funasr-zh"
     metrics["cer"] = pron["cer"]
     metrics["missing_keywords"] = pron["missing_keywords"]
@@ -241,6 +298,8 @@ def evaluate_pair(mp3: Path, ref: ScriptRef, model, force: bool) -> dict:
         ),
         "ref_kind": ref.kind,
         "_metrics": metrics,
+        "_mp3": str(mp3),
+        "_words": words,
     }
     row["bucket"] = bucket_of(row)
     row["reason"] = _reason(row)
@@ -267,6 +326,59 @@ def _reason(row: dict) -> str:
     return "；".join(reasons) if reasons else "合格"
 
 
+def attach_review(items: list[dict], model, folder: Path, args) -> None:
+    from review import combine_verdict, review_clip
+    from ref_tts import DEFAULT_VOICE
+
+    skip = bool(getattr(args, "no_review", False) or args.lang != "zh")
+    if skip:
+        why = "复审已跳过" if getattr(args, "no_review", False) else "英文不跑复审"
+        for row in items:
+            dummy = {"skipped": True}
+            extra = combine_verdict(row["bucket"], dummy, row.get("polyphone_errors"))
+            extra["verdict_reason"] = extra["verdict_reason"].replace("复审未跑", why)
+            row.update(extra)
+            row["review"] = {**dummy, "skip_reason": why}
+        return
+    ref_dir = folder / ".ref-tts"
+    voice = getattr(args, "tts_voice", None) or DEFAULT_VOICE
+    print(f"review TTS {len(items)} clips → {ref_dir}", file=sys.stderr)
+    for i, row in enumerate(items, 1):
+        print(f"  review [{i}/{len(items)}] {row['id']}", file=sys.stderr)
+        rev = review_clip(
+            Path(row["_mp3"]),
+            row.get("transcript_ref") or "",
+            row.get("transcript_asr") or "",
+            row.get("_words") or [],
+            model,
+            ref_dir,
+            voice=voice,
+            force_asr=args.force_asr,
+            force_tts=bool(getattr(args, "force_tts", False)),
+            poly_errors=row.get("polyphone_errors"),
+        )
+        row["review"] = rev
+        row.update(combine_verdict(row["bucket"], rev, row.get("polyphone_errors")))
+
+
+def _review_line(row: dict) -> str:
+    rev = row.get("review") or {}
+    bits = [f"`{row.get('id')}` {row.get('verdict')}  {row.get('verdict_reason') or ''}"]
+    if rev.get("skipped"):
+        bits.append(rev.get("skip_reason") or "复审跳过")
+    else:
+        if rev.get("cer_orig_ref_pct") is not None:
+            bits.append(f"原/参 CER {rev['cer_orig_ref_pct']}%")
+        if rev.get("cer_ref_script_pct") is not None:
+            bits.append(f"参/稿 CER {rev['cer_ref_script_pct']}%")
+        compared = rev.get("pinyin_compared")
+        if compared is not None:
+            bits.append(f"拼音对照 {compared} 字")
+        for hit in rev.get("pinyin_disagree") or rev.get("tone_disagree") or []:
+            bits.append(hit.get("detail") or "")
+    return "  ".join(x for x in bits if x)
+
+
 def apply_speed_band(row: dict, speed_ok: tuple[float, float]) -> None:
     metrics = row["_metrics"]
     lo, hi = speed_ok
@@ -284,7 +396,9 @@ def render_markdown(payload: dict) -> str:
     lines = [
         f"**课件综合分**：{s['score']} / 100",
         f"**目录**：`{s.get('folder', '—')}`",
-        f"**句数**：{s['n']}（错误 {s['n_error']} / 多音字 {s.get('n_poly', 0)} / 不流畅 {s['n_disfluent']} / 其余 {s['n_ok']}）",
+        f"**课件**：`{s.get('course_id', '—')}`",
+        f"**句数**：{s['n']}（桶A {s['n_error']} / 桶P {s.get('n_poly', 0)} / 不流畅 {s['n_disfluent']} / 其余 {s['n_ok']}）",
+        f"**综合判定**：错误 {s.get('n_verdict_err', 0)} / 不合格 {s.get('n_verdict_fail', 0)} / 待审 {s.get('n_verdict_review', 0)} / 合格 {s.get('n_verdict_ok', 0)}",
         f"**FunASR**：{s['asr']}",
         f"**语速合格带**：{s.get('speed_band', '—')}（当课均值±{SPEED_MARGIN}）",
         f"**单句中位数**：{s['median']}",
@@ -319,6 +433,18 @@ def render_markdown(payload: dict) -> str:
                 f"{i}. `{row['id']}` {row['reason']}  "
                 f"原稿「{row['transcript_ref']}」 ASR「{row['transcript_asr']}」"
             )
+    lines += ["", "### 综合判定（检查 + 复审）"]
+    verdicts = payload.get("verdicts") or {}
+    if not any(verdicts.get(k) for k in ("错误", "不合格", "待审")):
+        lines.append("全部合格" if verdicts.get("合格") else "无")
+    else:
+        for label in ("错误", "不合格", "待审"):
+            rows = verdicts.get(label) or []
+            if not rows:
+                continue
+            lines.append(f"#### {label}")
+            for i, row in enumerate(rows, 1):
+                lines.append(f"{i}. {_review_line(row)}")
     lines += ["", "### 6 个典型例"]
     typical = payload["typical"]
     if not typical:
@@ -339,6 +465,7 @@ def render_markdown(payload: dict) -> str:
                 lines.append(_neighbor_md("不合格", hit))
         if len(typical) < TYPICAL_N:
             lines.append(f"（typical_count={len(typical)} < 6）")
+    lines += render_suggestions_md(payload.get("suggestions") or [])
     if payload.get("skipped"):
         lines += ["", "### 跳过", *[f"- {x}" for x in payload["skipped"]]]
     return "\n".join(lines)
@@ -357,6 +484,12 @@ def main() -> int:
     parser.add_argument("--force-asr", action="store_true", help="ignore *.asr.json cache")
     parser.add_argument("--no-memory", action="store_true", help="do not attach pass/fail neighbors")
     parser.add_argument("--lang", choices=("zh", "en"), default="zh")
+    parser.add_argument("--course-id", default=DEFAULT_COURSE_ID, help="测试环境课件 ID，供修改建议使用")
+    parser.add_argument("--courseware", help="local courseware.json; used for 发音修正")
+    parser.add_argument("--token", help="jx_token; default env JX_TOKEN")
+    parser.add_argument("--no-review", action="store_true", help="skip reference-TTS review stage")
+    parser.add_argument("--force-tts", action="store_true", help="regenerate reference mp3")
+    parser.add_argument("--tts-voice", default="zh-CN-XiaoxiaoNeural", help="edge-tts voice for review")
     args = parser.parse_args()
     folder = Path(args.path).resolve()
     if not folder.is_dir():
@@ -370,11 +503,24 @@ def main() -> int:
     print(f"loading FunASR {args.lang} ({len(pairs)} clips)…", file=sys.stderr)
     model = load_model(args.lang)
     model._qa_lang = args.lang
+    pron_map = pronunciation_map(
+        load_courseware_payload(args.courseware, str(args.course_id), args.token)
+    )
+    if pron_map:
+        print(f"pronunciations on {len(pron_map)} clips", file=sys.stderr)
 
     items = []
     for i, (mp3, ref) in enumerate(pairs, 1):
         print(f"[{i}/{len(pairs)}] {mp3.name} ({ref.kind})", file=sys.stderr)
-        items.append(evaluate_pair(mp3, ref, model, args.force_asr))
+        items.append(
+            evaluate_pair(
+                mp3,
+                ref,
+                model,
+                args.force_asr,
+                pronunciations=pron_map.get(mp3.stem),
+            )
+        )
     for row in items:
         row["course"] = folder.name
 
@@ -382,6 +528,7 @@ def main() -> int:
     speed_ok = (mean_cpm - SPEED_MARGIN, mean_cpm + SPEED_MARGIN)
     for row in items:
         apply_speed_band(row, speed_ok)
+    attach_review(items, model, folder, args)
 
     errors = sorted(
         (x for x in items if x["bucket"] == "A"),
@@ -395,9 +542,16 @@ def main() -> int:
     n_b = sum(1 for x in items if x["bucket"] == "B")
     n_p = len(polyphones)
     n_rest = sum(1 for x in items if x["bucket"] in {"C", "ok"})
+    verdict_groups = {
+        "错误": [compact(x) for x in items if x.get("verdict") == "错误"],
+        "不合格": [compact(x) for x in items if x.get("verdict") == "不合格"],
+        "待审": [compact(x) for x in items if x.get("verdict") == "待审"],
+        "合格": [compact(x) for x in items if x.get("verdict") == "合格"],
+    }
     payload = {
         "summary": {
-            "folder": folder.name,
+                "folder": folder.name,
+            "course_id": str(args.course_id),
             "score": agg["score"],
             "base": agg["base"],
             "penalty": agg["penalty"],
@@ -406,6 +560,10 @@ def main() -> int:
             "n_poly": n_p,
             "n_disfluent": n_b,
             "n_ok": n_rest,
+            "n_verdict_err": len(verdict_groups["错误"]),
+            "n_verdict_fail": len(verdict_groups["不合格"]),
+            "n_verdict_review": len(verdict_groups["待审"]),
+            "n_verdict_ok": len(verdict_groups["合格"]),
             "median": agg["median"],
             "asr": f"funasr-paraformer-{args.lang}",
             "speed_mean": round(mean_cpm, 1),
@@ -416,7 +574,9 @@ def main() -> int:
         },
         "errors": [compact(x) for x in errors],
         "polyphones": [compact(x) for x in polyphones],
+        "verdicts": verdict_groups,
         "typical": typical_out,
+        "suggestions": build_suggestions(errors, polyphones, args.course_id),
         "skipped": skipped,
     }
     if not args.no_memory:

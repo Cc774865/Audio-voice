@@ -5,7 +5,7 @@
 | 你要做的事 | Skill | 命令 |
 |---|---|---|
 | 转写、语音转文字、只要 mp3、生成文稿 | `.cursor/skills/zh-speech-stt/` | `stt_course.py` |
-| 质检、整课评分、对照原稿、标注入库 | `.cursor/skills/zh-speech-qa/` | `qa_course.py` |
+| 质检、整课评分、对照原稿、标注入库、复审拼音 | `.cursor/skills/zh-speech-qa/` | `qa_course.py` |
 
 仓库根目录就是 Cursor 项目。必须用 **Python 3.11** 的 `.venv`（不要用 3.14），并安装 ffmpeg。
 
@@ -14,7 +14,7 @@
 ```bash
 py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
-.\.venv\Scripts\python.exe -m pip install -U "funasr==1.4.1" modelscope soundfile pypinyin
+.\.venv\Scripts\python.exe -m pip install -U "funasr==1.4.1" modelscope soundfile pypinyin edge-tts librosa
 .\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/asr_local.py --warmup
 ```
 
@@ -34,7 +34,7 @@ py -3.11 -m venv .venv
 
 对照正确稿打分。每句一对同名文件：`foo.mp3` + 正确稿。正确稿优先级：`.json`（带字级时间戳）> `.txt` > `.md`。txt/md 只提供对照文本，停顿/拖音改用 FunASR 时间戳。没有正确稿的 mp3 列入跳过，不会自动改去转写。
 
-默认只输出**一个课件综合分 + 错误列表 + 多音字列表 + 6 个典型例**。桶 A 错误句全部列出，不占这 6 例。多音字进桶 P 待审，不扣整课错误惩罚。
+默认只输出**一个课件综合分 + 错误列表 + 多音字列表 + 综合判定 + 6 个典型例**。桶 A 错误句全部列出，不占这 6 例。多音字进桶 P 待审，不扣整课错误惩罚。默认会做复审（参考 TTS 逐字拼音）；`--no-review` 关掉。
 
 ```bash
 .\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/qa_course.py .

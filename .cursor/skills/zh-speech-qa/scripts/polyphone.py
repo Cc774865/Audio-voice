@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 import tempfile
 from pathlib import Path
 from typing import Any
@@ -15,7 +16,9 @@ from analyze_timing import PUNCT, is_speech
 from asr_local import to_wav16k
 
 LEXICON_PATH = Path(__file__).resolve().parent.parent / "rules" / "polyphones.json"
+EXTRA_PATH = Path(__file__).resolve().parent.parent / "rules" / "polyphone_extra.json"
 _LEXICON: dict[str, list[dict[str, Any]]] | None = None
+PRON_PY = re.compile(r"\(([^)]+)\)")
 
 # 结构助词「地」应读 de（轻声/三声）；名词「地」读 di4。
 # 轻声 de→di4：要足够长且去声很稳。结构助词「的」只看语境，不用 F0。
@@ -44,6 +47,34 @@ DE2_WORDS = {
 }
 
 
+def _merge_lexicon_entries(
+    base: dict[str, list[dict[str, Any]]], extra: dict[str, list[dict[str, Any]]]
+) -> dict[str, list[dict[str, Any]]]:
+    for ch, entries in (extra or {}).items():
+        dest = base.setdefault(ch, [])
+        for ent in entries or []:
+            py = str(ent.get("pinyin") or "")
+            if not py:
+                continue
+            found = next((row for row in dest if str(row.get("pinyin") or "") == py), None)
+            phrases = [str(p) for p in (ent.get("phrases") or []) if p]
+            if found is None:
+                dest.append(
+                    {
+                        "pinyin": py,
+                        "display": ent.get("display") or py,
+                        "phrases": phrases,
+                    }
+                )
+                continue
+            have = list(found.get("phrases") or [])
+            for phrase in phrases:
+                if phrase not in have:
+                    have.append(phrase)
+            found["phrases"] = have
+    return base
+
+
 def load_lexicon() -> dict[str, list[dict[str, Any]]]:
     global _LEXICON
     if _LEXICON is None:
@@ -52,6 +83,9 @@ def load_lexicon() -> dict[str, list[dict[str, Any]]]:
         else:
             data = json.loads(LEXICON_PATH.read_text(encoding="utf-8"))
             _LEXICON = data.get("chars") or {}
+        if EXTRA_PATH.is_file():
+            extra = json.loads(EXTRA_PATH.read_text(encoding="utf-8"))
+            _LEXICON = _merge_lexicon_entries(_LEXICON, extra.get("chars") or {})
     return _LEXICON
 
 
@@ -361,15 +395,102 @@ def guess_reading(char: str, expected: dict[str, Any], tone: int | None, duratio
     return None
 
 
-def check_polyphones(mp3: Path, transcript: str, words: list[dict[str, Any]]) -> dict[str, Any]:
+def parse_pronunciation_item(raw: str) -> tuple[str, list[str]] | None:
+    text = str(raw or "").strip()
+    if not text or "/" not in text:
+        return None
+    surface, rest = text.split("/", 1)
+    surface = surface.strip()
+    pinyins = [m.group(1).strip() for m in PRON_PY.finditer(rest) if m.group(1).strip()]
+    if not surface or not pinyins:
+        return None
+    return surface, pinyins
+
+
+def _hanzi_only(text: str) -> str:
+    return "".join(ch for ch in text if is_hanzi(ch))
+
+
+def _override_pairs(surface: str, pinyins: list[str]) -> list[tuple[int, str, str]]:
+    han = [ch for ch in surface if is_hanzi(ch)]
+    if not han or not pinyins:
+        return []
+    if len(pinyins) == len(han):
+        return [(i, han[i], pinyins[i]) for i in range(len(han))]
+    if len(pinyins) == 1:
+        return [(len(han) - 1, han[-1], pinyins[0])]
+    n = min(len(han), len(pinyins))
+    return [(len(han) - n + i, han[-n + i], pinyins[-n + i]) for i in range(n)]
+
+
+def check_pronunciation_overrides(transcript: str, pronunciations: list[str] | None) -> list[dict[str, Any]]:
+    """Flag courseware 发音修正 that disagree with the contextual reading."""
+    items = [parse_pronunciation_item(x) for x in pronunciations or []]
+    items = [x for x in items if x]
+    if not items:
+        return []
+    expected = {row["index"]: row for row in expected_readings(transcript)}
+    errors: list[dict[str, Any]] = []
+    seen: set[tuple[str, str, str]] = set()
+    for surface, pinyins in items:
+        needle = _hanzi_only(surface)
+        if not needle:
+            continue
+        pairs = _override_pairs(surface, pinyins)
+        start = 0
+        while True:
+            pos = transcript.find(needle, start)
+            if pos < 0:
+                break
+            for offset, ch, forced in pairs:
+                idx = pos + offset
+                if idx >= len(transcript) or transcript[idx] != ch:
+                    continue
+                row = expected.get(idx)
+                if not row or row.get("char") != ch:
+                    continue
+                forced_py = format_pinyin(*parse_pinyin(forced))
+                if not forced_py or pinyin_match(row, forced_py):
+                    continue
+                want = row["pinyin"]
+                key = (ch, want, forced_py)
+                if key in seen:
+                    continue
+                seen.add(key)
+                errors.append(
+                    {
+                        "char": ch,
+                        "index": idx,
+                        "expected": want,
+                        "heard": forced_py,
+                        "source": "pronunciations",
+                        "surface": needle,
+                        "at_ms": None,
+                        "duration_ms": None,
+                        "detail": (
+                            f"发音修正「{ch}」写成 {forced_py}，语境应读 {want}"
+                        ),
+                    }
+                )
+            start = pos + 1
+    return errors
+
+
+def check_polyphones(
+    mp3: Path,
+    transcript: str,
+    words: list[dict[str, Any]],
+    pronunciations: list[str] | None = None,
+) -> dict[str, Any]:
+    errors = check_pronunciation_overrides(transcript, pronunciations)
+    seen = {(err.get("index"), err.get("char")) for err in errors}
     expected = [row for row in expected_readings(transcript) if row.get("check_audio")]
     if not expected:
-        return {"n_checked": 0, "errors": []}
+        return {"n_checked": len(errors), "errors": errors}
     located = locate_chars(words)
     audio = None
     sr = 16000
-    errors: list[dict[str, Any]] = []
-    n_checked = 0
+    n_checked = len(errors)
     loc_i = 0
     for row in expected:
         span = None
@@ -400,17 +521,23 @@ def check_polyphones(mp3: Path, transcript: str, words: list[dict[str, Any]]) ->
             continue
         if conf < DE_TO_DI4_CONF:
             continue
+        key = (row.get("index"), row["char"])
+        if key in seen:
+            continue
         want = row["pinyin"]
         if row["char"] == "地" and row["base"] == "de":
             want = "de（三声/轻声）"
         errors.append(
             {
                 "char": row["char"],
+                "index": row.get("index"),
                 "expected": want,
                 "heard": heard,
+                "source": "audio",
                 "at_ms": round(float(span["begin"]), 1),
                 "duration_ms": round(duration_ms, 1),
                 "detail": f"多音字「{row['char']}」应读 {want}，听成 {heard}",
             }
         )
+        seen.add(key)
     return {"n_checked": n_checked, "errors": errors}

@@ -1,0 +1,32 @@
+{
+  "chars": {
+    "倒": [
+      {
+        "pinyin": "dao4",
+        "display": "dào",
+        "phrases": ["倒水"]
+      }
+    ],
+    "盛": [
+      {
+        "pinyin": "cheng2",
+        "display": "chéng",
+        "phrases": ["盛水", "可盛"]
+      }
+    ],
+    "量": [
+      {
+        "pinyin": "liang4",
+        "display": "liàng",
+        "phrases": ["增量"]
+      }
+    ],
+    "率": [
+      {
+        "pinyin": "lv4",
+        "display": "lǜ",
+        "phrases": ["斜率"]
+      }
+    ]
+  }
+}

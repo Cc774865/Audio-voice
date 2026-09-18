@@ -16,7 +16,7 @@
 ```bash
 py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
-.\.venv\Scripts\python.exe -m pip install -U "funasr==1.4.1" modelscope soundfile pypinyin
+.\.venv\Scripts\python.exe -m pip install -U "funasr==1.4.1" modelscope soundfile pypinyin edge-tts librosa
 .\.venv\Scripts\python.exe cli.py warmup
 ```
 
@@ -53,6 +53,6 @@ Cursor 原版技能仍在仓库 `.cursor/skills/`，本目录是独立拷贝。
 .\.venv\Scripts\python.exe cli.py calibrate
 ```
 
-质检默认只出**一个综合分 + 错误列表 + 多音字列表 + 6 个典型例**。桶 A 进错误惩罚；桶 P 多音字只待审，不自动入库、不扣整课错误惩罚。
+质检默认只出**一个综合分 + 错误列表 + 多音字列表 + 综合判定 + 6 个典型例**。桶 A 进错误惩罚；桶 P 多音字只待审，不自动入库、不扣整课错误惩罚。默认复审用参考 TTS 逐字比拼音（`shuai4` vs `lv4` 靠这一步），`--no-review` 可关。综合判定不改综合分。
 
 满 20 条标注或 8 条人机不一致才出建议。脚本只打印，确认后才改对应文件（`score.py` / `scoring.md`；动 CER 或停顿毫秒时才改 `cer.py` / `analyze_timing.py` / `disfluency.md`）。

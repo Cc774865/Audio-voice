@@ -19,6 +19,7 @@
 - **不自动**写入 fail 库
 - 单句 accuracy 每处 −3（轻于缺词的 −6）
 - Agent 在「逻辑」里判断像不像误报；用户说要标再入库
+- 可出修改建议并发给课件 Agent（只写读音方向，不入库、不扣整课错误分）
 
 ## 先定该读什么（语境）
 
@@ -36,7 +37,7 @@
 组词表：[polyphones.json](polyphones.json)，由《最全多音字总汇》编译：
 
 ```bash
-python cli.py compile-polyphones
+.\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/compile_polyphones.py
 ```
 
 ## 什么情况下不进 P
@@ -44,7 +45,7 @@ python cli.py compile-polyphones
 - 结构助词「的」：轻声下滑很容易看成去声
 - 疑问「哪」（哪些 / 哪个 / 哪里 / 哪年等）：允许 `nǎ` 和 `něi`，不把阳平误配成「哪吒」
 - 轻声与三声视为同族
-- 同调不同声母（行 xíng/háng）不强判
+- 同调不同声母（行 xíng/háng、率 shuài/lǜ）检查阶段不强判；复审逐字拼音会比，见 [review.md](review.md)
 - 时间戳不可靠、裁切后过短、或声调置信度 < 0.75
 
 ## 进 P 必须同时满足
@@ -56,4 +57,14 @@ python cli.py compile-polyphones
 
 「一个一个地数」读成 `dì` 会进 P。「变化前的数量」里的「的」不会。
 
-FunASR 只出汉字，分不出「地」读 de 还是 dì，所以这一桶只靠时间戳裁音频估调。
+FunASR 只出汉字，分不出「地」读 de 还是 dì，所以听感这一路只靠时间戳裁音频估调。
+
+## 课件发音修正
+
+节点上的 `pronunciations`（如 `变/(bian1)`、`率/(shuai4)`、`可盛/(ke3)(cheng2)`）是 TTS 读音覆盖，汉字不变，CER 看不出来。质检在有 `--courseware` 或能拉到课件时，把修正拼音和语境应读对比：
+
+- 修正 ≠ 应读 → 进桶 P（不看 FunASR 汉字，不要求音高置信度）
+- 修正 = 应读 → 不报（例如「盛水」写成 `cheng2`）
+- 组词不够时补 [polyphone_extra.json](polyphone_extra.json)，不要改总表编译结果。当前补了：倒水、盛水/可盛、斜率、增量
+
+`qa_course.py` 加 `--courseware path/to/courseware.json`；已有 `--course-id` 且环境里有 `JX_TOKEN` 时也会自己拉课件。

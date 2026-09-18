@@ -10,7 +10,7 @@ alwaysApply: true
 | 用户在说 | 走哪条 | 命令 |
 |---|---|---|
 | 转写、语音转文字、只要 mp3、识别成文字、生成文稿 | `.cursor/skills/zh-speech-stt/SKILL.md` | `stt_course.py` |
-| 质检语音、整课评分、打分、口播是否流畅、发音错误、标注入库、对照原稿 | `.cursor/skills/zh-speech-qa/SKILL.md` | `qa_course.py` |
+| 质检语音、整课评分、打分、口播是否流畅、发音错误、标注入库、对照原稿、复审拼音 | `.cursor/skills/zh-speech-qa/SKILL.md` | `qa_course.py` |
 
 硬性限制：
 

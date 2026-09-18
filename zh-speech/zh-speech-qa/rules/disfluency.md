@@ -27,6 +27,8 @@
 
 错误句**全部列出**，**不计入** 6 例；每条都要写入不合格记忆库（见 [memory.md](memory.md)）。
 
+报告后可为桶 A 出修改建议（连读 / 缺词 / CER / gate），只写方向，不写替换稿；用户确认后发给课件 Agent。见 [SKILL.md](../SKILL.md)「修改建议」。
+
 多音字不进本桶，见 [polyphone.md](polyphone.md)。
 
 ## 桶 P：多音字（待审）
