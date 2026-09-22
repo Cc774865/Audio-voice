@@ -12,14 +12,16 @@ from typing import Any
 
 from analyze_timing import MID_GAP_MS, PROLONG_MS, SHORT_COMMA_MS
 from cer import CER_ERROR
+from memory import MEMORY_DIR
 from memory import disagreement as is_disagreement
 from memory import load_all
 from qa_course import LOW_SCORE
 from score import BASE, COMPRESS
 
-MIN_LABELS = 20
-MIN_DISAGREE = 8
+MIN_LABELS = 60
 MIN_VOTES = 2
+STATE_PATH = MEMORY_DIR / "calibrate_state.json"
+JUDGE_SOURCES = {"human", "agent"}
 
 STEPS = {
     "LOW_SCORE": 2,
@@ -99,25 +101,52 @@ def _has_hint(text: str, hints: tuple[str, ...]) -> bool:
     return any(h in text for h in hints)
 
 
-def iter_human(stores: dict[str, list[dict[str, Any]]]) -> list[tuple[str, dict[str, Any]]]:
+def _source_of(rec: dict[str, Any]) -> str:
+    source = str(rec.get("source") or "").strip().lower()
+    if source:
+        return source
+    return "script" if not str(rec.get("human_reason") or "").strip() else "human"
+
+
+def iter_labels(stores: dict[str, list[dict[str, Any]]]) -> list[tuple[str, dict[str, Any]]]:
     rows: list[tuple[str, dict[str, Any]]] = []
     for rec in stores.get("pass") or []:
-        rows.append(("pass", rec))
+        if _source_of(rec) in JUDGE_SOURCES:
+            rows.append(("pass", rec))
     for rec in stores.get("fail") or []:
-        source = str(rec.get("source") or "").strip().lower()
-        if not source:
-            source = "script" if not str(rec.get("human_reason") or "").strip() else "human"
-        if source == "human":
+        if _source_of(rec) in JUDGE_SOURCES:
             rows.append(("fail", rec))
     return rows
+
+
+def load_consumed() -> int:
+    if not STATE_PATH.is_file():
+        return 0
+    try:
+        data = json.loads(STATE_PATH.read_text(encoding="utf-8"))
+        return max(0, int(data.get("consumed_labels") or 0))
+    except Exception:
+        return 0
+
+
+def save_consumed(n: int) -> None:
+    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    STATE_PATH.write_text(
+        json.dumps({"consumed_labels": int(n)}, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
 
 
 def count_disagreement(stores: dict[str, list[dict[str, Any]]]) -> int:
     n = 0
     for rec in stores.get("pass") or []:
+        if _source_of(rec) not in JUDGE_SOURCES:
+            continue
         if rec.get("disagreement") is True or is_disagreement(_bucket(rec), "pass"):
             n += 1
     for rec in stores.get("fail") or []:
+        if _source_of(rec) not in JUDGE_SOURCES:
+            continue
         if rec.get("disagreement") is True or is_disagreement(_bucket(rec), "fail"):
             n += 1
     return n
@@ -257,13 +286,15 @@ def _median_fallback(
 
 def analyze(stores: dict[str, list[dict[str, Any]]] | None = None) -> dict[str, Any]:
     data = stores if stores is not None else load_all()
-    human = iter_human(data)
-    n_label = len(human)
+    labels = iter_labels(data)
+    n_label = len(labels)
+    consumed = load_consumed()
+    pending = max(0, n_label - consumed)
     n_disagree = count_disagreement(data)
-    n_pass = sum(1 for s, _ in human if s == "pass")
-    n_fail = sum(1 for s, _ in human if s == "fail")
+    n_pass = sum(1 for s, _ in labels if s == "pass")
+    n_fail = sum(1 for s, _ in labels if s == "fail")
     knobs = current_knobs()
-    ready = n_label >= MIN_LABELS or n_disagree >= MIN_DISAGREE
+    ready = pending >= MIN_LABELS
     payload: dict[str, Any] = {
         "ready": ready,
         "n_label": n_label,
@@ -272,24 +303,30 @@ def analyze(stores: dict[str, list[dict[str, Any]]] | None = None) -> dict[str, 
         "n_fail_store": len(data.get("fail") or []),
         "n_disagree": n_disagree,
         "need_labels": MIN_LABELS,
-        "need_disagree": MIN_DISAGREE,
+        "consumed_labels": consumed,
+        "pending_labels": pending,
         "current": knobs,
         "suggestions": [],
         "apply": False,
     }
     if not ready:
         payload["why"] = (
-            f"标注 {n_label} 条（需 ≥{MIN_LABELS}）且人机不一致 {n_disagree} 条"
-            f"（需 ≥{MIN_DISAGREE}），不出建议。"
+            f"典型例标注 {n_label} 条，距上次微调新增 {pending} 条（每满 {MIN_LABELS} 条再出建议）。"
         )
         return payload
-    votes = classify_votes(human)
-    suggestions = _median_fallback(human, knobs, _pick_suggestions(votes, knobs))
+    votes = classify_votes(labels)
+    suggestions = _median_fallback(labels, knobs, _pick_suggestions(votes, knobs))
     payload["suggestions"] = suggestions
     if suggestions:
-        payload["why"] = "样本已达门槛，下面是旋钮建议。未确认不要改文件，也不要重训 FunASR。"
+        payload["why"] = (
+            f"已满 {MIN_LABELS} 条新标注（累计 {n_label}）。下面是判定旋钮建议。"
+            "未确认不要改文件，也不要重训 FunASR。问完是否改之后跑 calibrate.py --ack。"
+        )
     else:
-        payload["why"] = "样本已达门槛，但投票不足以改旋钮。门槛暂稳。"
+        payload["why"] = (
+            f"已满 {MIN_LABELS} 条新标注（累计 {n_label}），但投票不足以改旋钮。门槛暂稳。"
+            "问完之后仍要跑 calibrate.py --ack。"
+        )
     return payload
 
 
@@ -311,9 +348,10 @@ def render_markdown(report: dict[str, Any]) -> str:
         f"**校准**：{'可建议' if report['ready'] else '未就绪'}",
         (
             f"**标注**：{report['n_label']} 条（合格 {report['n_pass']} / "
-            f"人工不合格 {report['n_fail_human']}，需 ≥{report['need_labels']}）"
+            f"不合格 {report['n_fail_human']}；新增 {report.get('pending_labels', 0)}，"
+            f"每满 {report['need_labels']} 条微调一次）"
         ),
-        f"**人机不一致**：{report['n_disagree']} 条（需 ≥{report['need_disagree']}）",
+        f"**与脚本不一致**：{report['n_disagree']} 条",
         (
             f"**当前旋钮**：LOW_SCORE {_fmt_knob('LOW_SCORE', cur['LOW_SCORE'])}；"
             f"CER {_fmt_knob('CER_ERROR', cur['CER_ERROR'])}；"
@@ -354,9 +392,19 @@ def render_markdown(report: dict[str, Any]) -> str:
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
-    parser = argparse.ArgumentParser(description="Suggest QA knobs from memory labels; never writes files")
+    parser = argparse.ArgumentParser(description="Suggest QA knobs from memory labels; never writes score files")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument(
+        "--ack",
+        action="store_true",
+        help="mark the current typical-example label count as consumed so the next batch starts after 60 more",
+    )
     args = parser.parse_args()
+    if args.ack:
+        n = len(iter_labels(load_all()))
+        save_consumed(n)
+        print(json.dumps({"ok": True, "consumed_labels": n}, ensure_ascii=False) if args.json else f"已记下本批：累计标注 {n} 条。")
+        return 0
     report = analyze()
     if args.json:
         print(json.dumps(report, ensure_ascii=False, indent=2))

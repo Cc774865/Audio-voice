@@ -21,7 +21,7 @@ PASS_PATH = MEMORY_DIR / "pass.jsonl"
 FAIL_PATH = MEMORY_DIR / "fail.jsonl"
 
 Store = Literal["pass", "fail"]
-Source = Literal["human", "script"]
+Source = Literal["human", "script", "agent"]
 
 PASS_REQUIRED = ("id", "score", "bucket", "transcript_ref")
 KEEP = (
@@ -166,7 +166,7 @@ def disagreement(bucket: str | None, store: Store) -> bool:
 
 def infer_source(store: Store, rec: dict[str, Any]) -> Source:
     raw = str(rec.get("source") or "").strip().lower()
-    if raw in {"human", "script"}:
+    if raw in {"human", "script", "agent"}:
         return raw  # type: ignore[return-value]
     if store == "fail" and not str(rec.get("human_reason") or "").strip():
         return "script"
@@ -200,6 +200,8 @@ def _missing(store: Store, rec: dict[str, Any]) -> list[str]:
             missing.append("script_reason")
         if _blank(rec.get("agent_reason")):
             missing.append("agent_reason")
+    if source == "agent" and store == "fail" and _blank(rec.get("agent_reason")):
+        missing.append("agent_reason")
     return missing
 
 
@@ -227,7 +229,8 @@ def normalize(store: Store, rec: dict[str, Any]) -> dict[str, Any]:
         raise ValueError(f"{store} record missing: {', '.join(missing)}")
     if store == "pass":
         data.pop("human_reason", None)
-        data["source"] = "human"
+        if source != "agent":
+            data["source"] = "human"
     data["bucket"] = str(data["bucket"]).strip()
     data["disagreement"] = bool(disagreement(str(data["bucket"]), store))
     data["labeled_at"] = data.get("labeled_at") or _utc_now()
@@ -348,7 +351,7 @@ def main() -> int:
     p_append.add_argument("--script-reason", dest="script_reason")
     p_append.add_argument("--agent-reason", dest="agent_reason")
     p_append.add_argument("--human-reason", dest="human_reason")
-    p_append.add_argument("--source", choices=("human", "script"))
+    p_append.add_argument("--source", choices=("human", "script", "agent"))
     p_append.add_argument("--force", action="store_true", help="append even if id+course+source exists")
     p_append.set_defaults(func=_cmd_append)
 

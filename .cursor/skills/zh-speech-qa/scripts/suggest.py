@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Turn bucket A / P QA facts into courseware-Agent suggestion records."""
+"""Turn bucket A / P plus typical-example QA facts into Agent suggestion records."""
 
 from __future__ import annotations
 
@@ -20,6 +20,9 @@ KIND_LABEL = {
     "keyword": "缺词",
     "gate": "结构",
     "polyphone": "多音字",
+    "fluency": "不流畅",
+    "low_score": "分低",
+    "typical": "典型例",
 }
 AUDIO_KEYS = {
     "src",
@@ -61,12 +64,12 @@ PAUSE_HEADER = (
 def pause_seconds(span_ms: float | None, *, purpose: str = "comma") -> float:
     """Seconds for `<#x#>`. x is seconds (0.3 = 0.3s, 1 = 1s), capped at 1."""
     if purpose == "letter":
-        return 0.2
+        return 0.1
     if span_ms is None:
         return 0.3
     gap = float(span_ms)
     if gap <= 80:
-        return 0.25
+        return 0.1
     if gap <= 160:
         return 0.3
     if gap <= 250:
@@ -93,7 +96,7 @@ def _item(row: dict, course_id: str, bucket: str, kind: str, facts: dict[str, An
         "clip_id": row.get("id"),
         "bucket": bucket,
         "kind": kind,
-        "node_id": None,
+        "node_id": row.get("node_id"),
         "has_at": None,
         "facts": facts,
         "advice": None,
@@ -163,19 +166,39 @@ def suggestions_from_row(row: dict, course_id: str) -> list[dict[str, Any]]:
                 "只改口播读音，不要改汉字。"
             )
             out.append(item)
-    return out
+        return out
+    kind = {"B": "fluency", "C": "low_score"}.get(bucket, "typical")
+    return [
+        _item(
+            row,
+            course_id,
+            bucket or "ok",
+            kind,
+            {
+                "reason": row.get("reason"),
+                "pause_events": row.get("pause_events"),
+                "verdict": row.get("verdict"),
+                "detail": row.get("reason") or "",
+            },
+        )
+    ]
 
 
 def build_suggestions(
     errors: list[dict],
     polyphones: list[dict],
     course_id: str = DEFAULT_COURSE_ID,
+    typical: list[dict] | None = None,
 ) -> list[dict[str, Any]]:
     items: list[dict[str, Any]] = []
-    for row in errors or []:
-        items.extend(suggestions_from_row(row, course_id))
-    for row in polyphones or []:
-        items.extend(suggestions_from_row(row, course_id))
+    seen: set[tuple[Any, Any]] = set()
+    for row in list(errors or []) + list(polyphones or []) + list(typical or []):
+        for item in suggestions_from_row(row, course_id):
+            key = (item.get("clip_id"), item.get("kind"))
+            if key in seen:
+                continue
+            seen.add(key)
+            items.append(item)
     return items
 
 
@@ -205,30 +228,32 @@ def fact_line(item: dict[str, Any]) -> str:
     if kind == "gate":
         reasons = facts.get("reasons") or []
         return "；".join(str(x) for x in reasons) or "残句或重复"
+    if kind in {"fluency", "low_score", "typical"}:
+        return str(facts.get("reason") or facts.get("detail") or "")
     return str(facts.get("detail") or "")
 
 
 def render_suggestions_md(suggestions: list[dict[str, Any]]) -> list[str]:
-    lines = ["", "### 修改建议（事实，待按错误写方向）"]
+    lines = ["", "### 修改建议（错误 + 6 个典型例）"]
     if not suggestions:
-        lines.append("无（桶 A / 桶 P 均无）")
+        lines.append("无")
         return lines
     cid = suggestions[0].get("course_id") or "—"
     lines.append(
-        f"课件 `{cid}`。下列为脚本事实；发给课件 Agent 的建议句由质检按当条错误现写，"
-        "不要写替换稿或停顿标记。"
+        f"课件 `{cid}`。错误和 6 个典型例都会写出建议；是否发给课件 Agent 由你决定。"
+        "建议句由质检按当条现写，不要写替换稿或停顿标记。"
     )
     for i, item in enumerate(suggestions, 1):
         kind = KIND_LABEL.get(item.get("kind") or "", item.get("kind"))
         node = item.get("node_id")
-        loc = f"节点 `{node}`" if node else "节点未对上"
+        snippet = _clip((item.get("facts") or {}).get("transcript_ref"), 28)
+        loc = f"节点 `{node}`" if node else (f"「{snippet}」" if snippet else "节点未对上")
         at = " 有at" if item.get("has_at") else ""
         lines.append(
-            f"{i}. [桶{item.get('bucket')}·{kind}] `{item.get('clip_id')}` {loc}{at}  "
+            f"{i}. [桶{item.get('bucket')}·{kind}] {loc}{at}  "
             f"{fact_line(item)}"
         )
-        snippet = _clip((item.get("facts") or {}).get("transcript_ref"), 28)
-        if snippet:
+        if snippet and node:
             lines.append(f"   原稿「{snippet}」")
         if item.get("advice"):
             lines.append(f"   建议：{item['advice']}")
@@ -249,18 +274,27 @@ def render_agent_message(course_id: str, suggestions: list[dict[str, Any]]) -> s
     ]
     for i, item in enumerate(ready, 1):
         kind = KIND_LABEL.get(item.get("kind") or "", item.get("kind"))
-        clip = item.get("clip_id") or "—"
         node = item.get("node_id")
+        snippet = _clip((item.get("facts") or {}).get("transcript_ref"), 24)
         if node:
-            loc = f"节点 {node}（音频 {clip}）"
+            loc = f"节点 {node}"
+            if snippet:
+                loc += f"\n   原稿：「{snippet}」"
         else:
-            loc = f"音频 {clip}（节点未对上，请按原稿片段查找）"
-            snippet = _clip((item.get("facts") or {}).get("transcript_ref"), 24)
+            loc = "节点未对上，请按原稿片段查找"
             if snippet:
                 loc += f"\n   原稿片段：「{snippet}」"
         advice = str(item.get("advice") or "").strip()
         if item.get("has_at") and AT_NOTE not in advice:
             advice = f"{advice} {AT_NOTE}"
+        elif (
+            not item.get("has_at")
+            and item.get("kind") in {"liaison", "fluency"}
+            and "<#" not in advice
+        ):
+            facts = item.get("facts") or {}
+            mark = pause_mark(facts.get("span_ms"), purpose="comma")
+            advice = f"{advice.rstrip('。')}。写入 {mark}，不要用破折号或空格代替。"
         lines.append(f"{i}. {loc} [桶{item.get('bucket')}·{kind}]")
         lines.append(f"   {advice}")
         lines.append("")
@@ -402,12 +436,33 @@ def load_payload(path: str) -> dict[str, Any]:
 
 
 def suggestions_from_payload(payload: dict[str, Any], course_id: str) -> list[dict[str, Any]]:
+    if payload.get("errors") or payload.get("polyphones") or payload.get("typical"):
+        items = build_suggestions(
+            payload.get("errors") or [],
+            payload.get("polyphones") or [],
+            course_id,
+            payload.get("typical") or [],
+        )
+        old = {
+            (x.get("clip_id"), x.get("kind")): x
+            for x in payload.get("suggestions") or []
+        }
+        for item in items:
+            prev = old.get((item.get("clip_id"), item.get("kind")))
+            if not prev:
+                continue
+            if prev.get("advice") and not item.get("advice"):
+                item["advice"] = prev["advice"]
+            if prev.get("node_id") and not item.get("node_id"):
+                item["node_id"] = prev["node_id"]
+                item["has_at"] = prev.get("has_at")
+        return items
     if payload.get("suggestions"):
         items = [dict(x) for x in payload["suggestions"]]
         for item in items:
             item["course_id"] = course_id
         return items
-    return build_suggestions(payload.get("errors") or [], payload.get("polyphones") or [], course_id)
+    return []
 
 
 def main() -> int:

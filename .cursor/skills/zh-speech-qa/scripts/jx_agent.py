@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Talk to 课件工作室 courseware Agent. Token from JX_TOKEN, never from the repo.
 
-Never call production https://jx-admin.zmexing.com/mymath.
+Default host is production https://jx-admin.zmexing.com/mymath.
 """
 
 from __future__ import annotations
@@ -17,20 +17,13 @@ import uuid
 from pathlib import Path
 from typing import Any
 
-PRODUCTION_HOST = "jx-admin.zmexing.com"
-TEST_BASE = "https://test-jx-admin.zmexing.com/mymath"
+DEFAULT_BASE = "https://jx-admin.zmexing.com/mymath"
 POLL_SEC = 2.0
 POLL_TIMEOUT_SEC = 300.0
 
 
 def resolve_base(explicit: str | None = None) -> str:
-    raw = (explicit or os.environ.get("JX_BASE") or TEST_BASE).strip().rstrip("/")
-    host = raw.split("://", 1)[-1].split("/", 1)[0].lower()
-    if host == PRODUCTION_HOST:
-        raise SystemExit(
-            "拒绝访问生产环境 https://jx-admin.zmexing.com/mymath ，一步也不要调。"
-        )
-    return raw
+    return (explicit or os.environ.get("JX_BASE") or DEFAULT_BASE).strip().rstrip("/")
 
 
 class JxError(Exception):
@@ -44,7 +37,7 @@ def get_token(explicit: str | None = None) -> str:
     token = (explicit or os.environ.get("JX_TOKEN") or "").strip()
     if not token:
         raise SystemExit(
-            "没有 token。请在浏览器打开 https://test-jx-admin.zmexing.com/mymath/token ，复制后设置 JX_TOKEN，或把 token 发给我。"
+            f"没有 token。请在浏览器打开 {resolve_base()}/token ，复制后设置 JX_TOKEN，或把 token 发给我。"
         )
     return token
 
@@ -127,7 +120,7 @@ def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description="Send a message to the courseware Agent")
-    parser.add_argument("--course-id", required=True, help="测试环境课件 ID")
+    parser.add_argument("--course-id", required=True, help="生产环境课件 ID")
     parser.add_argument("--message", help="message text")
     parser.add_argument("--message-file", help="UTF-8 file with the message")
     parser.add_argument("--model-id", help="optional provider/model")

@@ -72,4 +72,4 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe .cursor/skills/zh-speech-qa/scripts/calibrate.py
 ```
 
-满 20 条标注或 8 条人机不一致才建议改 `LOW_SCORE`、CER 8%、停顿/拖音毫秒、`BASE` / `COMPRESS`。脚本只打印建议，确认后才改 `score.py` / `scoring.md`。
+**每满 60 条**典型例标注才建议改 `LOW_SCORE`、CER 8%、停顿/拖音毫秒、`BASE` / `COMPRESS`。脚本只打印建议，确认后才改 `score.py` / `scoring.md`。问完后跑 `calibrate.py --ack`。

@@ -18,7 +18,7 @@ from memory import load_all, neighbors_for
 from polyphone import check_polyphones
 from refs import ScriptRef, pair_clips
 from score import score_metrics
-from suggest import DEFAULT_COURSE_ID, build_suggestions, clip_pronunciations, render_suggestions_md
+from suggest import DEFAULT_COURSE_ID, build_suggestions, clip_pronunciations, locate_node, render_suggestions_md
 
 TYPICAL_N = 6
 B_MAX = 4
@@ -138,6 +138,7 @@ def compact(row: dict) -> dict:
         "gate_fail_reasons": row.get("gate_fail_reasons") or [],
         "verdict": row.get("verdict"),
         "verdict_reason": row.get("verdict_reason"),
+        "node_id": row.get("node_id"),
         "review": _compact_review(row.get("review")),
     }
 
@@ -179,6 +180,29 @@ def _clip_text(text: str | None, n: int = 28) -> str:
     return raw if len(raw) <= n else raw[:n] + "…"
 
 
+def _human_ref(row: dict, *, snippet: bool = False) -> str:
+    """User-facing label: node and/or transcript. Never mp3 filename or clip hash."""
+    node = str(row.get("node_id") or "").strip()
+    text = str(row.get("transcript_ref") or "").replace("\n", "")
+    if snippet:
+        text = _clip_text(text)
+    parts: list[str] = []
+    if node:
+        parts.append(f"节点 `{node}`")
+    if text:
+        parts.append(f"「{text}」")
+    return "  ".join(parts) if parts else "（无对应文本）"
+
+
+def attach_node_ids(items: list[dict], courseware: Any) -> None:
+    if not courseware:
+        return
+    for row in items:
+        hit = locate_node(courseware, row.get("id"), row.get("transcript_ref"))
+        if hit and hit.get("id"):
+            row["node_id"] = hit["id"]
+
+
 def _neighbor_md(kind: str, row: dict) -> str:
     extra = f" CER {row['cer_pct']}%" if row.get("cer_pct") is not None else ""
     pause = f" 停顿{int(row['pause_events'])}" if row.get("pause_events") is not None else ""
@@ -186,10 +210,7 @@ def _neighbor_md(kind: str, row: dict) -> str:
     why_part = f"  {why}" if why else ""
     score = row.get("score")
     score_part = f" {score}分" if score is not None else ""
-    return (
-        f"   - 近邻{kind}：`{row.get('id')}`{score_part}{extra}{pause}{why_part}  "
-        f"「{_clip_text(row.get('transcript_ref'))}」"
-    )
+    return f"   - 近邻{kind}：{_human_ref(row, snippet=True)}{score_part}{extra}{pause}{why_part}"
 
 
 def load_courseware_payload(path: str | None, course_id: str, token: str | None = None) -> Any:
@@ -363,7 +384,7 @@ def attach_review(items: list[dict], model, folder: Path, args) -> None:
 
 def _review_line(row: dict) -> str:
     rev = row.get("review") or {}
-    bits = [f"`{row.get('id')}` {row.get('verdict')}  {row.get('verdict_reason') or ''}"]
+    bits = [f"{_human_ref(row)} {row.get('verdict')}  {row.get('verdict_reason') or ''}"]
     if rev.get("skipped"):
         bits.append(rev.get("skip_reason") or "复审跳过")
     else:
@@ -420,8 +441,8 @@ def render_markdown(payload: dict) -> str:
     else:
         for i, row in enumerate(errors, 1):
             lines.append(
-                f"{i}. `{row['id']}` {row['reason']}  "
-                f"原稿「{row['transcript_ref']}」 ASR「{row['transcript_asr']}」"
+                f"{i}. {_human_ref(row)}  {row['reason']}  "
+                f"ASR「{row['transcript_asr']}」"
             )
     lines += ["", "### 多音字（桶 P，待审，不计入 6 例、不扣整课错误惩罚）"]
     poly_rows = payload.get("polyphones") or []
@@ -430,8 +451,8 @@ def render_markdown(payload: dict) -> str:
     else:
         for i, row in enumerate(poly_rows, 1):
             lines.append(
-                f"{i}. `{row['id']}` {row['reason']}  "
-                f"原稿「{row['transcript_ref']}」 ASR「{row['transcript_asr']}」"
+                f"{i}. {_human_ref(row)}  {row['reason']}  "
+                f"ASR「{row['transcript_asr']}」"
             )
     lines += ["", "### 综合判定（检查 + 复审）"]
     verdicts = payload.get("verdicts") or {}
@@ -455,8 +476,7 @@ def render_markdown(payload: dict) -> str:
             tag = labels.get(row["bucket"], row["bucket"])
             extra = f" CER {row['cer_pct']}%" if row.get("cer_pct") is not None else ""
             lines.append(
-                f"{i}. [{tag}] `{row['id']}` {row['score']}分{extra}  {row['reason']}  "
-                f"「{row['transcript_ref']}」"
+                f"{i}. [{tag}] {_human_ref(row)} {row['score']}分{extra}  {row['reason']}"
             )
             nb = row.get("neighbors") or {}
             for hit in nb.get("pass") or []:
@@ -503,9 +523,12 @@ def main() -> int:
     print(f"loading FunASR {args.lang} ({len(pairs)} clips)…", file=sys.stderr)
     model = load_model(args.lang)
     model._qa_lang = args.lang
-    pron_map = pronunciation_map(
-        load_courseware_payload(args.courseware, str(args.course_id), args.token)
-    )
+    courseware = load_courseware_payload(args.courseware, str(args.course_id), args.token)
+    if courseware is None:
+        local_cw = folder / "courseware.json"
+        if local_cw.is_file():
+            courseware = load_courseware_payload(str(local_cw), "", args.token)
+    pron_map = pronunciation_map(courseware)
     if pron_map:
         print(f"pronunciations on {len(pron_map)} clips", file=sys.stderr)
 
@@ -529,6 +552,7 @@ def main() -> int:
     for row in items:
         apply_speed_band(row, speed_ok)
     attach_review(items, model, folder, args)
+    attach_node_ids(items, courseware)
 
     errors = sorted(
         (x for x in items if x["bucket"] == "A"),
@@ -576,7 +600,7 @@ def main() -> int:
         "polyphones": [compact(x) for x in polyphones],
         "verdicts": verdict_groups,
         "typical": typical_out,
-        "suggestions": build_suggestions(errors, polyphones, args.course_id),
+        "suggestions": build_suggestions(errors, polyphones, args.course_id, typical),
         "skipped": skipped,
     }
     if not args.no_memory:
